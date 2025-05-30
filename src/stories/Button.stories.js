@@ -1,4 +1,4 @@
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 import { Button } from '../components/button/Button';
 
@@ -43,9 +43,8 @@ export const Large = {
 
 export const Medium = {
   args:{
-    primary:false,
-    label:"Button",
-    size:"medium"
+    size:'medium',
+    label:'Button'
   }
 };
 
