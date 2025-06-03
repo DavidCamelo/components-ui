@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: components-ui
+  labels:
+    app: components-ui
+spec:
+  selector:
+    app: components-ui
+  ports:
+    - protocol: TCP
+      port: 4173
+      targetPort: 4173

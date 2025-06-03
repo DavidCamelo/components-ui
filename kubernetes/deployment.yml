@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: components-ui
+  labels:
+    app: components-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: components-ui
+  template:
+    metadata:
+      labels:
+        app: components-ui
+    spec:
+      containers:
+        - name: components-ui
+          image: davidcamelo/components-ui:main
+          ports:
+            - containerPort: 4173
+              protocol: TCP
+          imagePullPolicy: Always
+      restartPolicy: Always
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  revisionHistoryLimit: 1
