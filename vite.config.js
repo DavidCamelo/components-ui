@@ -23,7 +23,7 @@ export default defineConfig({
     cssCodeSplit: false,
   },
   server: {
-    allowedHosts: ['components-ui']
+    allowedHosts: ['components-ui', 'components-ui.davidcamelo.com']
   },
   preview: {
     cors: {
@@ -31,6 +31,6 @@ export default defineConfig({
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
       allowedHeaders: ['X-Requested-With', 'content-type', 'Authorization']
     },
-    allowedHosts: ['components-ui']
+    allowedHosts: ['components-ui', 'components-ui.davidcamelo.com']
   }
 })
