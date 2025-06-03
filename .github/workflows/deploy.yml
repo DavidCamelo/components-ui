@@ -53,5 +53,6 @@ jobs:
           manifests: |
             kubernetes/deployment.yml
             kubernetes/service.yml
+            kubernetes/ingress.yml
           images: |
             ${{steps.prepare.outputs.docker_image}}:${{github.ref_name}}-${{steps.prepare.outputs.sha_short}}
