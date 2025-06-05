@@ -5,4 +5,4 @@ RUN npm install
 COPY . .
 RUN npm run build
 RUN npm run build-storybook
-ENTRYPOINT [ "./run-scripts/entrypoint.sh" ]
+CMD /run-scripts/entrypoint.sh
