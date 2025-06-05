@@ -12,6 +12,7 @@ export default {
     layout: 'fullscreen',
   },
   args: {
+    label: 'Example Header',
     onLogin: fn(),
     onLogout: fn(),
     onCreateAccount: fn(),
@@ -21,7 +22,7 @@ export default {
 export const LoggedIn = {
   args: {
     user: {
-      name: 'Jane Doe',
+      name: 'John Doe',
     },
   },
 };

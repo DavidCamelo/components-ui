@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import { Button } from '../button/Button';
 import './header.css';
 
-export const Header = ({ user = null, onLogin, onLogout, onCreateAccount }) => (
-  <header>
+export const Header = ({ label = null, user = null, onLogin, onLogout, onCreateAccount }) => (
+  <header className="storybook-header-sticky">
     <div className="storybook-header">
       <div>
         <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -25,7 +25,7 @@ export const Header = ({ user = null, onLogin, onLogout, onCreateAccount }) => (
             />
           </g>
         </svg>
-        <h1>Acme</h1>
+        <h1>{label}</h1>
       </div>
       <div>
         {user ? (
@@ -47,6 +47,7 @@ export const Header = ({ user = null, onLogin, onLogout, onCreateAccount }) => (
 );
 
 Header.propTypes = {
+  label: PropTypes.string.isRequired,
   user: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }),

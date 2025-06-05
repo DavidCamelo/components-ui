@@ -9,5 +9,5 @@ spec:
     app: components-ui
   ports:
     - protocol: TCP
-      port: 4173
-      targetPort: 4173
+      port: 8080
+      targetPort: 8080

@@ -1,3 +1,8 @@
+.storybook-header-sticky {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
 .storybook-header {
   display: flex;
   justify-content: space-between;

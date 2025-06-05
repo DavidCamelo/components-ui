@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Input } from './Input';
 import { Button } from '../button/Button';
 
@@ -7,7 +7,7 @@ import ButtonJetbrains from '@jetbrains/ring-ui-built/components/button/button';
 
 import '@jetbrains/ring-ui-built/components/style.css';
 
-const InputTest = (props) => {
+export const InputTest = (props) => {
   const { value, onChange, onSubmit } = props;
   return (
     <form
@@ -24,5 +24,3 @@ const InputTest = (props) => {
     </form>
   );
 };
-
-export default InputTest;

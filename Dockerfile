@@ -3,5 +3,5 @@ WORKDIR /app
 COPY package.json .
 RUN npm install
 COPY . .
-RUN npm run build
-ENTRYPOINT [ "npm", "run", "preview" ]
+RUN npm run build-storybook
+ENTRYPOINT [ "npx", "http-server", "./storybook-static", "--cors"]

@@ -10,6 +10,7 @@ export default defineConfig({
       name: 'components-ui',
       filename: 'remoteEntry.js',
       exposes: {
+        './Header': './src/components/header/Header.jsx',
         './Input': './src/components/input/InputTest.jsx',
         './List': './src/components/list/List.jsx'
       },
