@@ -1,3 +1,2 @@
 #!/bin/bash
-bash run-storybook.sh
-bash run-preview.sh
+./run-storybook.sh & ./run-preview.sh

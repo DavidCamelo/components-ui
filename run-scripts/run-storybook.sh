@@ -1,2 +1,3 @@
 #!/bin/bash
-npx http-server ./storybook-static --cors
+cd ..
+npx http-server ./storybook-static
