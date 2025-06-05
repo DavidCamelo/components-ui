@@ -7,7 +7,21 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
+  tls:
+    - hosts:
+        - storybook.davidcamelo.com
+        - components-ui.davidcamelo.com
+      secretName: components-ui-ingress
   rules:
+    - host: storybook.davidcamelo.com
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            backend:
+              service:
+                name: components-ui
+                port:
+                  name: storybook
     - host: components-ui.davidcamelo.com
       http:
         paths:
@@ -16,8 +30,4 @@ spec:
               service:
                 name: components-ui
                 port:
-                  number: 8080
-  tls:
-    - hosts:
-        - components-ui.davidcamelo.com
-      secretName: components-ui-ingress
+                  name: preview

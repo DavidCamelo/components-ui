@@ -5,9 +5,12 @@ metadata:
   labels:
     app: components-ui
 spec:
-  selector:
-    app: components-ui
   ports:
-    - protocol: TCP
+    - name: storybook
+      protocol: TCP
       port: 8080
-      targetPort: 8080
+      targetPort: storybook
+    - name: preview
+      protocol: TCP
+      port: 4173
+      targetPort: preview
