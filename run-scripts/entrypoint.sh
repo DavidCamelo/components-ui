@@ -1,2 +1,2 @@
 #!/bin/bash
-./run-preview.sh
+bash run-preview.sh
