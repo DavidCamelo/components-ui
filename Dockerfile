@@ -11,4 +11,4 @@ COPY ./run-scripts/run-preview.sh /run-scripts/run-preview.sh
 RUN chmod +x /run-scripts/entrypoint.sh
 RUN chmod +x /run-scripts/run-storybook.sh
 RUN chmod +x /run-scripts/run-preview.sh
-ENTRYPOINT ["/run-scripts/entrypoint.sh"]
+ENTRYPOINT ["./run-scripts/entrypoint.sh"]
