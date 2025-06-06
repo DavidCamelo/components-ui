@@ -10,4 +10,4 @@ RUN chmod +x run-scripts/run-preview.sh
 RUN chmod +x run-scripts/run-storybook.sh
 #EXPOSE 4173 8080
 #ENTRYPOINT ["/bin/sh", "run-scripts/entrypoint.sh"]
-ENTRYPOINT ["npm", "run", "preview", "&", "npm", "run", "storybook"]
+ENTRYPOINT [ "npm", "run", "preview", "&", "npx", "http-server", "./storybook-static", "--cors" ]
