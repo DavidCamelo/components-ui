@@ -11,5 +11,4 @@ COPY run-scripts/run-storybook.sh .
 RUN chmod 777 entrypoint.sh
 RUN chmod 777 run-preview.sh
 RUN chmod 777 run-storybook.sh
-RUN ls -d $PWD/*
-CMD [ "./entrypoint.sh" ]
+CMD [ "./app/entrypoint.sh" ]
