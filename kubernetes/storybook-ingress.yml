@@ -10,7 +10,6 @@ spec:
   tls:
     - hosts:
         - storybook.davidcamelo.com
-        - components-ui.davidcamelo.com
       secretName: components-ui-ingress
   rules:
     - host: storybook.davidcamelo.com
@@ -19,15 +18,6 @@ spec:
           - pathType: ImplementationSpecific
             backend:
               service:
-                name: components-ui
+                name: storybook
                 port:
-                  name: storybook
-    - host: components-ui.davidcamelo.com
-      http:
-        paths:
-          - pathType: ImplementationSpecific
-            backend:
-              service:
-                name: components-ui
-                port:
-                  name: preview
+                  number: 8080

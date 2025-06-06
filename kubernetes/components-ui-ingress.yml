@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: components-ui
+  labels:
+    app: components-ui
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  tls:
+    - hosts:
+        - components-ui.davidcamelo.com
+      secretName: components-ui-ingress
+  rules:
+    - host: components-ui.davidcamelo.com
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            backend:
+              service:
+                name: components-ui
+                port:
+                  number: 4173

@@ -18,11 +18,9 @@ spec:
         - name: components-ui
           image: davidcamelo/components-ui:main
           ports:
-            - name: storybook
-              containerPort: 8080
+            - containerPort: 8080
               protocol: TCP
-            - name: preview
-              containerPort: 4173
+            - containerPort: 4173
               protocol: TCP
           imagePullPolicy: Always
       restartPolicy: Always
