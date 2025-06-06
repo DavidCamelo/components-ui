@@ -8,4 +8,4 @@ RUN npm run build
 RUN chmod 777 run-scripts/entrypoint.sh
 RUN chmod 777 run-scripts/run-preview.sh
 RUN chmod 777 run-scripts/run-storybook.sh
-CMD run-scripts/entrypoint.sh
+ENTRYPOINT ["/bin/sh", "run-scripts/entrypoint.sh"]
