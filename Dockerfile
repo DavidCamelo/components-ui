@@ -5,5 +5,10 @@ RUN npm install
 COPY . .
 RUN npm run build
 RUN npm run build-storybook
-RUN chmod +x run-scripts/entrypoint.sh
-CMD run-scripts/entrypoint.sh
+COPY ./run-scripts/entrypoint.sh /run-scripts/entrypoint.sh
+COPY ./run-scripts/run-storybook.sh /run-scripts/run-storybook.sh
+COPY ./run-scripts/run-preview.sh /run-scripts/run-preview.sh
+RUN chmod +x /run-scripts/entrypoint.sh
+RUN chmod +x /run-scripts/run-storybook.sh
+RUN chmod +x /run-scripts/run-preview.sh
+ENTRYPOINT ["/run-scripts/entrypoint.sh"]
