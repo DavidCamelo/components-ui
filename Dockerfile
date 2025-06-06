@@ -1,6 +1,5 @@
 FROM node:24-alpine
 WORKDIR /app
-RUN apt update && apt install -y bash
 COPY package.json .
 RUN npm install
 COPY . .
@@ -12,4 +11,4 @@ COPY run-scripts/run-storybook.sh .
 RUN chmod 777 entrypoint.sh
 RUN chmod 777 run-preview.sh
 RUN chmod 777 run-storybook.sh
-CMD [ "bash", "entrypoint.sh" ]
+CMD [ "./entrypoint.sh" ]
