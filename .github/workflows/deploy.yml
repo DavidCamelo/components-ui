@@ -52,9 +52,8 @@ jobs:
           namespace: spring-boot
           manifests: |
             kubernetes/deployment.yml
-            kubernetes/storybook-service.yml
+            kubernetes/service.yml
             kubernetes/storybook-ingress.yml
-            kubernetes/components-ui-service.yml
             kubernetes/components-ui-ingress.yml
           images: |
             ${{steps.prepare.outputs.docker_image}}:${{github.ref_name}}-${{steps.prepare.outputs.sha_short}}

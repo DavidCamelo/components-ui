@@ -20,4 +20,4 @@ spec:
               service:
                 name: components-ui
                 port:
-                  number: 4173
+                  name: port-4173
