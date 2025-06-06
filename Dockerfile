@@ -17,4 +17,4 @@ RUN chmod 777 entrypoint.sh
 RUN chmod 777 run-preview.sh
 RUN chmod 777 run-storybook.sh
 RUN ls -la
-CMD entrypoint.sh
+ENTRYPOINT [ "./entrypoint.sh" ]
