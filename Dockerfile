@@ -8,4 +8,4 @@ RUN npm run build-storybook
 RUN chmod +x run-scripts/entrypoint.sh
 RUN chmod +x run-scripts/run-storybook.sh
 RUN chmod +x run-scripts/run-preview.sh
-ENTRYPOINT ["run-scripts/entrypoint.sh"]
+CMD run-scripts/entrypoint.sh
