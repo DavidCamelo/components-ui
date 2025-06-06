@@ -11,7 +11,7 @@ export default defineConfig({
       filename: 'remoteEntry.js',
       exposes: {
         './Header': './src/components/header/Header.jsx',
-        './Input': './src/components/input/InputTest.jsx',
+        './InputTest': './src/components/input/InputTest.jsx',
         './List': './src/components/list/List.jsx'
       },
       shared: ['react']

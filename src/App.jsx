@@ -2,24 +2,12 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { Header } from './components/header/Header'
-import { InputTest } from './components/input/InputTest'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <Header
-        label="Example Header"
-        onCreateAccount={() => {}}
-        onLogin={() => {}}
-        onLogout={() => {}}
-        user={{
-          name: 'David Camelo'
-        }}
-      />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -40,132 +28,6 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
-      <InputTest value={count} onChange={setCount} onSubmit={() => setCount((count) => count + 1)} />
     </>
   )
 }
