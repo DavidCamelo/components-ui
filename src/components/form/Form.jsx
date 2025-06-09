@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './form.css';
 
 const Form = ({ fields, initialData, onSave, onCancel }) => {
