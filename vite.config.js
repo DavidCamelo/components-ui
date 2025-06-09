@@ -16,6 +16,9 @@ export default defineConfig({
         './Button': './src/components/button/Button.jsx',
         './Input': './src/components/input/Input.jsx',
         './Modal': './src/components/modal/Modal.jsx',
+        './Form': './src/components/form/Form.jsx',
+        './Table': './src/components/table/Table.jsx',
+        './Tabs': './src/components/tabs/Tabs.jsx',
         './InputTest': './src/components/input/InputTest.jsx',
         './List': './src/components/list/List.jsx'
       },
