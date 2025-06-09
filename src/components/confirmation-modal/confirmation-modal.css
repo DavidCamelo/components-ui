@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@keyframes fade-in-scale {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.animate-fade-in-scale {
+    animation: fade-in-scale 0.2s ease-out forwards;
+}
