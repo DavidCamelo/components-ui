@@ -1,6 +1,5 @@
 import React from 'react';
 import Modal from '../modal/Modal';
-import './confirmation-modal.css';
 
 const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, children }) => {
     if (!isOpen) return null;
