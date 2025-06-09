@@ -37,7 +37,7 @@ export default defineConfig({
   },
   preview: {
     cors: {
-      origin: '*',
+      origin: ['*'],
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
       allowedHeaders: ['X-Requested-With', 'content-type', 'Authorization']
     },
