@@ -37,9 +37,9 @@ export default defineConfig({
   },
   preview: {
     cors: {
-      origin: ['*'],
-      methods: ['*'],
-      allowedHeaders: ['*']
+      origin: '*',
+      methods: '*',
+      allowedHeaders: '*'
     },
     allowedHosts: ['components-ui', 'components-ui.davidcamelo.com']
   }
