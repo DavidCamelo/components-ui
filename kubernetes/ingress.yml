@@ -7,10 +7,6 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
-  tls:
-    - hosts:
-        - components-ui.davidcamelo.com
-      secretName: components-ui-ingress
   rules:
     - host: components-ui.davidcamelo.com
       http:
@@ -20,4 +16,8 @@ spec:
               service:
                 name: components-ui
                 port:
-                  name: port-4173
+                  number: 4173
+  tls:
+    - hosts:
+        - components-ui.davidcamelo.com
+      secretName: components-ui-ingress

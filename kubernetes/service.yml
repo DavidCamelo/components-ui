@@ -5,14 +5,9 @@ metadata:
   labels:
     app: components-ui
 spec:
-  ports:
-    - name: port-4173
-      protocol: TCP
-      port: 4173
-      targetPort: 4173
-    - name: port-8080
-      protocol: TCP
-      port: 8080
-      targetPort: 8080
   selector:
     app: components-ui
+  ports:
+    - protocol: TCP
+      port: 4173
+      targetPort: 4173

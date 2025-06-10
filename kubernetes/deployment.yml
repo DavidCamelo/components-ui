@@ -18,8 +18,6 @@ spec:
         - name: components-ui
           image: davidcamelo/components-ui:main
           ports:
-            - containerPort: 8080
-              protocol: TCP
             - containerPort: 4173
               protocol: TCP
           imagePullPolicy: Always
