@@ -1,7 +1,8 @@
 import React from 'react';
 import Modal from '../modal/Modal';
+//import './confirmation-modal.css';
 
-const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, children }) => {
+const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, children, cancel = 'Cancel', confirm = 'Delete'}) => {
     if (!isOpen) return null;
 
     return (
@@ -14,13 +15,13 @@ const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, children }) => {
                     onClick={onClose}
                     className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
-                    Cancel
+                    {cancel}
                 </button>
                 <button
                     onClick={onConfirm}
                     className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
-                    Delete
+                    {confirm}
                 </button>
             </div>
         </Modal>

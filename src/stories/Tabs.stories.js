@@ -1,13 +1,18 @@
-import { expect, userEvent, within } from 'storybook/test';
+import { fn } from 'storybook/test';
 
 import Tabs from '../components/tabs/Tabs';
 
 export default {
   title: 'Example/Tabs',
   component: Tabs,
-  parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
-    layout: 'fullscreen',
+  tags: ['autodocs'],
+  args: {
+    tabs: [
+      { name: 'users', label: 'Users' },
+      { name: 'products', label: 'Products' },
+    ],
+    activeTab: fn(),
+    onTabClick: fn(),
   },
 };
 

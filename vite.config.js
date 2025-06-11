@@ -16,7 +16,7 @@ export default defineConfig({
         './Button': './src/components/button/Button.jsx',
         './Input': './src/components/input/Input.jsx',
         './Modal': './src/components/modal/Modal.jsx',
-        './ConfirmationModal': './src/components/modal/ConfirmationModal.jsx',
+        './ConfirmationModal': './src/components/confirmation-modal/ConfirmationModal.jsx',
         './Table': './src/components/table/Table.jsx',
         './Form': './src/components/form/Form.jsx',
         './Tabs': './src/components/tabs/Tabs.jsx',
