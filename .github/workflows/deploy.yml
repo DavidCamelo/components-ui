@@ -51,11 +51,11 @@ jobs:
           action: deploy
           namespace: spring-boot
           manifests: |
-            kubernetes/components/deployment.yml
-            kubernetes/components/service.yml
-            kubernetes/components/ingress.yml
-            kubernetes/storybook/deployment.yml
-            kubernetes/storybook/service.yml
-            kubernetes/storybook/ingress.yml
+            kubernetes/components-ui/components-ui-deployment.yml
+            kubernetes/components-ui/components-ui-service.yml
+            kubernetes/components-ui/components-ui-ingress.yml
+            kubernetes/storybook/storybook-deployment.yml
+            kubernetes/storybook/storybook-service.yml
+            kubernetes/storybook/storybook-ingress.yml
           images: |
             ${{steps.prepare.outputs.docker_image}}:${{github.ref_name}}-${{steps.prepare.outputs.sha_short}}
