@@ -51,9 +51,9 @@ jobs:
           action: deploy
           namespace: spring-boot
           manifests: |
-            kubernetes/components-ui/deployment.yml
-            kubernetes/components-ui/service.yml
-            kubernetes/components-ui/ingress.yml
+            kubernetes/components/deployment.yml
+            kubernetes/components/service.yml
+            kubernetes/components/ingress.yml
             kubernetes/storybook/deployment.yml
             kubernetes/storybook/service.yml
             kubernetes/storybook/ingress.yml
