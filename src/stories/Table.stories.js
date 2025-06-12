@@ -1,6 +1,6 @@
 import { fn } from 'storybook/test';
 
-import Table from '../components/table/Table';
+import { Table } from '../components/table/Table';
 
 export default {
   title: 'Example/Table',
@@ -23,3 +23,5 @@ export default {
 };
 
 export const TableExample = {};
+
+export const TableExample2 = {};

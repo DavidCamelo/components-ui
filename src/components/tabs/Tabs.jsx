@@ -1,7 +1,7 @@
 import React from 'react';
 import './tabs.css';
 
-const Tabs = ({ tabs, activeTab, onTabClick }) => (
+export const Tabs = ({ tabs, activeTab, onTabClick }) => (
     <div className="flex border-b mb-4">
         {tabs.map(tab => (
             <button
@@ -14,5 +14,3 @@ const Tabs = ({ tabs, activeTab, onTabClick }) => (
         ))}
     </div>
 );
-
-export default Tabs;

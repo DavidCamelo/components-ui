@@ -1,7 +1,7 @@
 import React from 'react';
 import './table.css';
 
-const Table = ({ columns, data, onEdit, onDelete }) => (
+export const Table = ({ columns, data, onEdit, onDelete }) => (
   <div className="overflow-x-auto">
     <table className="min-w-full bg-white rounded-lg shadow-md">
       <thead className="bg-gray-800 text-white">
@@ -32,5 +32,3 @@ const Table = ({ columns, data, onEdit, onDelete }) => (
     </table>
   </div>
 );
-
-export default Table;

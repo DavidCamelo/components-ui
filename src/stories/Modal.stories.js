@@ -1,6 +1,6 @@
 import { fn } from 'storybook/test';
 
-import Modal from '../components/modal/Modal';
+import { Modal } from '../components/modal/Modal';
 
 export default {
   title: 'Example/Modal',
@@ -19,3 +19,5 @@ export default {
 };
 
 export const ModalExample = {};
+
+export const ModalExample2 = {};

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './form.css';
 
-const Form = ({ fields, initialData, onSave, onCancel }) => {
+export const  Form = ({ fields, initialData, onSave, onCancel }) => {
     const [formData, setFormData] = useState(initialData || {});
 
     useEffect(() => {
@@ -68,5 +68,3 @@ const Form = ({ fields, initialData, onSave, onCancel }) => {
         </form>
     );
 };
-
-export default Form;

@@ -1,6 +1,6 @@
 import { fn } from 'storybook/test';
 
-import Form from '../components/form/Form';
+import { Form } from '../components/form/Form';
 
 export default {
   title: 'Example/Form',
@@ -23,3 +23,5 @@ export default {
 };
 
 export const FormExample = {};
+
+export const FormExample2 = {};

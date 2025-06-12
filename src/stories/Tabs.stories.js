@@ -1,6 +1,6 @@
 import { fn } from 'storybook/test';
 
-import Tabs from '../components/tabs/Tabs';
+import { Tabs } from '../components/tabs/Tabs';
 
 export default {
   title: 'Example/Tabs',
@@ -11,9 +11,11 @@ export default {
       { name: 'users', label: 'Users' },
       { name: 'products', label: 'Products' },
     ],
-    activeTab: fn(),
+    activeTab: 'users',
     onTabClick: fn(),
   },
 };
 
 export const TabsExample = {};
+
+export const TabsExample2 = {};

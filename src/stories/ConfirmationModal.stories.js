@@ -1,6 +1,6 @@
 import { fn } from 'storybook/test';
 
-import ConfirmationModal from '../components/confirmation-modal/ConfirmationModal';
+import { ConfirmationModal } from '../components/confirmation-modal/ConfirmationModal';
 
 export default {
   title: 'Example/Confirmation Modal',
@@ -22,3 +22,5 @@ export default {
 };
 
 export const ConfirmationModalExample = {};
+
+export const ConfirmationModalExample2 = {};

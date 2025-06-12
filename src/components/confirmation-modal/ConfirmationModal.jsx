@@ -1,8 +1,8 @@
 import React from 'react';
-import Modal from '../modal/Modal';
-//import './confirmation-modal.css';
+import { Modal } from '../modal/Modal';
+import './confirmation-modal.css';
 
-const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, children, cancel = 'Cancel', confirm = 'Delete'}) => {
+export const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, children, cancel = 'Cancel', confirm = 'Delete'}) => {
     if (!isOpen) return null;
 
     return (
@@ -27,5 +27,3 @@ const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, children, cancel
         </Modal>
     );
 };
-
-export default ConfirmationModal;
