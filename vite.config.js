@@ -20,6 +20,7 @@ export default defineConfig({
         './Table': './src/components/table/Table.jsx',
         './Form': './src/components/form/Form.jsx',
         './Tabs': './src/components/tabs/Tabs.jsx',
+        './ResourcePage': './src/components/resource-page/ResourcePage.jsx',
         './InputTest': './src/components/input/InputTest.jsx',
         './List': './src/components/list/List.jsx'
       },

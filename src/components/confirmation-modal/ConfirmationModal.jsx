@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal } from '../modal/Modal';
 import './confirmation-modal.css';
 
-export const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, children, cancel = 'Cancel', confirm = 'Delete'}) => {
+export const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, children, cancel = 'Cancel', confirm = 'Delete' }) => {
     if (!isOpen) return null;
 
     return (

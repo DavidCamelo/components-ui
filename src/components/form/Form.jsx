@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './form.css';
 
-export const  Form = ({ fields, initialData, onSave, onCancel }) => {
+export const Form = ({ fields, initialData, onSave, onCancel }) => {
     const [formData, setFormData] = useState(initialData || {});
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export const  Form = ({ fields, initialData, onSave, onCancel }) => {
         fields.forEach(field => {
             if (field.type === 'select') {
                 const selectedOption = field.options.find(opt => opt.value === parseInt(formData[field.name]));
-                submissionData[field.name] = { id: selectedOption.value, name: selectedOption.label };
+                submissionData[field.name] = selectedOption ? { id: selectedOption.value, name: selectedOption.label } : null;
             } else {
                 submissionData[field.name] = formData[field.name];
             }
@@ -51,7 +51,7 @@ export const  Form = ({ fields, initialData, onSave, onCancel }) => {
                         </select>
                     ) : (
                         <input
-                            type={field.type}
+                            type={field.type || 'text'}
                             name={field.name}
                             value={formData[field.name] || ''}
                             onChange={handleChange}
