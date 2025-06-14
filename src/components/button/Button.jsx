@@ -2,13 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './button.css';
 
-export const Button = ({
-  primary = false,
-  backgroundColor = null,
-  size = 'medium',
-  label,
-  ...props
-}) => {
+export const Button = ({ primary, backgroundColor, size = 'medium', label, ...props }) => {
   const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
   return (
     <button
@@ -28,6 +22,12 @@ Button.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func,
+};
+
+Button.defaultProps = {
+  primary: true,
+  size: 'medium',
+  label: 'Button',
 };
 
 export default Button;

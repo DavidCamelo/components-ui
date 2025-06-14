@@ -10,6 +10,9 @@ import RadioButton from './components/radio-button/RadioButton';
 import Select from './components/select/Select';
 import Tabs from './components/tabs/Tabs';
 import Toggle from './components/toggle/Toggle';
+import DatePicker from './components/date-picker/DatePicker';
+import TimePicker from './components/time-picker/TimePicker';
+import DateTimePicker from './components/date-time-picker/DateTimePicker';
 import './App.css';
 
 export default function App() {
@@ -22,6 +25,9 @@ export default function App() {
   const [multiSelectValues, setMultiSelectValues] = useState(['js']);
   const [radioValue, setRadioValue] = useState('personal');
   const [toggleEnabled, setToggleEnabled] = useState(false);
+  const [dateValue, setDateValue] = useState('');
+  const [timeValue, setTimeValue] = useState('');
+  const [datetimeValue, setDatetimeValue] = useState('');
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
@@ -38,7 +44,7 @@ export default function App() {
       <Header title="ComponentLib" menuItems={menuItems} />
       <main style={{ padding: '2rem', background: '#f9fafb' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-
+              
               <div style={{ background: 'white', padding: '1.5rem', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)' }}>
                   <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>Inputs & Buttons</h2>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -64,6 +70,15 @@ export default function App() {
                           <RadioButton label="Business" name="accountType" value="business" checked={radioValue === 'business'} onChange={(e) => setRadioValue(e.target.value)} />
                           </div>
                       </div>
+                  </div>
+              </div>
+
+              <div style={{ background: 'white', padding: '1.5rem', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)' }}>
+                  <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>Date & Time Pickers</h2>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                      <DatePicker label="Appointment Date" name="appointment-date" value={dateValue} onChange={e => setDateValue(e.target.value)} />
+                      <TimePicker label="Appointment Time" name="appointment-time" value={timeValue} onChange={e => setTimeValue(e.target.value)} />
+                      <DateTimePicker label="Event Date and Time" name="event-datetime" value={datetimeValue} onChange={e => setDatetimeValue(e.target.value)} />
                   </div>
               </div>
 

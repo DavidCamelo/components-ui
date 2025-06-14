@@ -14,14 +14,7 @@ export default {
   args: { onClick: fn() },
 };
 
-export const Primary = {
-  args: {
-    primary: true,
-    label: 'Button',
-  },
-};
-
-export const Secondary = {
+export const Default = {
   args: {
     label: 'Button',
   },
@@ -29,20 +22,15 @@ export const Secondary = {
 
 export const Large = {
   args: {
+    primary: false,
     size: 'large',
     label: 'Button',
   },
 };
 
-export const Medium = {
-  args:{
-    size:'medium',
-    label:'Button'
-  }
-};
-
 export const Small = {
   args: {
+    primary: false,
     size: 'small',
     label: 'Button',
   },
