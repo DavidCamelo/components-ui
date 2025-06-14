@@ -5,11 +5,10 @@ import { Form } from '../components/form/Form';
 export default {
   title: 'Example/Form',
   component: Form,
-  tags: ['autodocs'],
   parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: 'centered',
   },
+  tags: ['autodocs'],
   args: {
     fields: [
       { name: 'name', label: 'Name', type: 'text' },
@@ -22,6 +21,4 @@ export default {
   },
 };
 
-export const FormExample = {};
-
-export const FormExample2 = {};
+export const Default = {};

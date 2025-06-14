@@ -1,20 +1,60 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './modal.css';
+import { XIcon } from '../../icons';
 
 export const Modal = ({ isOpen, onClose, title, children }) => {
-    if (!isOpen) return null;
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+    if (isOpen) {
+      window.addEventListener('keydown', handleEsc);
+      document.body.classList.add('modal-open');
+    }
 
-    return (
-        <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center p-4 transition-opacity duration-300 ease-in-out">
-            <div className="bg-white rounded-lg shadow-xl w-full max-w-md transform transition-all duration-300 ease-in-out scale-95 opacity-0 animate-fade-in-scale">
-                <div className="flex justify-between items-center border-b p-4">
-                    <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
-                    <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-2xl font-bold leading-none">&times;</button>
-                </div>
-                <div className="p-6">
-                    {children}
-                </div>
-            </div>
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+      document.body.classList.remove('modal-open');
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div
+      className="storybook-modal-backdrop"
+      onClick={onClose}
+    >
+      <div
+        className="storybook-modal-container"
+        onClick={e => e.stopPropagation()}
+      >
+        <div className="storybook-modal-header">
+          <h3 className="storybook-modal-title">{title}</h3>
+          <button
+            type="button"
+            className="storybook-modal-close-button"
+            onClick={onClose}
+          >
+            <XIcon className="h-6 w-6" />
+          </button>
         </div>
-    );
+        <div className="storybook-modal-content">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
 };
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
+export default Modal;

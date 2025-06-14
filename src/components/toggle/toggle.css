@@ -1,0 +1,44 @@
+@import "tailwindcss";
+.storybook-toggle-wrapper {
+  display: flex;
+  align-items: center;
+}
+.storybook-toggle-label {
+  margin-right: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+.storybook-toggle-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 1.5rem;
+  width: 2.75rem;
+  border-radius: 9999px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  border: none;
+}
+.storybook-toggle-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(30, 167, 253, 0.5);
+}
+.storybook-toggle-button[aria-checked="true"] {
+  background-color: #1ea7fd;
+}
+.storybook-toggle-button[aria-checked="false"] {
+  background-color: #d1d5db;
+}
+.storybook-toggle-handle {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: white;
+  border-radius: 9999px;
+  transform: translateX(0.25rem);
+  transition: transform 0.3s;
+}
+.storybook-toggle-button[aria-checked="true"] .storybook-toggle-handle {
+  transform: translateX(1.5rem);
+}

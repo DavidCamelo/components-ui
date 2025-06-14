@@ -7,11 +7,10 @@ import { testService } from '../services/api.js';
 export default {
   title: 'Example/ResourcePage',
   component: ResourcePage,
-  tags: ['autodocs'],
   parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: 'fullscreen',
   },
+  tags: ['autodocs'],
   args: {
     title: 'User Management',
     resourceName: 'User',
@@ -27,6 +26,4 @@ export default {
   },
 };
 
-export const ResourcePageExample = {};
-
-export const ResourcePageExample2 = {};
+export const Default = {};

@@ -1,9 +1,49 @@
 @import "tailwindcss";
-
-@keyframes fade-in-scale {
-    from { transform: scale(0.95); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+.modal-open {
+  overflow: hidden;
 }
-.animate-fade-in-scale {
-    animation: fade-in-scale 0.2s ease-out forwards;
+.storybook-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(107, 114, 128, 0.75);
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.storybook-modal-container {
+  position: relative;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  text-align: left;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  transition: all;
+  margin: 2rem;
+  max-width: 32rem;
+  width: 100%;
+}
+.storybook-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.storybook-modal-title {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  color: #111827;
+}
+.storybook-modal-close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+}
+.storybook-modal-close-button:hover {
+  color: #6b7280;
+}
+.storybook-modal-content {
+  margin-top: 0.5rem;
 }

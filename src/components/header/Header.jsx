@@ -1,57 +1,47 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
-import { Button } from '../button/Button';
 import './header.css';
+import { XIcon, MenuIcon } from '../../icons';
 
-export const Header = ({ label = null, user = null, onLogin, onLogout, onCreateAccount }) => (
-  <header className="storybook-header-sticky">
-    <div className="storybook-header">
-      <div>
-        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" fillRule="evenodd">
-            <path
-              d="M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z"
-              fill="#FFF"
-            />
-            <path
-              d="M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z"
-              fill="#555AB9"
-            />
-            <path
-              d="M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z"
-              fill="#91BAF8"
-            />
-          </g>
-        </svg>
-        <h1>{label}</h1>
+export const Header = ({ title, menuItems }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <header className="storybook-header">
+      <div className="storybook-header-container">
+        <h1 className="storybook-header-title">{title}</h1>
+        <nav className="storybook-header-nav-desktop">
+          {menuItems.map(item => (
+            <a key={item.name} href={item.href} className="storybook-header-nav-link">
+              {item.name}
+            </a>
+          ))}
+        </nav>
+        <div className="storybook-header-mobile-menu-button-wrapper">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="storybook-header-mobile-menu-button">
+            {isMenuOpen ? <XIcon /> : <MenuIcon />}
+          </button>
+        </div>
       </div>
-      <div>
-        {user ? (
-          <>
-            <span className="welcome">
-              Welcome, <b>{user.name}</b>!
-            </span>
-            <Button size="small" onClick={onLogout} label="Log out" />
-          </>
-        ) : (
-          <>
-            <Button size="small" onClick={onLogin} label="Log in" />
-            <Button primary size="small" onClick={onCreateAccount} label="Sign up" />
-          </>
-        )}
-      </div>
-    </div>
-  </header>
-);
+      {isMenuOpen && (
+        <nav className="storybook-header-nav-mobile">
+          {menuItems.map(item => (
+            <a key={item.name} href={item.href} className="storybook-header-nav-link-mobile">
+              {item.name}
+            </a>
+          ))}
+        </nav>
+      )}
+    </header>
+  );
+};
 
 Header.propTypes = {
-  label: PropTypes.string.isRequired,
-  user: PropTypes.shape({
+  title: PropTypes.string.isRequired,
+  menuItems: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-  }),
-  onLogin: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired,
-  onCreateAccount: PropTypes.func.isRequired,
+    href: PropTypes.string.isRequired,
+  })).isRequired,
 };
+
+export default Header;

@@ -1,1 +1,11 @@
 @import "tailwindcss";
+.storybook-confirmation-content {
+  font-size: 0.875rem; /* 14px */
+  color: #4b5563;
+}
+.storybook-confirmation-actions {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}

@@ -1,29 +1,36 @@
 import React from 'react';
-import { Modal } from '../modal/Modal';
+import PropTypes from 'prop-types';
 import './confirmation-modal.css';
+import Modal from '../modal/Modal';
+import Button from '../button/Button';
 
-export const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, children, cancel = 'Cancel', confirm = 'Delete' }) => {
-    if (!isOpen) return null;
+export const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, children }) => {
+  if (!isOpen) return null;
 
-    return (
-        <Modal isOpen={isOpen} onClose={onClose} title={title}>
-            <div className="text-slate-600 mb-6">
-                {children}
-            </div>
-            <div className="flex items-center justify-end space-x-4">
-                <button
-                    onClick={onClose}
-                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                >
-                    {cancel}
-                </button>
-                <button
-                    onClick={onConfirm}
-                    className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                >
-                    {confirm}
-                </button>
-            </div>
-        </Modal>
-    );
+  const handleConfirm = () => {
+    onConfirm();
+    onClose();
+  };
+
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} title={title}>
+      <div className="storybook-confirmation-content">
+        {children}
+      </div>
+      <div className="storybook-confirmation-actions">
+        <Button label="Cancel" size="small" onClick={onClose} />
+        <Button primary label="Confirm" size="small" onClick={handleConfirm} />
+      </div>
+    </Modal>
+  );
 };
+
+ConfirmationModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
+export default ConfirmationModal;

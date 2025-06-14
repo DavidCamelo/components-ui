@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './tabs.css';
 
-export const Tabs = ({ tabs, activeTab, onTabClick }) => (
-    <div className="flex border-b mb-4">
-        {tabs.map(tab => (
-            <button
-                key={tab.name}
-                className={`py-2 px-6 font-semibold rounded-t-lg transition-colors ${activeTab === tab.name ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`}
-                onClick={() => onTabClick(tab.name)}
-            >
-                {tab.label}
-            </button>
-        ))}
-    </div>
-);
+export const Tabs = ({ tabs }) => {
+    const [activeTab, setActiveTab] = useState(0);
+    return (
+        <div className="storybook-tabs-wrapper">
+            <nav className="storybook-tabs-nav">
+                {tabs.map((tab, index) => (
+                    <button
+                      key={tab.name}
+                      onClick={() => setActiveTab(index)}
+                      className={`storybook-tabs-button ${activeTab === index ? 'storybook-tabs-button--active' : ''}`}
+                    >
+                        {tab.name}
+                    </button>
+                ))}
+            </nav>
+            <div className="storybook-tabs-content">
+                {tabs[activeTab] && tabs[activeTab].content}
+            </div>
+        </div>
+    );
+};
+
+Tabs.propTypes = {
+  tabs: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    content: PropTypes.node.isRequired
+  })).isRequired
+};
+
+export default Tabs;

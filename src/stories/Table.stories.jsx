@@ -5,11 +5,10 @@ import { Table } from '../components/table/Table';
 export default {
   title: 'Example/Table',
   component: Table,
-  tags: ['autodocs'],
   parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: 'centered',
   },
+  tags: ['autodocs'],
   args: {
     columns: [
       { key: 'name', header: 'Name' },
@@ -22,6 +21,4 @@ export default {
   },
 };
 
-export const TableExample = {};
-
-export const TableExample2 = {};
+export const Default = {};

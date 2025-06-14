@@ -1,0 +1,23 @@
+@import "tailwindcss";
+.storybook-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.storybook-checkbox-input {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #9ca3af;
+  color: #1ea7fd;
+}
+.storybook-checkbox-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(30, 167, 253, 0.5);
+}
+.storybook-checkbox-label {
+  margin-left: 0.5rem;
+  display: block;
+  font-size: 0.875rem; /* 14px */
+  color: #1f2937;
+}
