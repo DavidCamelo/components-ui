@@ -8,6 +8,7 @@ export default {
   parameters: {
     layout: 'fullscreen',
   },
+  tags: ['autodocs']
 };
 
 // Mock service for Storybook
