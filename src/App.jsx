@@ -13,6 +13,8 @@ import Toggle from './components/toggle/Toggle';
 import DatePicker from './components/date-picker/DatePicker';
 import TimePicker from './components/time-picker/TimePicker';
 import DateTimePicker from './components/date-time-picker/DateTimePicker';
+import Form from './components/form/Form';
+import Table from './components/table/Table';
 import './App.css';
 
 export default function App() {
@@ -28,6 +30,35 @@ export default function App() {
   const [dateValue, setDateValue] = useState('');
   const [timeValue, setTimeValue] = useState('');
   const [datetimeValue, setDatetimeValue] = useState('');
+  const [tableData, setTableData] = useState([
+    { id: 1, name: 'John Doe', role: 'Developer', active: true },
+    { id: 2, name: 'Jane Smith', role: 'Designer', active: false },
+    { id: 3, name: 'Peter Jones', role: 'Project Manager', active: true },
+  ]);
+
+  const handleEdit = (row) => {
+    alert(`Editing: ${row.name}`);
+  };
+
+  const handleDelete = (row) => {
+    if (window.confirm(`Are you sure you want to delete ${row.name}?`)) {
+      setTableData(prevData => prevData.filter(item => item.id !== row.id));
+      alert(`${row.name} has been deleted.`);
+    }
+  };
+
+  const tableColumns = [
+    { name: 'Name', key: 'name' },
+    { name: 'Role', key: 'role' },
+    {
+      name: 'Status',
+      key: 'active',
+      render: (item) => <Toggle enabled={item.active} setEnabled={() => {
+        const newData = tableData.map(d => d.id === item.id ? {...d, active: !d.active} : d);
+        setTableData(newData);
+      }} />
+    }
+  ];
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
@@ -35,16 +66,50 @@ export default function App() {
   };
 
   const menuItems = [ { name: 'Home', href: '#' }, { name: 'About', href: '#' }, { name: 'Services', href: '#' }, { name: 'Contact', href: '#' } ];
-  const selectOptions = [ { value: 'tech', label: 'Technology' }, { value: 'health', label: 'Health' }, { value: 'finance', label: 'Finance' } ];
-  const multiSelectOptions = [ { value: 'js', label: 'JavaScript' }, { value: 'py', label: 'Python' }, { value: 'rb', label: 'Ruby' }, { value: 'go', label: 'Go' } ];
+  const selectOptions = [ { value: 1, label: 'Type 1' }, { value: 2, label: 'Type 2' } ];
+  const multiSelectOptions = [ { value: 1, label: 'js' }, { value: 2, label: 'py' }, { value: 3, label: 'java' } ];
   const tabsData = [ { name: 'Profile', content: <div>Profile content goes here.</div> }, { name: 'Dashboard', content: <div>Dashboard content goes here.</div> }, { name: 'Settings', content: <div>All your settings are here.</div> } ];
+
+  const formFields = [
+    { label: 'Name', name: 'name', type: 'text', placeholder: 'e.g., Jane Doe' },
+    { label: 'Age', name: 'age', type: 'number' },
+    {
+      label: 'Type',
+      name: 'type',
+      options: selectOptions,
+      type: 'select'
+    },
+    {
+        label: 'Tech Stack',
+        name: 'tech',
+        options: multiSelectOptions,
+        type: 'multiSelect'
+    },
+    {
+        label: 'Subscribe',
+        name: 'subscribe',
+        type: 'toggle'
+    }
+  ];
+
+  const initialFormData = {
+    name: 'John Doe',
+    age: 35,
+    type: { id: 2, type: 'Type 2' },
+    tech: [{id: 1, name: 'js'}, {id:3, name: 'java'}],
+    subscribe: true,
+  };
+
+  const handleFormSubmit = (formData) => {
+    alert('Form Submitted!\n' + JSON.stringify(formData, null, 2));
+  };
 
   return (
     <div style={{fontFamily: 'sans-serif'}}>
       <Header title="ComponentLib" menuItems={menuItems} />
       <main style={{ padding: '2rem', background: '#f9fafb' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-              
+
               <div style={{ background: 'white', padding: '1.5rem', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)' }}>
                   <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>Inputs & Buttons</h2>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -97,6 +162,26 @@ export default function App() {
               <div style={{ background: 'white', padding: '1.5rem', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)', gridColumn: '1 / -1' }}>
                   <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>Tabs</h2>
                   <Tabs tabs={tabsData} />
+              </div>
+
+              <div style={{ background: 'white', padding: '1.5rem', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)', gridColumn: '1 / -1' }}>
+                  <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>Reusable Table</h2>
+                  <Table
+                      columns={tableColumns}
+                      data={tableData}
+                      onEdit={handleEdit}
+                      onDelete={handleDelete}
+                  />
+              </div>
+
+              <div style={{ background: 'white', padding: '1.5rem', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)', gridColumn: '1 / -1' }}>
+                  <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>Dynamic Form</h2>
+                  <Form
+                      fields={formFields}
+                      initialData={initialFormData}
+                      onSubmit={handleFormSubmit}
+                      onCancel={() => alert('Form cancelled!')}
+                  />
               </div>
           </div>
       </main>

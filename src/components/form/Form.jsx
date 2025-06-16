@@ -34,12 +34,13 @@ export const Form = ({ fields, initialData, onSubmit, onCancel }) => {
     const initialFormState = {};
     fields.forEach(field => {
         const { name, type, defaultValue } = field;
-        const initialValue = initialData?.[name];
+        let initialValue = initialData?.[name];
 
-        if (initialValue !== undefined) {
-             // Handle nested objects like { id: 2 } for selects
-            if (type === 'select' && typeof initialValue === 'object' && initialValue !== null) {
+        if (initialValue !== undefined && initialValue !== null) {
+            if (type === 'select' && typeof initialValue === 'object' && 'id' in initialValue) {
                 initialFormState[name] = initialValue.id;
+            } else if (type === 'multiSelect' && Array.isArray(initialValue)) {
+                initialFormState[name] = initialValue.map(item => (typeof item === 'object' && 'id' in item ? item.id : item));
             } else {
                 initialFormState[name] = initialValue;
             }
@@ -73,7 +74,6 @@ export const Form = ({ fields, initialData, onSubmit, onCancel }) => {
 
     const value = formData[name];
 
-    // Props mapping for different component signatures
     const props = {
       name,
       ...rest,
@@ -95,7 +95,6 @@ export const Form = ({ fields, initialData, onSubmit, onCancel }) => {
       props.onChange = (e) => handleChange(name, e.target.value);
     }
 
-    // The RadioButton needs special handling since it's a group
     if (type === 'radio') {
       return (
         <div key={name}>

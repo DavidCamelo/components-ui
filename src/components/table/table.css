@@ -1,1 +1,33 @@
 @import "tailwindcss";
+.storybook-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+.storybook-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.storybook-table th,
+.storybook-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.storybook-table th {
+  background-color: #f9fafb;
+  font-size: 12px;
+  font-weight: 600;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.storybook-table td {
+  font-size: 14px;
+}
+.storybook-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+.storybook-table-actions {
+  display: flex;
+  gap: 0.5rem;
+}
