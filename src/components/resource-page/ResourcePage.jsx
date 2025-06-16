@@ -1,113 +1,165 @@
 import React, { useState, useEffect } from 'react';
-import { Modal } from '../modal/Modal';
+import PropTypes from 'prop-types';
+import { Button } from '../button/Button';
 import { Table } from '../table/Table';
-import { Form } from '../form/Form';
+import { Modal } from '../modal/Modal';
 import { ConfirmationModal } from '../confirmation-modal/ConfirmationModal';
+import { Form } from '../form/Form';
 import './resource-page.css';
 
 export const ResourcePage = ({ title, resourceName, service, columns, formFields }) => {
   const [data, setData] = useState([]);
-  const [currentItem, setCurrentItem] = useState(null);
   const [isFormModalOpen, setIsFormModalOpen] = useState(false);
-  const [itemToDelete, setItemToDelete] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [pageError, setPageError] = useState(null);
+  const [formError, setFormError] = useState(null);
+
+  // Effect to auto-clear page-level errors
+  useEffect(() => {
+    if (pageError) {
+      const timer = setTimeout(() => setPageError(null), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [pageError]);
+
+  // Effect to auto-clear form-level errors
+  useEffect(() => {
+    if (formError) {
+      const timer = setTimeout(() => setFormError(null), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [formError]);
 
   const fetchData = async () => {
     try {
-        setLoading(true);
-        setError(null);
-        const result = await service.getAll();
-        setData(result);
-    } catch (error) {
-        setError(error.message);
-    } finally {
-        setLoading(false);
+      setPageError(null);
+      const response = await service.getAll();
+      setData(response);
+    } catch (err) {
+      console.error("Failed to fetch data:", err);
+      setPageError(`Could not load ${resourceName.toLowerCase()} data. Please try again later.`);
     }
   };
 
   useEffect(() => {
     fetchData();
-  }, [service]);
+  }, []);
 
-  const handleSave = async (item) => {
-    try {
-        setError(null);
-        if (item.id) {
-            await service.update(item.id, item);
-        } else {
-            await service.create(item);
-        }
-        fetchData();
-        setIsFormModalOpen(false);
-        setCurrentItem(null);
-    } catch (error) {
-        setError(error.message);
-    }
-  };
-
-  const handleEdit = (item) => {
-    setCurrentItem(item);
+  const handleCreate = () => {
+    setSelectedItem(null);
+    setFormError(null);
     setIsFormModalOpen(true);
   };
 
-  const handleDelete = (id) => {
-    setItemToDelete(id);
+  const handleEdit = (item) => {
+    setSelectedItem(item);
+    setFormError(null);
+    setIsFormModalOpen(true);
   };
 
-  const handleConfirmDelete = async () => {
-    if (itemToDelete) {
-        try {
-            setError(null);
-            await service.delete(itemToDelete);
-            fetchData();
-        } catch (error) {
-            setError(error.message);
-        } finally {
-            setItemToDelete(null);
-        }
+  const handleDelete = (item) => {
+    setSelectedItem(item);
+    setIsDeleteModalOpen(true);
+  };
+
+  const closeModals = () => {
+    setIsFormModalOpen(false);
+    setIsDeleteModalOpen(false);
+    setSelectedItem(null);
+  };
+
+  const handleFormSubmit = async (formData) => {
+    try {
+      setFormError(null);
+      if (selectedItem?.id) {
+        await service.update(selectedItem.id, formData);
+      } else {
+        await service.create(formData);
+      }
+      fetchData();
+      closeModals();
+    } catch (err) {
+      console.error("Failed to submit form:", err);
+      setFormError(err.message || `Failed to ${selectedItem?.id ? 'update' : 'create'} ${resourceName.toLowerCase()}. Please try again.`);
     }
   };
 
-  const handleCancel = () => {
-    setIsFormModalOpen(false);
-    setCurrentItem(null);
-    setError(null);
+  const handleConfirmDelete = async () => {
+    try {
+      setPageError(null);
+      if (selectedItem?.id) {
+        await service.delete(selectedItem.id);
+        fetchData();
+      }
+    } catch(err) {
+      console.error("Failed to delete item:", err);
+      setPageError(err.message || `Failed to delete ${resourceName.toLowerCase()}. Please try again.`);
+    } finally {
+        closeModals();
+    }
   };
 
-  if (loading) {
-      return <div className="text-center p-4">Loading {resourceName}s...</div>;
-  }
-
   return (
-    <div>
-      <div className="flex justify-between items-center mb-4">
-          <h1 className="text-3xl font-bold">{title}</h1>
-          <button onClick={() => { setCurrentItem({}); setIsFormModalOpen(true); }} className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Add {resourceName}</button>
+    <div className="resource-page">
+      {pageError && (
+        <div className="resource-page-error">
+          <span>{pageError}</span>
+          <button className="resource-page-error-close" onClick={() => setPageError(null)}>&times;</button>
+        </div>
+      )}
+      <div className="resource-page-header">
+        <h1>{title}</h1>
+        <Button primary label={`Create New ${resourceName}`} onClick={handleCreate} />
       </div>
 
-      {error && !isFormModalOpen && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">{error}</div>}
+      <Table columns={columns} data={data} onEdit={handleEdit} onDelete={handleDelete} />
 
-      <Modal isOpen={isFormModalOpen} onClose={handleCancel} title={`${currentItem?.id ? 'Edit' : 'Add'} ${resourceName}`}>
-          {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">{error}</div>}
+      {isFormModalOpen && (
+        <Modal
+          isOpen={isFormModalOpen}
+          onClose={closeModals}
+          title={selectedItem?.id ? `Edit ${resourceName}` : `Create New ${resourceName}`}
+        >
+          {formError && (
+            <div className="resource-page-error modal-error">
+              <span>{formError}</span>
+            </div>
+           )}
           <Form
             fields={formFields}
-            initialData={currentItem}
-            onSubmit={handleSave}
-            onCancel={handleCancel}
+            initialData={selectedItem}
+            onSubmit={handleFormSubmit}
+            onCancel={closeModals}
           />
-      </Modal>
+        </Modal>
+      )}
 
-      <ConfirmationModal
-        isOpen={!!itemToDelete}
-        onClose={() => setItemToDelete(null)}
-        onConfirm={handleConfirmDelete}
-        title={`Confirm Deletion`}
-      >
-        Are you sure you want to delete this {resourceName.toLowerCase()}? This action cannot be undone.
-      </ConfirmationModal>
-
-      <Table columns={columns} data={data} onEdit={handleEdit} onDelete={handleDelete} />
+      {isDeleteModalOpen && (
+        <ConfirmationModal
+            isOpen={isDeleteModalOpen}
+            onClose={closeModals}
+            onConfirm={handleConfirmDelete}
+            title={`Delete ${resourceName}`}
+        >
+            Are you sure you want to delete this {resourceName.toLowerCase()}? This action cannot be undone.
+        </ConfirmationModal>
+      )}
     </div>
   );
 };
+
+ResourcePage.propTypes = {
+  title: PropTypes.string.isRequired,
+  resourceName: PropTypes.string.isRequired,
+  service: PropTypes.shape({
+    getAll: PropTypes.func.isRequired,
+    create: PropTypes.func.isRequired,
+    update: PropTypes.func.isRequired,
+    delete: PropTypes.func.isRequired,
+  }).isRequired,
+  columns: PropTypes.array.isRequired,
+  formFields: PropTypes.array.isRequired,
+};
+
+export default ResourcePage;

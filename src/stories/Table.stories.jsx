@@ -19,11 +19,11 @@ export default {
 };
 
 const sampleColumns = [
-    { name: 'Name', key: 'name' },
-    { name: 'Age', key: 'age' },
-    { name: 'Email', key: 'email' },
+    { header: 'Name', key: 'name' },
+    { header: 'Age', key: 'age' },
+    { header: 'Email', key: 'email' },
     {
-      name: 'Active',
+      header: 'Active',
       key: 'isActive',
       render: (item) => <Toggle enabled={item.isActive} setEnabled={() => {}} />
     },
@@ -57,14 +57,14 @@ const tagOptions = [
 ]
 
 const columnsWithSelects = [
-    { name: 'Task', key: 'task' },
+    { header: 'Task', key: 'task' },
     {
-        name: 'Status',
+        header: 'Status',
         key: 'status',
         render: (item) => <Select options={statusOptions} value={item.status} onChange={() => {}} />
     },
     {
-        name: 'Tags',
+        header: 'Tags',
         key: 'tags',
         render: (item) => <MultiSelect options={tagOptions} selectedValues={item.tags} onChange={() => {}} />
     },

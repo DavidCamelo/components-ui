@@ -17,7 +17,7 @@ export const Table = ({ columns, data, onEdit, onDelete }) => {
         <thead>
           <tr>
             {columns.map((col) => (
-              <th key={col.key}>{col.name}</th>
+              <th key={col.key}>{col.header}</th>
             ))}
             <th>Actions</th>
           </tr>
@@ -45,7 +45,7 @@ export const Table = ({ columns, data, onEdit, onDelete }) => {
 Table.propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
+      header: PropTypes.string.isRequired,
       key: PropTypes.string.isRequired,
       render: PropTypes.func,
     })
