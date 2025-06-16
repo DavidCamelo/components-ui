@@ -93,7 +93,7 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
           <Form
             fields={formFields}
             initialData={currentItem}
-            onSave={handleSave}
+            onSubmit={handleSave}
             onCancel={handleCancel}
           />
       </Modal>
