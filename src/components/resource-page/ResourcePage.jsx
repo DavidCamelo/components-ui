@@ -5,6 +5,7 @@ import { Table } from '../table/Table';
 import { Modal } from '../modal/Modal';
 import { ConfirmationModal } from '../confirmation-modal/ConfirmationModal';
 import { Form } from '../form/Form';
+import { Alert } from '../alert/Alert';
 import './resource-page.css';
 
 export const ResourcePage = ({ title, resourceName, service, columns, formFields }) => {
@@ -103,9 +104,8 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
   return (
     <div className="resource-page">
       {pageError && (
-        <div className="resource-page-error">
-          <span>{pageError}</span>
-          <button className="resource-page-error-close" onClick={() => setPageError(null)}>&times;</button>
+        <div className="resource-page-error-wrapper">
+          <Alert type="error" message={pageError} />
         </div>
       )}
       <div className="resource-page-header">
@@ -122,8 +122,8 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
           title={selectedItem?.id ? `Edit ${resourceName}` : `Create New ${resourceName}`}
         >
           {formError && (
-            <div className="resource-page-error modal-error">
-              <span>{formError}</span>
+            <div className="form-error-wrapper">
+              <Alert type="error" message={formError} />
             </div>
            )}
           <Form

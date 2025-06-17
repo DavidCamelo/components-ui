@@ -17,25 +17,9 @@
   font-size: 1.5rem;
   font-weight: bold;
 }
-.resource-page-error {
-  background-color: #fee2e2;
-  color: #b91c1c;
-  padding: 1rem;
-  border-radius: 0.5rem;
+.resource-page-error-wrapper {
   margin-bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
-.resource-page-error-close {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-  color: #b91c1c;
-  padding: 0;
-}
-.resource-page-error.modal-error {
-  justify-content: center;
+.form-error-wrapper {
+  margin-bottom: 1rem;
 }
