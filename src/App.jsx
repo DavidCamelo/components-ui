@@ -15,6 +15,7 @@ import TimePicker from './components/time-picker/TimePicker';
 import DateTimePicker from './components/date-time-picker/DateTimePicker';
 import Form from './components/form/Form';
 import Table from './components/table/Table';
+import Card from './components/card/Card';
 import './App.css';
 
 export default function App() {
@@ -73,23 +74,9 @@ export default function App() {
   const formFields = [
     { label: 'Name', name: 'name', type: 'text', placeholder: 'e.g., Jane Doe' },
     { label: 'Age', name: 'age', type: 'number' },
-    {
-      label: 'Type',
-      name: 'type',
-      options: selectOptions,
-      type: 'select'
-    },
-    {
-        label: 'Tech Stack',
-        name: 'tech',
-        options: multiSelectOptions,
-        type: 'multiSelect'
-    },
-    {
-        label: 'Subscribe',
-        name: 'subscribe',
-        type: 'toggle'
-    }
+    { label: 'Type', name: 'type', options: selectOptions, type: 'select' },
+    { label: 'Tech Stack', name: 'tech', options: multiSelectOptions, type: 'multiSelect' },
+    { label: 'Subscribe', name: 'subscribe', type: 'toggle' }
   ];
 
   const initialFormData = {
@@ -110,79 +97,65 @@ export default function App() {
       <main style={{ padding: '2rem', background: '#f9fafb' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
 
-              <div style={{ background: 'white', padding: '1.5rem', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)' }}>
-                  <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>Inputs & Buttons</h2>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                      <Input label="Text Input" name="textInput" placeholder="Enter some text" value={textValue} onChange={(e) => setTextValue(e.target.value)} />
-                      <Input label="Number Input" type="number" name="numberInput" placeholder="Enter a number" value={numberValue} onChange={(e) => setNumberValue(e.target.value)} />
-                      <div style={{ display: 'flex', gap: '0.5rem', paddingTop: '0.5rem', alignItems: 'flex-start' }}>
-                          <Button primary label="Primary" onClick={() => alert('Primary button clicked!')} />
-                          <Button label="Secondary" onClick={() => alert('Secondary button clicked!')} />
-                          <Button label="Danger" backgroundColor="hsl(0, 79%, 63%)" primary onClick={() => alert('Danger button clicked!')} />
+              <Card title="Inputs & Buttons">
+                  <Input label="Text Input" name="textInput" placeholder="Enter some text" value={textValue} onChange={(e) => setTextValue(e.target.value)} />
+                  <Input label="Number Input" type="number" name="numberInput" placeholder="Enter a number" value={numberValue} onChange={(e) => setNumberValue(e.target.value)} />
+                  <div style={{ display: 'flex', gap: '0.5rem', paddingTop: '0.5rem', alignItems: 'flex-start' }}>
+                      <Button primary label="Primary" onClick={() => alert('Primary button clicked!')} />
+                      <Button label="Secondary" onClick={() => alert('Secondary button clicked!')} />
+                      <Button label="Danger" backgroundColor="hsl(0, 79%, 63%)" primary onClick={() => alert('Danger button clicked!')} />
+                  </div>
+              </Card>
+
+              <Card title="Selection Controls">
+                  <Select label="Category" name="category" options={selectOptions} value={selectValue} onChange={(e) => setSelectValue(e.target.value)} />
+                  <MultiSelect label="Technologies" options={multiSelectOptions} selectedValues={multiSelectValues} onChange={setMultiSelectValues} />
+                  <div>
+                      <span style={{display: 'block', fontFamily: 'sans-serif', fontSize: '14px', fontWeight: '500', color: '#333', marginBottom: '4px'}}>Account Type</span>
+                      <div style={{display: 'flex', gap: '1rem'}}>
+                      <RadioButton label="Personal" name="accountType" value="personal" checked={radioValue === 'personal'} onChange={(e) => setRadioValue(e.target.value)} />
+                      <RadioButton label="Business" name="accountType" value="business" checked={radioValue === 'business'} onChange={(e) => setRadioValue(e.target.value)} />
                       </div>
                   </div>
-              </div>
+              </Card>
 
-              <div style={{ background: 'white', padding: '1.5rem', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)' }}>
-                  <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>Selection Controls</h2>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                      <Select label="Category" name="category" options={selectOptions} value={selectValue} onChange={(e) => setSelectValue(e.target.value)} />
-                      <MultiSelect label="Technologies" options={multiSelectOptions} selectedValues={multiSelectValues} onChange={setMultiSelectValues} />
-                      <div>
-                          <span style={{display: 'block', fontFamily: 'sans-serif', fontSize: '14px', fontWeight: '500', color: '#333', marginBottom: '4px'}}>Account Type</span>
-                          <div style={{display: 'flex', gap: '1rem'}}>
-                          <RadioButton label="Personal" name="accountType" value="personal" checked={radioValue === 'personal'} onChange={(e) => setRadioValue(e.target.value)} />
-                          <RadioButton label="Business" name="accountType" value="business" checked={radioValue === 'business'} onChange={(e) => setRadioValue(e.target.value)} />
-                          </div>
-                      </div>
+              <Card title="Toggles & Modals">
+                  <Toggle label="Enable Feature" enabled={toggleEnabled} setEnabled={setToggleEnabled} />
+                  <Checkbox label="I agree to the terms" name="agrees-to-terms" checked={checkboxValues['agrees-to-terms']} onChange={handleCheckboxChange} />
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                      <Button label="Open Modal" onClick={() => setIsModalOpen(true)} />
+                      <Button label="Confirm Action" primary onClick={() => setIsConfirmModalOpen(true)} />
                   </div>
-              </div>
+              </Card>
 
-              <div style={{ background: 'white', padding: '1.5rem', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)' }}>
-                  <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>Date & Time Pickers</h2>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                      <DatePicker label="Appointment Date" name="appointment-date" value={dateValue} onChange={e => setDateValue(e.target.value)} />
-                      <TimePicker label="Appointment Time" name="appointment-time" value={timeValue} onChange={e => setTimeValue(e.target.value)} />
-                      <DateTimePicker label="Event Date and Time" name="event-datetime" value={datetimeValue} onChange={e => setDatetimeValue(e.target.value)} />
-                  </div>
-              </div>
+              <Card title="Date & Time Pickers">
+                  <DatePicker label="Appointment Date" name="appointment-date" value={dateValue} onChange={e => setDateValue(e.target.value)} />
+                  <TimePicker label="Appointment Time" name="appointment-time" value={timeValue} onChange={e => setTimeValue(e.target.value)} />
+                  <DateTimePicker label="Event Date and Time" name="event-datetime" value={datetimeValue} onChange={e => setDatetimeValue(e.target.value)} />
+              </Card>
 
-              <div style={{ background: 'white', padding: '1.5rem', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)' }}>
-                  <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>Toggles & Modals</h2>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                      <Toggle label="Enable Feature" enabled={toggleEnabled} setEnabled={setToggleEnabled} />
-                      <Checkbox label="I agree to the terms" name="agrees-to-terms" checked={checkboxValues['agrees-to-terms']} onChange={handleCheckboxChange} />
-                      <div style={{ display: 'flex', gap: '0.5rem' }}>
-                          <Button label="Open Modal" onClick={() => setIsModalOpen(true)} />
-                          <Button label="Confirm Action" primary onClick={() => setIsConfirmModalOpen(true)} />
-                      </div>
-                  </div>
-              </div>
-
-              <div style={{ background: 'white', padding: '1.5rem', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)', gridColumn: '1 / -1' }}>
-                  <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>Tabs</h2>
-                  <Tabs tabs={tabsData} />
-              </div>
-
-              <div style={{ background: 'white', padding: '1.5rem', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)', gridColumn: '1 / -1' }}>
-                  <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>Reusable Table</h2>
+              <Card title="Reusable Table" className="storybook-card-full-width">
                   <Table
                       columns={tableColumns}
                       data={tableData}
                       onEdit={handleEdit}
                       onDelete={handleDelete}
                   />
-              </div>
+              </Card>
 
-              <div style={{ background: 'white', padding: '1.5rem', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)', gridColumn: '1 / -1' }}>
-                  <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>Dynamic Form</h2>
+              <Card title="Dynamic Form" className="storybook-card-full-width">
                   <Form
                       fields={formFields}
                       initialData={initialFormData}
                       onSubmit={handleFormSubmit}
                       onCancel={() => alert('Form cancelled!')}
                   />
-              </div>
+              </Card>
+
+              <Card title="Tabs" className="storybook-card-full-width">
+                  <Tabs tabs={tabsData} />
+              </Card>
+
           </div>
       </main>
 
