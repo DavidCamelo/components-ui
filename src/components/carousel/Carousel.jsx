@@ -1,10 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import './carousel.css';
 import { ChevronLeftIcon, ChevronRightIcon } from '../../icons';
 
-export const Carousel = ({ items }) => {
+export const Carousel = ({ items, autoPlayInterval = 3000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const timeoutRef = useRef(null);
+
+  const resetTimeout = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  }
+
+  useEffect(() => {
+    if (autoPlayInterval > 0) {
+      resetTimeout();
+      timeoutRef.current = setTimeout(
+        () => setCurrentIndex((prevIndex) => (prevIndex === items.length - 1 ? 0 : prevIndex + 1)),
+        autoPlayInterval
+      );
+      return () => resetTimeout();
+    }
+  }, [currentIndex, autoPlayInterval, items.length]);
+
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -52,6 +71,11 @@ export const Carousel = ({ items }) => {
 
 Carousel.propTypes = {
   items: PropTypes.arrayOf(PropTypes.node).isRequired,
+  autoPlayInterval: PropTypes.number,
+};
+
+Carousel.defaultProps = {
+  autoPlayInterval: 3000,
 };
 
 export default Carousel;

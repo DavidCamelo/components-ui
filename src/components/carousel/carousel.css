@@ -35,6 +35,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.storybook-carousel:hover .storybook-carousel-control {
+  opacity: 1;
 }
 .storybook-carousel-control.prev {
   left: 10px;

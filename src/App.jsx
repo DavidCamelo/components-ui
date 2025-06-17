@@ -135,13 +135,13 @@ export default function App() {
               </Card>
 
               <Card title="Date & Time Pickers">
-                    <DatePicker label="Appointment Date" name="appointment-date" value={dateValue} onChange={e => setDateValue(e.target.value)} />
-                    <TimePicker label="Appointment Time" name="appointment-time" value={timeValue} onChange={e => setTimeValue(e.target.value)} />
-                    <DateTimePicker label="Event Date and Time" name="event-datetime" value={datetimeValue} onChange={e => setDatetimeValue(e.target.value)} />
+                  <DatePicker label="Appointment Date" name="appointment-date" value={dateValue} onChange={e => setDateValue(e.target.value)} />
+                  <TimePicker label="Appointment Time" name="appointment-time" value={timeValue} onChange={e => setTimeValue(e.target.value)} />
+                  <DateTimePicker label="Event Date and Time" name="event-datetime" value={datetimeValue} onChange={e => setDatetimeValue(e.target.value)} />
               </Card>
 
-              <Card title="Carousel"  className="storybook-card-full-width">
-                <Carousel items={carouselItems} />
+              <Card title="Carousel" className="storybook-card-full-width">
+                  <Carousel items={carouselItems} autoPlayInterval={4000} />
               </Card>
 
               <Card title="Reusable Table" className="storybook-card-full-width">

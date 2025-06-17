@@ -19,5 +19,6 @@ const carouselItems = [
 export const Default = {
   args: {
     items: carouselItems,
+    autoPlayInterval: 3000,
   },
 };
