@@ -16,6 +16,7 @@ import DateTimePicker from './components/date-time-picker/DateTimePicker';
 import Form from './components/form/Form';
 import Table from './components/table/Table';
 import Card from './components/card/Card';
+import Carousel from './components/carousel/Carousel';
 import './App.css';
 
 export default function App() {
@@ -70,6 +71,11 @@ export default function App() {
   const selectOptions = [ { value: 1, label: 'Type 1' }, { value: 2, label: 'Type 2' } ];
   const multiSelectOptions = [ { value: 1, label: 'js' }, { value: 2, label: 'py' }, { value: 3, label: 'java' } ];
   const tabsData = [ { name: 'Profile', content: <div>Profile content goes here.</div> }, { name: 'Dashboard', content: <div>Dashboard content goes here.</div> }, { name: 'Settings', content: <div>All your settings are here.</div> } ];
+  const carouselItems = [
+    <div style={{ width: '100%', height: '100%', backgroundColor: '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '2rem' }}>Slide 1</div>,
+    <div style={{ width: '100%', height: '100%', backgroundColor: '#3b82f6', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '2rem' }}>Slide 2</div>,
+    <div style={{ width: '100%', height: '100%', backgroundColor: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '2rem' }}>Slide 3</div>,
+  ];
 
   const formFields = [
     { label: 'Name', name: 'name', type: 'text', placeholder: 'e.g., Jane Doe' },
@@ -129,9 +135,13 @@ export default function App() {
               </Card>
 
               <Card title="Date & Time Pickers">
-                  <DatePicker label="Appointment Date" name="appointment-date" value={dateValue} onChange={e => setDateValue(e.target.value)} />
-                  <TimePicker label="Appointment Time" name="appointment-time" value={timeValue} onChange={e => setTimeValue(e.target.value)} />
-                  <DateTimePicker label="Event Date and Time" name="event-datetime" value={datetimeValue} onChange={e => setDatetimeValue(e.target.value)} />
+                    <DatePicker label="Appointment Date" name="appointment-date" value={dateValue} onChange={e => setDateValue(e.target.value)} />
+                    <TimePicker label="Appointment Time" name="appointment-time" value={timeValue} onChange={e => setTimeValue(e.target.value)} />
+                    <DateTimePicker label="Event Date and Time" name="event-datetime" value={datetimeValue} onChange={e => setDatetimeValue(e.target.value)} />
+              </Card>
+
+              <Card title="Carousel"  className="storybook-card-full-width">
+                <Carousel items={carouselItems} />
               </Card>
 
               <Card title="Reusable Table" className="storybook-card-full-width">
