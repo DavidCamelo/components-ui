@@ -13,6 +13,8 @@ export default defineConfig({
       filename: 'remoteEntry.js',
       exposes: {
         './Button': './src/components/button/Button.jsx',
+        './Card': './src/components/card/Card.jsx',
+        './Carousel': './src/components/carousel/Carousel.jsx',
         './Checkbox': './src/components/checkbox/Checkbox.jsx',
         './ConfirmationModal': './src/components/confirmation-modal/ConfirmationModal.jsx',
         './DatePicker': './src/components/date-picker/DatePicker.jsx',
