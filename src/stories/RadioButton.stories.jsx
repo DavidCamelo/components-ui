@@ -3,7 +3,7 @@ import { fn } from 'storybook/test';
 import { RadioButton } from '../components/radio-button/RadioButton';
 
 export default {
-  title: 'Example/RadioButton',
+  title: 'Example/Radio Button',
   component: RadioButton,
   parameters: {
     layout: 'centered',

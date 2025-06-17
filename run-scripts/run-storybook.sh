@@ -1,2 +1,2 @@
 #!/bin/bash
-npx http-server storybook-static --cors
+npx http-server storybook-static --cors --gzip

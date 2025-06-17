@@ -3,7 +3,7 @@ import { fn } from 'storybook/test';
 import { MultiSelect } from '../components/multi-select/MultiSelect';
 
 export default {
-  title: 'Example/MultiSelect',
+  title: 'Example/Multi Select',
   component: MultiSelect,
   parameters: {
     layout: 'padded',

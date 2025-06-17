@@ -10,4 +10,4 @@ RUN chmod +x run-scripts/run-preview.sh
 RUN chmod +x run-scripts/run-storybook.sh
 ENTRYPOINT ["/bin/sh", "run-scripts/entrypoint.sh"]
 #ENTRYPOINT [ "npm", "run", "preview" ]
-#ENTRYPOINT [ "npx", "http-server", "storybook-static", "--cors" ]
+#ENTRYPOINT [ "npx", "http-server", "storybook-static", "--cors", "--gzip" ]
