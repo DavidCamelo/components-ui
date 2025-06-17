@@ -15,14 +15,18 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
   const [selectedItem, setSelectedItem] = useState(null);
   const [pageError, setPageError] = useState(null);
   const [formError, setFormError] = useState(null);
+  const [pageSuccess, setPageSuccess] = useState(null);
 
-  // Effect to auto-clear page-level errors
+  // Effect to auto-clear page-level messages
   useEffect(() => {
-    if (pageError) {
-      const timer = setTimeout(() => setPageError(null), 5000);
+    if (pageError || pageSuccess) {
+      const timer = setTimeout(() => {
+        setPageError(null);
+        setPageSuccess(null);
+      }, 5000);
       return () => clearTimeout(timer);
     }
-  }, [pageError]);
+  }, [pageError, pageSuccess]);
 
   // Effect to auto-clear form-level errors
   useEffect(() => {
@@ -75,8 +79,10 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
       setFormError(null);
       if (selectedItem?.id) {
         await service.update(selectedItem.id, formData);
+        setPageSuccess(`${resourceName} updated successfully!`);
       } else {
         await service.create(formData);
+        setPageSuccess(`${resourceName} created successfully!`);
       }
       fetchData();
       closeModals();
@@ -91,6 +97,7 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
       setPageError(null);
       if (selectedItem?.id) {
         await service.delete(selectedItem.id);
+        setPageSuccess(`${resourceName} deleted successfully!`);
         fetchData();
       }
     } catch(err) {
@@ -104,8 +111,13 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
   return (
     <div className="resource-page">
       {pageError && (
-        <div className="resource-page-error-wrapper">
+        <div className="resource-page-message-wrapper">
           <Alert type="error" message={pageError} />
+        </div>
+      )}
+      {pageSuccess && (
+        <div className="resource-page-message-wrapper">
+          <Alert type="success" message={pageSuccess} />
         </div>
       )}
       <div className="resource-page-header">
