@@ -1,0 +1,34 @@
+@import "tailwindcss";
+.storybook-alert {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  border: 1px solid transparent;
+}
+.storybook-alert-icon {
+  margin-right: 0.75rem;
+  height: 1.25rem;
+  width: 1.25rem;
+}
+.storybook-alert--info {
+  background-color: #e0f2fe;
+  color: #0c4a6e;
+  border-color: #bae6fd;
+}
+.storybook-alert--success {
+  background-color: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+.storybook-alert--warning {
+  background-color: #fefce8;
+  color: #854d0e;
+  border-color: #fef08a;
+}
+.storybook-alert--error {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border-color: #fecaca;
+}

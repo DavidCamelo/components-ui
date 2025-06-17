@@ -16,7 +16,7 @@ spec:
               service:
                 name: storybook
                 port:
-                  number: 4173
+                  number: 8080
   tls:
     - hosts:
         - storybook.davidcamelo.com

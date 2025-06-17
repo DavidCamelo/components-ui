@@ -1,0 +1,13 @@
+@import "tailwindcss";
+.storybook-progressbar-container {
+  width: 100%;
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.storybook-progressbar-bar {
+  height: 100%;
+  background-color: #1ea7fd;
+  transition: width 0.3s ease-in-out;
+}

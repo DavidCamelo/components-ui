@@ -1,0 +1,30 @@
+@import "tailwindcss";
+.storybook-breadcrumbs ol {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.storybook-breadcrumbs li {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+}
+.storybook-breadcrumbs a {
+  color: #4b5563;
+  text-decoration: none;
+}
+.storybook-breadcrumbs a:hover {
+  text-decoration: underline;
+}
+.storybook-breadcrumbs span {
+  color: #1f2937;
+  font-weight: 500;
+}
+.storybook-breadcrumbs .separator {
+  margin: 0 0.5rem;
+  color: #9ca3af;
+  width: 1rem;
+  height: 1rem;
+}

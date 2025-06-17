@@ -1,0 +1,22 @@
+@import "tailwindcss";
+.storybook-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.storybook-pagination-button {
+  border: 1px solid #d1d5db;
+  background-color: white;
+  color: #374151;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+.storybook-pagination-button.active {
+  background-color: #1ea7fd;
+  color: white;
+  border-color: #1ea7fd;
+}
+.storybook-pagination-button:hover:not(.active) {
+  background-color: #f9fafb;
+}

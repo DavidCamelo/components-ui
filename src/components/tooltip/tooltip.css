@@ -1,0 +1,25 @@
+@import "tailwindcss";
+.storybook-tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.storybook-tooltip-content {
+  visibility: hidden;
+  width: 120px;
+  background-color: #1f2937;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.storybook-tooltip-wrapper:hover .storybook-tooltip-content {
+  visibility: visible;
+  opacity: 1;
+}
