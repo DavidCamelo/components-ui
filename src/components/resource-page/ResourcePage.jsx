@@ -11,8 +11,13 @@ import { Spinner } from '../spinner/Spinner';
 import './resource-page.css';
 
 export const ResourcePage = ({ title, resourceName, service, columns, formFields }) => {
-  const [allData, setAllData] = useState([]);
-  const [paginatedData, setPaginatedData] = useState([]);
+  const [data, setData] = useState([]);
+  const [paginationInfo, setPaginationInfo] = useState({
+    totalElements: 0,
+    totalPages: 1,
+    pageNumber: 1,
+    pageSize: 10,
+  });
   const [isLoading, setIsLoading] = useState(true);
   const [isFormModalOpen, setIsFormModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -20,15 +25,19 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
   const [pageError, setPageError] = useState(null);
   const [formError, setFormError] = useState(null);
   const [pageSuccess, setPageSuccess] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
 
-  const fetchData = async () => {
+  const fetchData = async (page = 1, size = paginationInfo.pageSize) => {
     setIsLoading(true);
     try {
       setPageError(null);
-      const response = await service.getAll();
-      setAllData(response);
+      const response = await service.getAll({ pageNumber: page, pageSize: size });
+      setData(response.content);
+      setPaginationInfo({
+        totalElements: response.totalElements,
+        totalPages: response.totalPages,
+        pageNumber: response.pageable.pageNumber + 1,
+        pageSize: response.size,
+      });
     } catch (err) {
       console.error("Failed to fetch data:", err);
       setPageError(`Could not load ${resourceName.toLowerCase()} data. Please try again later.`);
@@ -38,14 +47,8 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const start = (currentPage - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    setPaginatedData(allData.slice(start, end));
-  }, [currentPage, itemsPerPage, allData]);
+    fetchData(paginationInfo.pageNumber, paginationInfo.pageSize);
+  }, [paginationInfo.pageNumber, paginationInfo.pageSize]);
 
   useEffect(() => {
     if (pageError || pageSuccess) {
@@ -97,11 +100,11 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
         await service.create(formData);
         setPageSuccess(`${resourceName} created successfully!`);
       }
-      fetchData();
+      fetchData(paginationInfo.pageNumber, paginationInfo.pageSize);
       closeModals();
     } catch (err) {
       console.error("Failed to submit form:", err);
-      setFormError(err.message || `Failed to ${selectedItem?.id ? 'update' : 'create'} ${resourceName.toLowerCase()}. Please try again.`);
+      setFormError(err.message || `Failed to ${selectedItem?.id ? 'update' : 'create'} ${resourceName.toLowerCase()}.`);
     }
   };
 
@@ -111,11 +114,15 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
       if (selectedItem?.id) {
         await service.delete(selectedItem.id);
         setPageSuccess(`${resourceName} deleted successfully!`);
-        fetchData();
+        if (data.length === 1 && paginationInfo.pageNumber > 1) {
+            fetchData(paginationInfo.pageNumber - 1, paginationInfo.pageSize);
+        } else {
+            fetchData(paginationInfo.pageNumber, paginationInfo.pageSize);
+        }
       }
     } catch(err) {
       console.error("Failed to delete item:", err);
-      setPageError(err.message || `Failed to delete ${resourceName.toLowerCase()}. Please try again.`);
+      setPageError(err.message || `Failed to delete ${resourceName.toLowerCase()}.`);
     } finally {
         closeModals();
     }
@@ -123,16 +130,9 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
 
   return (
     <div className="resource-page">
-      {pageError && (
-        <div className="resource-page-message-wrapper">
-          <Alert type="error" message={pageError} />
-        </div>
-      )}
-      {pageSuccess && (
-        <div className="resource-page-message-wrapper">
-          <Alert type="success" message={pageSuccess} />
-        </div>
-      )}
+      {pageError && <div className="resource-page-message-wrapper"><Alert type="error" message={pageError} /></div>}
+      {pageSuccess && <div className="resource-page-message-wrapper"><Alert type="success" message={pageSuccess} /></div>}
+
       <div className="resource-page-header">
         <h1>{title}</h1>
         <Button primary label={`Create New ${resourceName}`} onClick={handleCreate} />
@@ -142,16 +142,13 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
         <div className="loading-spinner-container"><Spinner size="large" /></div>
       ) : (
         <>
-            <Table columns={columns} data={paginatedData} onEdit={handleEdit} onDelete={handleDelete} />
+            <Table columns={columns} data={data} onEdit={handleEdit} onDelete={handleDelete} />
             <Pagination
-                currentPage={currentPage}
-                totalItems={allData.length}
-                itemsPerPage={itemsPerPage}
-                onPageChange={setCurrentPage}
-                onItemsPerPageChange={(value) => {
-                    setItemsPerPage(value);
-                    setCurrentPage(1); // Reset to first page
-                }}
+                currentPage={paginationInfo.pageNumber}
+                totalItems={paginationInfo.totalElements}
+                itemsPerPage={paginationInfo.pageSize}
+                onPageChange={(page) => setPaginationInfo(p => ({...p, pageNumber: page}))}
+                onItemsPerPageChange={(size) => setPaginationInfo({ ...paginationInfo, pageSize: size, pageNumber: 1 })}
             />
         </>
       )}
