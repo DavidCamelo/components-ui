@@ -30,6 +30,25 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
   const [formError, setFormError] = useState(null);
   const [pageSuccess, setPageSuccess] = useState(null);
 
+  // Effect to auto-clear page-level messages
+  useEffect(() => {
+    if (pageError || pageSuccess) {
+      const timer = setTimeout(() => {
+        setPageError(null);
+        setPageSuccess(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [pageError, pageSuccess]);
+
+  // Effect to auto-clear form-level errors
+  useEffect(() => {
+    if (formError) {
+      const timer = setTimeout(() => setFormError(null), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [formError]);
+
   const fetchData = async () => {
     setIsLoading(true);
     try {
@@ -59,23 +78,6 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
   useEffect(() => {
     fetchData();
   }, [paginationInfo.pageNumber, paginationInfo.pageSize, sortInfo]);
-
-  useEffect(() => {
-    if (pageError || pageSuccess) {
-      const timer = setTimeout(() => {
-        setPageError(null);
-        setPageSuccess(null);
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [pageError, pageSuccess]);
-
-  useEffect(() => {
-    if (formError) {
-      const timer = setTimeout(() => setFormError(null), 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [formError]);
 
   const handleCreate = () => {
     setSelectedItem(null);
@@ -110,7 +112,7 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
         await service.create(formData);
         setPageSuccess(`${resourceName} created successfully!`);
       }
-      fetchData(paginationInfo.pageNumber, paginationInfo.pageSize);
+      fetchData();
       closeModals();
     } catch (err) {
       console.error("Failed to submit form:", err);
