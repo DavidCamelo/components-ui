@@ -1,14 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './table.css';
 import Button from '../button/Button';
+import { ChevronDownIcon, ChevronUpIcon } from '../../icons';
+import './table.css';
 
-export const Table = ({ columns, data, onEdit, onDelete }) => {
+export const Table = ({ columns, data, onEdit, onDelete, onSort, sortBy, sortDirection }) => {
   const renderCell = (item, column) => {
     if (column.render) {
       return column.render(item);
     }
     return item[column.key];
+  };
+
+  const handleSort = (columnKey) => {
+    if (!onSort) return;
+    const isAsc = sortBy === columnKey && sortDirection === 'ASC';
+    onSort(columnKey, isAsc ? 'DESC' : 'ASC');
   };
 
   return (
@@ -17,14 +24,23 @@ export const Table = ({ columns, data, onEdit, onDelete }) => {
         <thead>
           <tr>
             {columns.map((col) => (
-              <th key={col.key}>{col.header}</th>
+              <th key={col.key} onClick={() => handleSort(col.key)} className={onSort ? 'sortable' : ''}>
+                <div className="table-header-content">
+                  {col.header}
+                  {sortBy === col.key && (
+                    <span className="sort-icon">
+                      {sortDirection === 'ASC' ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                    </span>
+                  )}
+                </div>
+              </th>
             ))}
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {data.map((item, index) => (
-            <tr key={index}>
+            <tr key={item.id || index}>
               {columns.map((col) => (
                 <td key={col.key}>{renderCell(item, col)}</td>
               ))}
@@ -53,11 +69,17 @@ Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
+  onSort: PropTypes.func,
+  sortBy: PropTypes.string,
+  sortDirection: PropTypes.oneOf(['ASC', 'DESC']),
 };
 
 Table.defaultProps = {
   onEdit: () => {},
   onDelete: () => {},
+  onSort: null,
+  sortBy: null,
+  sortDirection: 'ASC',
 };
 
 export default Table;

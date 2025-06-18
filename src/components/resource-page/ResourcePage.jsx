@@ -18,6 +18,10 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
     pageNumber: 1,
     pageSize: 10,
   });
+  const [sortInfo, setSortInfo] = useState({
+      sortBy: 'id',
+      sortDirection: 'ASC'
+  });
   const [isLoading, setIsLoading] = useState(true);
   const [isFormModalOpen, setIsFormModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -26,11 +30,17 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
   const [formError, setFormError] = useState(null);
   const [pageSuccess, setPageSuccess] = useState(null);
 
-  const fetchData = async (page = 1, size = paginationInfo.pageSize) => {
+  const fetchData = async () => {
     setIsLoading(true);
     try {
       setPageError(null);
-      const response = await service.getAll({ pageNumber: page, pageSize: size });
+      const params = {
+          pageNumber: paginationInfo.pageNumber,
+          pageSize: paginationInfo.pageSize,
+          sortBy: sortInfo.sortBy,
+          sortDirection: sortInfo.sortDirection,
+      }
+      const response = await service.getAll(params);
       setData(response.content);
       setPaginationInfo({
         totalElements: response.totalElements,
@@ -47,8 +57,8 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
   };
 
   useEffect(() => {
-    fetchData(paginationInfo.pageNumber, paginationInfo.pageSize);
-  }, [paginationInfo.pageNumber, paginationInfo.pageSize]);
+    fetchData();
+  }, [paginationInfo.pageNumber, paginationInfo.pageSize, sortInfo]);
 
   useEffect(() => {
     if (pageError || pageSuccess) {
@@ -128,6 +138,10 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
     }
   };
 
+  const handleSort = (sortBy, sortDirection) => {
+    setSortInfo({ sortBy, sortDirection });
+  };
+
   return (
     <div className="resource-page">
       {pageError && <div className="resource-page-message-wrapper"><Alert type="error" message={pageError} /></div>}
@@ -142,7 +156,15 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
         <div className="loading-spinner-container"><Spinner size="large" /></div>
       ) : (
         <>
-            <Table columns={columns} data={data} onEdit={handleEdit} onDelete={handleDelete} />
+            <Table
+                columns={columns}
+                data={data}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+                onSort={handleSort}
+                sortBy={sortInfo.sortBy}
+                sortDirection={sortInfo.sortDirection}
+            />
             <Pagination
                 currentPage={paginationInfo.pageNumber}
                 totalItems={paginationInfo.totalElements}

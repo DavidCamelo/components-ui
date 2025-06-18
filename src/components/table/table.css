@@ -21,6 +21,21 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
+.storybook-table th.sortable {
+  cursor: pointer;
+}
+.storybook-table th.sortable:hover {
+  background-color: #f3f4f6;
+}
+.table-header-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.sort-icon {
+  display: inline-flex;
+  align-items: center;
+}
 .storybook-table td {
   font-size: 14px;
 }

@@ -15,7 +15,7 @@ export default {
 const createMockService = () => {
   let users = Array.from({ length: 100 }, (_, i) => ({
     id: i + 1,
-    name: `User ${i + 1}`,
+    name: `User ${100 - i}`, // Create in reverse order to test sorting
     role: ['Admin', 'Editor', 'Viewer'][(i + 1) % 3],
     active: (i + 1) % 2 === 0,
   }));
@@ -23,12 +23,19 @@ const createMockService = () => {
   const delay = (ms) => new Promise(res => setTimeout(res, ms));
 
   return {
-    getAll: async ({ pageNumber = 1, pageSize = 10 }) => {
+    getAll: async ({ pageNumber = 1, pageSize = 10, sortBy = 'id', sortDirection = 'ASC' }) => {
       await delay(300);
-      console.log(`Service: Fetching page ${pageNumber}, size ${pageSize}`);
+      console.log(`Service: Fetching page ${pageNumber}, size ${pageSize}, sortBy: ${sortBy}, sortDir: ${sortDirection}`);
+
+      const sortedUsers = [...users].sort((a, b) => {
+          if (a[sortBy] < b[sortBy]) return sortDirection === 'ASC' ? -1 : 1;
+          if (a[sortBy] > b[sortBy]) return sortDirection === 'ASC' ? 1 : -1;
+          return 0;
+      });
+
       const start = (pageNumber - 1) * pageSize;
       const end = start + pageSize;
-      const paginatedContent = users.slice(start, end);
+      const paginatedContent = sortedUsers.slice(start, end);
 
       return {
         content: paginatedContent,

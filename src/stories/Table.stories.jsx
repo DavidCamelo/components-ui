@@ -30,9 +30,9 @@ const sampleColumns = [
 ];
 
 const sampleData = [
-    { name: 'John Doe', age: 35, email: 'john.doe@example.com', isActive: true },
-    { name: 'Jane Smith', age: 28, email: 'jane.smith@example.com', isActive: false },
-    { name: 'Sam Wilson', age: 42, email: 'sam.wilson@example.com', isActive: true },
+    { id: 1, name: 'John Doe', age: 35, email: 'john.doe@example.com', isActive: true },
+    { id: 2, name: 'Jane Smith', age: 28, email: 'jane.smith@example.com', isActive: false },
+    { id: 3, name: 'Sam Wilson', age: 42, email: 'sam.wilson@example.com', isActive: true },
 ];
 
 export const Default = {
@@ -41,7 +41,6 @@ export const Default = {
     data: sampleData,
   },
 };
-
 
 const statusOptions = [
     { value: 'approved', label: 'Approved' },
@@ -61,7 +60,7 @@ const columnsWithSelects = [
     {
         header: 'Status',
         key: 'status',
-        render: (item) => <Select options={statusOptions} value={item.status} onChange={() => {}} />
+        render: (item) => <Select options={statusOptions} value={item.status} size="small" onChange={() => {}} />
     },
     {
         header: 'Tags',
@@ -71,11 +70,10 @@ const columnsWithSelects = [
 ];
 
 const dataWithSelects = [
-    { task: 'Implement login page', status: 'approved', tags: ['ui', 'dev'] },
-    { task: 'Design new dashboard', status: 'pending', tags: ['ui', 'ux'] },
-    { task: 'Fix API bug', status: 'rejected', tags: ['dev'] },
+    { id: 1, task: 'Implement login page', status: 'approved', tags: ['ui', 'dev'] },
+    { id: 2, task: 'Design new dashboard', status: 'pending', tags: ['ui', 'ux'] },
+    { id: 3, task: 'Fix API bug', status: 'rejected', tags: ['dev'] },
 ];
-
 
 export const WithSelects = {
     args: {
@@ -83,3 +81,13 @@ export const WithSelects = {
         data: dataWithSelects
     }
 }
+
+export const WithSorting = {
+    args: {
+      columns: sampleColumns,
+      data: sampleData,
+      onSort: fn(),
+      sortBy: 'name',
+      sortDirection: 'ASC'
+    },
+};
