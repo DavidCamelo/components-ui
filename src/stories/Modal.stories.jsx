@@ -4,7 +4,7 @@ import { Modal } from '../components/modal/Modal';
 import { Button } from '../components/button/Button';
 
 export default {
-  title: 'Example/Modal',
+  title: 'Components/Modal',
   component: Modal,
   parameters: {
     layout: 'padded',

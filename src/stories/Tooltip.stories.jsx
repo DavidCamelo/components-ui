@@ -2,7 +2,7 @@ import { Tooltip } from '../components/tooltip/Tooltip';
 import { Button } from '../components/button/Button';
 
 export default {
-  title: 'Example/Tooltip',
+  title: 'Components/Tooltip',
   component: Tooltip,
   parameters: {
     layout: 'centered',

@@ -4,7 +4,7 @@ import { Drawer } from '../components/drawer/Drawer';
 import { Button } from '../components/button/Button';
 
 export default {
-  title: 'Example/Drawer',
+  title: 'Components/Drawer',
   component: Drawer,
   parameters: {
     layout: 'centered',

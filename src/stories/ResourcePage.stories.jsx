@@ -3,7 +3,7 @@ import { ResourcePage } from '../components/resource-page/ResourcePage';
 import { Toggle } from '../components/toggle/Toggle';
 
 export default {
-  title: 'Example/Resource Page',
+  title: 'Pages/Resource Page',
   component: ResourcePage,
   parameters: {
     layout: 'fullscreen',

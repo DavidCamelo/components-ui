@@ -1,7 +1,7 @@
 import { Breadcrumbs } from '../components/breadcrumbs/Breadcrumbs';
 
 export default {
-  title: 'Example/Breadcrumbs',
+  title: 'Components/Breadcrumbs',
   component: Breadcrumbs,
   parameters: {
     layout: 'padded',

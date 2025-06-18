@@ -2,7 +2,7 @@ import React from 'react';
 import { Carousel } from '../components/carousel/Carousel';
 
 export default {
-  title: 'Example/Carousel',
+  title: 'Components/Carousel',
   component: Carousel,
   parameters: {
     layout: 'padded',

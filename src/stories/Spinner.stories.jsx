@@ -1,7 +1,7 @@
 import { Spinner } from '../components/spinner/Spinner';
 
 export default {
-  title: 'Example/Spinner',
+  title: 'Components/Spinner',
   component: Spinner,
   parameters: {
     layout: 'centered',

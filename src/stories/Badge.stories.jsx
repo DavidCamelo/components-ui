@@ -1,7 +1,7 @@
 import { Badge } from '../components/badge/Badge';
 
 export default {
-  title: 'Example/Badge',
+  title: 'Components/Badge',
   component: Badge,
   parameters: {
     layout: 'centered',

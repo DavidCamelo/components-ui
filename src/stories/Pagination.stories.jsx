@@ -3,7 +3,7 @@ import { fn } from 'storybook/test';
 import { Pagination } from '../components/pagination/Pagination';
 
 export default {
-  title: 'Example/Pagination',
+  title: 'Components/Pagination',
   component: Pagination,
   parameters: {
     layout: 'padded',

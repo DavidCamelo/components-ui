@@ -1,7 +1,7 @@
 import { ProgressBar } from '../components/progress-bar/ProgressBar';
 
 export default {
-  title: 'Example/Progress Bar',
+  title: 'Components/Progress Bar',
   component: ProgressBar,
   parameters: {
     layout: 'padded',

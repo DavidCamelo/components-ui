@@ -2,7 +2,7 @@ import { fn } from 'storybook/test';
 import { Select } from '../components/select/Select';
 
 export default {
-  title: 'Example/Select',
+  title: 'Components/Select',
   component: Select,
   parameters: {
     layout: 'padded',

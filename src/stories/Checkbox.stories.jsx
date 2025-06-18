@@ -2,7 +2,7 @@ import { fn } from 'storybook/test';
 import { Checkbox } from '../components/checkbox/Checkbox';
 
 export default {
-  title: 'Example/Checkbox',
+  title: 'Components/Checkbox',
   component: Checkbox,
   parameters: {
     layout: 'centered',

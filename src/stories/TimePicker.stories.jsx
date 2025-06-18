@@ -2,7 +2,7 @@ import { fn } from 'storybook/test';
 import { TimePicker } from '../components/time-picker/TimePicker';
 
 export default {
-  title: 'Example/Time Picker',
+  title: 'Components/Time Picker',
   component: TimePicker,
   parameters: {
     layout: 'centered',

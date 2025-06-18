@@ -1,7 +1,7 @@
 import { Tabs } from '../components/tabs/Tabs';
 
 export default {
-  title: 'Example/Tabs',
+  title: 'Components/Tabs',
   component: Tabs,
   parameters: {
     layout: 'padded',

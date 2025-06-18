@@ -4,7 +4,7 @@ import { Button } from '../components/button/Button';
 import { Input } from '../components/input/Input';
 
 export default {
-  title: 'Example/Card',
+  title: 'Components/Card',
   component: Card,
   parameters: {
     layout: 'padded',

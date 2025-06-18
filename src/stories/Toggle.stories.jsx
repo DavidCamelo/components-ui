@@ -3,7 +3,7 @@ import { fn } from 'storybook/test';
 import { Toggle } from '../components/toggle/Toggle';
 
 export default {
-  title: 'Example/Toggle',
+  title: 'Components/Toggle',
   component: Toggle,
   parameters: {
     layout: 'centered',

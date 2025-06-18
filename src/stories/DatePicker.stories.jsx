@@ -2,7 +2,7 @@ import { fn } from 'storybook/test';
 import { DatePicker } from '../components/date-picker/DatePicker';
 
 export default {
-  title: 'Example/Date Picker',
+  title: 'Components/Date Picker',
   component: DatePicker,
   parameters: {
     layout: 'centered',

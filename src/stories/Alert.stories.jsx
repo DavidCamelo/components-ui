@@ -1,7 +1,7 @@
 import { Alert } from '../components/alert/Alert';
 
 export default {
-  title: 'Example/Alert',
+  title: 'Components/Alert',
   component: Alert,
   parameters: {
     layout: 'centered',

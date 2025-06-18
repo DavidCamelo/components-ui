@@ -4,7 +4,7 @@ import { ConfirmationModal } from '../components/confirmation-modal/Confirmation
 import { Button } from '../components/button/Button';
 
 export default {
-  title: 'Example/Confirmation Modal',
+  title: 'Components/Confirmation Modal',
   component: ConfirmationModal,
   parameters: {
     layout: 'padded',
