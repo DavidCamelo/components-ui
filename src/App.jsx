@@ -12,6 +12,7 @@ import ConfirmationModal from './components/confirmation-modal/ConfirmationModal
 import DatePicker from './components/date-picker/DatePicker';
 import DateTimePicker from './components/date-time-picker/DateTimePicker';
 import Drawer from './components/drawer/Drawer';
+import Footer from './components/footer/Footer';
 import Form from './components/form/Form';
 import Header from './components/header/Header';
 import Input from './components/input/Input';
@@ -97,7 +98,7 @@ export default function App() {
   ];
 
   return (
-    <div style={{fontFamily: 'sans-serif'}}>
+    <div className="app-container" style={{fontFamily: 'sans-serif'}}>
       <Header title="ComponentLib" menuItems={menuItems} />
       <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
         <h2>Drawer Menu</h2>
@@ -212,6 +213,8 @@ export default function App() {
       <ConfirmationModal isOpen={isConfirmModalOpen} onClose={() => setIsConfirmModalOpen(false)} onConfirm={() => alert('Action was confirmed!')} title="Confirm Action">
           Are you sure you want to perform this action?
       </ConfirmationModal>
+
+      <Footer text="© 2024 Component Library, Inc. All Rights Reserved." />
     </div>
   );
 }

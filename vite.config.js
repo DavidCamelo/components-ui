@@ -25,6 +25,7 @@ export default defineConfig({
         './DatePicker': './src/components/date-picker/DatePicker.jsx',
         './DateTimePicker': './src/components/date-time-picker/DateTimePicker.jsx',
         './Drawer': './src/components/drawer/Drawer.jsx',
+        './Footer': './src/components/footer/Footer.jsx',
         './Form': './src/components/form/Form.jsx',
         './Header': './src/components/header/Header.jsx',
         './Input': './src/components/input/Input.jsx',
