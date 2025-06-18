@@ -58,8 +58,8 @@ export default function App() {
     }
   };
   const tableColumns = [
-    { name: 'Name', key: 'name' }, { name: 'Role', key: 'role' },
-    { name: 'Status', key: 'active', render: (item) => <Toggle enabled={item.active} setEnabled={() => { const newData = tableData.map(d => d.id === item.id ? {...d, active: !d.active} : d); setTableData(newData);}} />}
+    { header: 'Name', key: 'name' }, { header: 'Role', key: 'role' },
+    { header: 'Status', key: 'active', render: (item) => <Toggle enabled={item.active} setEnabled={() => { const newData = tableData.map(d => d.id === item.id ? {...d, active: !d.active} : d); setTableData(newData);}} />}
   ];
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
@@ -187,7 +187,7 @@ export default function App() {
                           <Button label="Hover Me" />
                       </Tooltip>
                   </div>
-                  <Pagination currentPage={currentPage} totalPages={10} onPageChange={(page) => setCurrentPage(page)} />
+                  <Pagination currentPage={currentPage} totalPages={10} itemsPerPage={10} totalItems={100} onPageChange={(page) => setCurrentPage(page)} />
               </Card>
 
               <Card title="Carousel" className="storybook-card-full-width">

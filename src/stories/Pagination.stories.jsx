@@ -6,7 +6,7 @@ export default {
   title: 'Example/Pagination',
   component: Pagination,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
   },
   tags: ['autodocs'],
   args: { onPageChange: fn() },
@@ -21,4 +21,6 @@ export const Default = Template.bind({});
 Default.args = {
     currentPage: 1,
     totalPages: 10,
+    itemsPerPage: 10,
+    totalItems: 100,
 };

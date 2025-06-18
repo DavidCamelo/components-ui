@@ -47,9 +47,9 @@ const createMockService = (initialData = [], shouldFail = false) => {
 };
 
 const userColumns = [
-    { name: 'Name', key: 'name' },
-    { name: 'Role', key: 'role' },
-    { name: 'Status', key: 'active', render: (item) => <Toggle enabled={item.active} setEnabled={() => {}} /> }
+    { header: 'Name', key: 'name' },
+    { header: 'Role', key: 'role' },
+    { header: 'Status', key: 'active', render: (item) => <Toggle enabled={item.active} setEnabled={() => {}} /> }
 ];
 
 const userFormFields = [

@@ -6,18 +6,47 @@ import { Modal } from '../modal/Modal';
 import { ConfirmationModal } from '../confirmation-modal/ConfirmationModal';
 import { Form } from '../form/Form';
 import { Alert } from '../alert/Alert';
+import { Pagination } from '../pagination/Pagination';
+import { Spinner } from '../spinner/Spinner';
 import './resource-page.css';
 
 export const ResourcePage = ({ title, resourceName, service, columns, formFields }) => {
-  const [data, setData] = useState([]);
+  const [allData, setAllData] = useState([]);
+  const [paginatedData, setPaginatedData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [isFormModalOpen, setIsFormModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [pageError, setPageError] = useState(null);
   const [formError, setFormError] = useState(null);
   const [pageSuccess, setPageSuccess] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
-  // Effect to auto-clear page-level messages
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      setPageError(null);
+      const response = await service.getAll();
+      setAllData(response);
+    } catch (err) {
+      console.error("Failed to fetch data:", err);
+      setPageError(`Could not load ${resourceName.toLowerCase()} data. Please try again later.`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    setPaginatedData(allData.slice(start, end));
+  }, [currentPage, itemsPerPage, allData]);
+
   useEffect(() => {
     if (pageError || pageSuccess) {
       const timer = setTimeout(() => {
@@ -28,28 +57,12 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
     }
   }, [pageError, pageSuccess]);
 
-  // Effect to auto-clear form-level errors
   useEffect(() => {
     if (formError) {
       const timer = setTimeout(() => setFormError(null), 5000);
       return () => clearTimeout(timer);
     }
   }, [formError]);
-
-  const fetchData = async () => {
-    try {
-      setPageError(null);
-      const response = await service.getAll();
-      setData(response);
-    } catch (err) {
-      console.error("Failed to fetch data:", err);
-      setPageError(`Could not load ${resourceName.toLowerCase()} data. Please try again later.`);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const handleCreate = () => {
     setSelectedItem(null);
@@ -125,7 +138,23 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
         <Button primary label={`Create New ${resourceName}`} onClick={handleCreate} />
       </div>
 
-      <Table columns={columns} data={data} onEdit={handleEdit} onDelete={handleDelete} />
+      {isLoading ? (
+        <div className="loading-spinner-container"><Spinner size="large" /></div>
+      ) : (
+        <>
+            <Table columns={columns} data={paginatedData} onEdit={handleEdit} onDelete={handleDelete} />
+            <Pagination
+                currentPage={currentPage}
+                totalItems={allData.length}
+                itemsPerPage={itemsPerPage}
+                onPageChange={setCurrentPage}
+                onItemsPerPageChange={(value) => {
+                    setItemsPerPage(value);
+                    setCurrentPage(1); // Reset to first page
+                }}
+            />
+        </>
+      )}
 
       {isFormModalOpen && (
         <Modal
