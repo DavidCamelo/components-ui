@@ -51,6 +51,7 @@ export const Pagination = ({ currentPage, totalItems, itemsPerPage, onPageChange
           <ChevronLeftIcon />
         </button>
         <div className="page-info">
+          <span className="pagination-label">Page</span>
           <Input
             name="currentPage"
             type="number"
