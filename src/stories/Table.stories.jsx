@@ -6,7 +6,7 @@ import { Select } from '../components/select/Select';
 import { MultiSelect } from '../components/multi-select/MultiSelect';
 
 export default {
-  title: 'Components/Table',
+  title: 'Pages/Table',
   component: Table,
   parameters: {
     layout: 'padded',

@@ -12,6 +12,7 @@ export default defineConfig({
       name: 'components-ui',
       filename: 'remoteEntry.js',
       exposes: {
+        './api': './src/services/api.jsx',
         './Accordion': './src/components/accordion/Accordion.jsx',
         './Alert': './src/components/alert/Alert.jsx',
         './Avatar': './src/components/avatar/Avatar.jsx',
@@ -29,6 +30,7 @@ export default defineConfig({
         './Form': './src/components/form/Form.jsx',
         './Header': './src/components/header/Header.jsx',
         './Input': './src/components/input/Input.jsx',
+        './Login': './src/components/login/Login.jsx',
         './Modal': './src/components/modal/Modal.jsx',
         './MultiSelect': './src/components/multi-select/MultiSelect.jsx',
         './Pagination': './src/components/pagination/Pagination.jsx',

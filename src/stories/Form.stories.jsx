@@ -3,7 +3,7 @@ import { fn } from 'storybook/test';
 import { Form } from '../components/form/Form';
 
 export default {
-  title: 'Components/Form',
+  title: 'Pages/Form',
   component: Form,
   parameters: {
     layout: 'padded',
