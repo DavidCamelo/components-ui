@@ -106,7 +106,7 @@ export default function App() {
           console.log("Attempting login with:", { username, password });
           return new Promise((resolve, reject) => {
               setTimeout(() => {
-                  if (username === 'test@example.com' && password === 'password') {
+                  if ((username === 'test' || username === 'test@example.com') && password === 'password') {
                       const userData = {
                           name: 'Test User',
                           avatarUrl: 'https://placehold.co/40x40/EFEFEF/3A3A3A?text=TU',
@@ -142,22 +142,6 @@ export default function App() {
         onLogout={handleLogout}
         onLoginClick={() => setIsLoginModalOpen(true)}
       />
-      <main className="app-main-content">
-        <Card title="Welcome to the Component Library">
-            <p>This is a showcase of reusable components built with React.</p>
-            {!user && <p>Please log in to see more content.</p>}
-        </Card>
-      </main>
-
-      {isLoginModalOpen && (
-        <Modal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} title="Member Login">
-            <Login
-                service={authService}
-                onLoginSuccess={handleLoginSuccess}
-                onCancel={() => setIsLoginModalOpen(false)}
-            />
-        </Modal>
-      )}
 
       <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
         <h2>Drawer Menu</h2>
@@ -175,6 +159,11 @@ export default function App() {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
+
+              <Card title="Login test" className="storybook-card-full-width">
+                {!user && <p>Please log in to see more content.</p>}
+                {user && <p>{user.name} Logged in.</p>}
+              </Card>
 
               <Card title="Inputs & Buttons">
                   <Input label="Text Input" name="textInput" placeholder="Enter some text" value={textValue} onChange={(e) => setTextValue(e.target.value)} />
@@ -265,6 +254,9 @@ export default function App() {
           </div>
       </main>
 
+      <Modal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} title="Member Login">
+          <Login service={authService} onLoginSuccess={handleLoginSuccess} onCancel={() => setIsLoginModalOpen(false)} />
+      </Modal>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Generic Modal">
           <p style={{ color: '#4b5563' }}>This is a generic modal component. You can put any content you want here.</p>
       </Modal>
