@@ -16,6 +16,7 @@ import Footer from './components/footer/Footer';
 import Form from './components/form/Form';
 import Header from './components/header/Header';
 import Input from './components/input/Input';
+import Login from './components/login/Login';
 import Modal from './components/modal/Modal';
 import MultiSelect from './components/multi-select/MultiSelect';
 import Pagination from './components/pagination/Pagination';
@@ -50,6 +51,8 @@ export default function App() {
     { id: 2, name: 'Jane Smith', role: 'Designer', active: false },
     { id: 3, name: 'Peter Jones', role: 'Project Manager', active: true },
   ]);
+  const [user, setUser] = useState(null);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const handleEdit = (row) => alert(`Editing: ${row.name}`);
   const handleDelete = (row) => {
@@ -97,9 +100,65 @@ export default function App() {
     { label: 'Laptops' },
   ];
 
+  // Mock authentication service
+  const authService = {
+      login: async (username, password) => {
+          console.log("Attempting login with:", { username, password });
+          return new Promise((resolve, reject) => {
+              setTimeout(() => {
+                  if (username === 'test@example.com' && password === 'password') {
+                      const userData = {
+                          name: 'Test User',
+                          avatarUrl: 'https://placehold.co/40x40/EFEFEF/3A3A3A?text=TU',
+                          accessToken: 'xyz123',
+                          refreshToken: 'abc456'
+                      };
+                      console.log("Login successful", userData);
+                      resolve(userData);
+                  } else {
+                      console.log("Login failed");
+                      reject(new Error('Invalid credentials. Please try again.'));
+                  }
+              }, 1000);
+          });
+      }
+  };
+
+  const handleLoginSuccess = (userData) => {
+      setUser(userData);
+      setIsLoginModalOpen(false);
+  };
+
+  const handleLogout = () => {
+      setUser(null);
+  };
+
   return (
     <div className="app-container" style={{fontFamily: 'sans-serif'}}>
-      <Header title="ComponentLib" menuItems={menuItems} />
+      <Header
+        title="ComponentLib"
+        menuItems={menuItems}
+        user={user}
+        onLogout={handleLogout}
+        onLoginClick={() => setIsLoginModalOpen(true)}
+      />
+      <main className="app-main-content">
+        <Card title="Welcome to the Component Library">
+            <p>This is a showcase of reusable components built with React.</p>
+            {!user && <p>Please log in to see more content.</p>}
+        </Card>
+      </main>
+
+      {isLoginModalOpen && (
+        <Modal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} title="Member Login">
+            <Login
+                service={authService}
+                onLoginSuccess={handleLoginSuccess}
+                onCancel={() => setIsLoginModalOpen(false)}
+            />
+        </Modal>
+      )}
+
       <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
         <h2>Drawer Menu</h2>
         <a href="#">Link 1</a><br/>

@@ -1,13 +1,16 @@
 @import "tailwindcss";
-.storybook-login-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.storybook-login-form-wrapper {
   width: 100%;
-  padding: 1rem;
 }
 .storybook-login-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+.storybook-login-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
