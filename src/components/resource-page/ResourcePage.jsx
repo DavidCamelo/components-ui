@@ -16,7 +16,7 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
     totalElements: 0,
     totalPages: 1,
     pageNumber: 1,
-    pageSize: 10,
+    pageSize: 5,
   });
   const [sortInfo, setSortInfo] = useState({
       sortBy: 'id',
