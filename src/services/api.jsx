@@ -32,8 +32,15 @@ const createApiService = (resource, isLocal) => {
     }
 
     return {
-        getAll: async () => {
-            const response = await fetch(API_URL, { headers: getAuthHeaders() });
+        getAll: async ({ pageNumber = null, pageSize = null, sortBy = null, sortDirection = null }) => {
+            let url = API_URL;
+            if (pageNumber && pageSize) {
+                url += `?pageNumber=${pageNumber - 1}&pageSize=${pageSize}`;
+                if (sortBy && sortDirection) {
+                    url += `&sortBy=${sortBy}&sortDirection=${sortDirection}`;
+                }
+            }
+            const response = await fetch(url, { headers: getAuthHeaders() });
             return handleResponse(response, resource);
         },
         create: async (item) => {

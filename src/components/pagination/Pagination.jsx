@@ -11,7 +11,7 @@ export const Pagination = ({ currentPage, totalItems, itemsPerPage, onPageChange
   const isLastPage = currentPage === totalPages;
 
   const handlePageInputChange = (e) => {
-    const page = parseInt(e.target.value, 10);
+    const page = parseInt(e.target.value, 5);
     if (page >= 1 && page <= totalPages) {
       onPageChange(page);
     }
@@ -32,7 +32,7 @@ export const Pagination = ({ currentPage, totalItems, itemsPerPage, onPageChange
             options={[
               { value: 5, label: '5' },
               { value: 10, label: '10' },
-              { value: 20, label: '20' },
+              { value: 25, label: '25' },
               { value: 50, label: '50' },
               { value: 100, label: '100' },
             ]}
