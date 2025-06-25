@@ -47,6 +47,7 @@ export default function DashboardPage() {
     { id: 2, name: 'Jane Smith', role: 'Designer', active: false },
     { id: 3, name: 'Peter Jones', role: 'Project Manager', active: true },
   ]);
+  const [activeTab, setActiveTab] = useState(0);
 
   const handleEdit = (row) => alert(`Editing: ${row.name}`);
   const handleDelete = (row) => {
@@ -195,7 +196,7 @@ export default function DashboardPage() {
               </Card>
 
               <Card title="Tabs" className="storybook-card-full-width">
-                  <Tabs tabs={tabsData} />
+                  <Tabs tabs={tabsData} activeTab={activeTab} onTabChange={setActiveTab} />
               </Card>
 
           </div>

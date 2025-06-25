@@ -5,20 +5,33 @@ import { Avatar } from '../avatar/Avatar';
 import { Button } from '../button/Button';
 import './header.css';
 
-export const Header = ({ title, menuItems, user, onLogout, onLoginClick }) => {
+export const Header = ({ title, menuItems, onMenuItemClick, user, onLogout, onLoginClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleItemClick = (e, item) => {
+      e.preventDefault();
+      onMenuItemClick(item);
+      setIsMenuOpen(false); // Close mobile menu on click
+  }
 
   return (
     <header className="storybook-header">
       <div className="storybook-header-container">
         <h1 className="storybook-header-title">{title}</h1>
-        <nav className="storybook-header-nav-desktop">
-          {menuItems.map(item => (
-            <a key={item.name} href={item.href} className="storybook-header-nav-link">
-              {item.name}
-            </a>
-          ))}
-        </nav>
+        {user && (
+          <nav className="storybook-header-nav-desktop">
+            {menuItems.map(item => (
+              <a 
+                key={item.name} 
+                href={item.href} 
+                className="storybook-header-nav-link"
+                onClick={(e) => handleItemClick(e, item)}
+              >
+                {item.name}
+              </a>
+            ))}
+          </nav>
+        )}
         <div className="header-right-side">
             {user ? (
                 <div className="header-user-info">
@@ -26,29 +39,32 @@ export const Header = ({ title, menuItems, user, onLogout, onLoginClick }) => {
                     <Button size="small" label="Log out" onClick={onLogout} />
                 </div>
             ) : (
-                <div className="header-login-info">
-                     <Button size="small" primary label="Log in" onClick={onLoginClick} />
+                 <div className="header-login-info">
+                    <Button size="small" primary label="Log in" onClick={onLoginClick} />
+                 </div>
+            ) }
+            {user && (
+                <div className="storybook-header-mobile-menu-button-wrapper">
+                  <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="storybook-header-mobile-menu-button">
+                    {isMenuOpen ? <XIcon /> : <MenuIcon />}
+                  </button>
                 </div>
             )}
-            <div className="storybook-header-mobile-menu-button-wrapper">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="storybook-header-mobile-menu-button">
-                {isMenuOpen ? <XIcon /> : <MenuIcon />}
-              </button>
-            </div>
         </div>
       </div>
-      {isMenuOpen && (
+      {isMenuOpen && user && (
         <nav className="storybook-header-nav-mobile">
           {menuItems.map(item => (
-            <a key={item.name} href={item.href} className="storybook-header-nav-link-mobile">
+            <a 
+                key={item.name} 
+                href={item.href} 
+                className="storybook-header-nav-link-mobile"
+                onClick={(e) => handleItemClick(e, item)}
+            >
               {item.name}
             </a>
           ))}
-           {user ? (
-                <Button size="small" label="Log out" onClick={onLogout} style={{marginTop: '1rem', width: '100%'}}/>
-           ) : (
-                <Button size="small" primary label="Log in" onClick={onLoginClick} style={{marginTop: '1rem', width: '100%'}}/>
-           )}
+           <Button size="small" label="Log out" onClick={onLogout} style={{marginTop: '1rem', width: '100%'}}/>
         </nav>
       )}
     </header>
@@ -60,7 +76,8 @@ Header.propTypes = {
   menuItems: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     href: PropTypes.string.isRequired,
-  })).isRequired,
+  })),
+  onMenuItemClick: PropTypes.func,
   user: PropTypes.shape({
       name: PropTypes.string.isRequired,
       avatarUrl: PropTypes.string,
@@ -70,6 +87,8 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
+    menuItems: [],
+    onMenuItemClick: () => {},
     user: null,
     onLogout: () => {},
     onLoginClick: () => {},

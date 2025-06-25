@@ -51,6 +51,7 @@ export default function App() {
       <Header
         title="ComponentLib"
         menuItems={menuItems}
+        onMenuItemClick={(item) => console.log(item)}
         user={user}
         onLogout={handleLogout}
         onLoginClick={() => setIsLoginModalOpen(true)}
