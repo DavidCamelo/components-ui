@@ -94,8 +94,7 @@ export const authService = {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ refreshToken: token }),
         });
-        const data = await handleResponse(response, 'refresh');
-        return data.accessToken;
+        return handleResponse(response, 'refresh');
     },
 };
 
