@@ -80,6 +80,14 @@ export const authService = {
         });
         return handleResponse(response, 'login');
     },
+    logout: async (token) => {
+        const response = await fetch(`${API_BASE_URL}/auth/logout`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ accessToken: token }),
+        });
+        return handleResponse(response, 'logout');
+    },
     refreshToken: async (token) => {
         const response = await fetch(`${API_BASE_URL}/auth/refresh`, {
             method: 'POST',
