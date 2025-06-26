@@ -1,4 +1,5 @@
 const API_BASE_URL = 'https://spring-boot.davidcamelo.com';
+const API_AUTH_URL = `${API_BASE_URL}/auth/user`;
 
 const getAuthHeaders = () => {
     const token = sessionStorage.getItem('accessToken');
@@ -25,12 +26,8 @@ const handleSelectOption = (item) => {
     }
 }
 
-const createApiService = (resource, isLocal) => {
-    let API_URL = `${API_BASE_URL}/${resource}`;
-    if (isLocal) {
-        API_URL = `http://api-gateway:8080/${resource}`;
-    }
-
+const createApiService = (resource) => {
+    const API_URL = `${API_BASE_URL}/${resource}`;
     return {
         getAll: async ({ pageNumber = null, pageSize = null, sortBy = null, sortDirection = null }) => {
             let url = API_URL;
@@ -73,7 +70,7 @@ const createApiService = (resource, isLocal) => {
 
 export const authService = {
     login: async (username, password) => {
-        const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        const response = await fetch(`${API_AUTH_URL}/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password }),
@@ -81,15 +78,15 @@ export const authService = {
         return handleResponse(response, 'login');
     },
     logout: async (token) => {
-        const response = await fetch(`${API_BASE_URL}/auth/logout`, {
+        const response = await fetch(`${API_AUTH_URL}/logout`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ accessToken: token }),
+            body: JSON.stringify({ refreshToken: token }),
         });
         return handleResponse(response, 'logout');
     },
     refreshToken: async (token) => {
-        const response = await fetch(`${API_BASE_URL}/auth/refresh`, {
+        const response = await fetch(`${API_AUTH_URL}/refresh`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ refreshToken: token }),
@@ -98,5 +95,5 @@ export const authService = {
     },
 };
 
-export const userService  = (isLocal) => createApiService('users', isLocal);
-export const productService = (isLocal) => createApiService('products', isLocal);
+export const userService = createApiService('users');
+export const productService = createApiService('products');
