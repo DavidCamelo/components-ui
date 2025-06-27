@@ -5,14 +5,8 @@ import { Avatar } from '../avatar/Avatar';
 import { Button } from '../button/Button';
 import './header.css';
 
-export const Header = ({ title, menuItems, onMenuItemClick, user, onLogout, onLoginClick }) => {
+export const Header = ({ title, menuItems, user, onLogoutClick, onLoginClick, onSignUpClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleItemClick = (e, item) => {
-      e.preventDefault();
-      onMenuItemClick(item);
-      setIsMenuOpen(false); // Close mobile menu on click
-  }
 
   return (
     <header className="storybook-header">
@@ -21,12 +15,7 @@ export const Header = ({ title, menuItems, onMenuItemClick, user, onLogout, onLo
         {user && (
           <nav className="storybook-header-nav-desktop">
             {menuItems.map(item => (
-              <a 
-                key={item.name} 
-                href={item.href} 
-                className="storybook-header-nav-link"
-                onClick={(e) => handleItemClick(e, item)}
-              >
+              <a key={item.name} href={item.href} className="storybook-header-nav-link">
                 {item.name}
               </a>
             ))}
@@ -36,35 +25,38 @@ export const Header = ({ title, menuItems, onMenuItemClick, user, onLogout, onLo
             {user ? (
                 <div className="header-user-info">
                     <Avatar src={user.avatarUrl} alt={user.name} size="small"/>
-                    <Button size="small" label="Log out" onClick={onLogout} />
+                    <Button size="small" label="Log out" onClick={onLogoutClick} />
                 </div>
             ) : (
                  <div className="header-login-info">
-                    <Button size="small" primary label="Log in" onClick={onLoginClick} />
+                    <Button size="small" label="Log in" onClick={onLoginClick} />
+                    <Button size="small" primary label="Sign up" onClick={onSignUpClick} />
                  </div>
             ) }
-            {user && (
-                <div className="storybook-header-mobile-menu-button-wrapper">
-                  <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="storybook-header-mobile-menu-button">
-                    {isMenuOpen ? <XIcon /> : <MenuIcon />}
-                  </button>
-                </div>
-            )}
+            <div className="storybook-header-mobile-menu-button-wrapper">
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="storybook-header-mobile-menu-button">
+                {isMenuOpen ? <XIcon /> : <MenuIcon />}
+              </button>
+            </div>
         </div>
       </div>
-      {isMenuOpen && user && (
+      {isMenuOpen && (
         <nav className="storybook-header-nav-mobile">
-          {menuItems.map(item => (
-            <a 
-                key={item.name} 
-                href={item.href} 
-                className="storybook-header-nav-link-mobile"
-                onClick={(e) => handleItemClick(e, item)}
-            >
-              {item.name}
-            </a>
-          ))}
-           <Button size="small" label="Log out" onClick={onLogout} style={{marginTop: '1rem', width: '100%'}}/>
+          {user ? (
+            <>
+              {menuItems.map(item => (
+                <a key={item.name} href={item.href} className="storybook-header-nav-link-mobile">
+                  {item.name}
+                </a>
+              ))}
+              <Button size="small" label="Log out" onClick={onLogoutClick} style={{marginTop: '1rem', width: '100%'}}/>
+            </>
+          ) : (
+            <div className="mobile-auth-buttons">
+                <Button size="small" label="Log in" onClick={() => { onLoginClick(); setIsMenuOpen(false); }} style={{width: '100%'}}/>
+                <Button size="small" primary label="Sign up" onClick={() => { onSignUpClick(); setIsMenuOpen(false); }} style={{width: '100%'}}/>
+            </div>
+          )}
         </nav>
       )}
     </header>
@@ -77,21 +69,21 @@ Header.propTypes = {
     name: PropTypes.string.isRequired,
     href: PropTypes.string.isRequired,
   })),
-  onMenuItemClick: PropTypes.func,
   user: PropTypes.shape({
       name: PropTypes.string.isRequired,
       avatarUrl: PropTypes.string,
   }),
-  onLogout: PropTypes.func,
+  onLogoutClick: PropTypes.func,
   onLoginClick: PropTypes.func,
+  onSignUpClick: PropTypes.func,
 };
 
 Header.defaultProps = {
     menuItems: [],
-    onMenuItemClick: () => {},
     user: null,
-    onLogout: () => {},
+    onLogoutClick: () => {},
     onLoginClick: () => {},
+    onSignUpClick: () => {},
 }
 
 export default Header;

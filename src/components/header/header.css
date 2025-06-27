@@ -44,7 +44,10 @@
     align-items: center;
     gap: 1rem;
 }
-.header-user-info, .header-login-info {
+.header-user-info {
+    display: none;
+}
+.header-login-info {
     display: none;
 }
 @media (min-width: 768px) {
@@ -94,4 +97,10 @@
 .storybook-header-nav-link-mobile:hover {
   color: #111827;
   background-color: #f9fafb;
+}
+.mobile-auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
 }

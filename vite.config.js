@@ -38,6 +38,7 @@ export default defineConfig({
         './RadioButton': './src/components/radio-button/RadioButton.jsx',
         './ResourcePage': './src/components/resource-page/ResourcePage.jsx',
         './Select': './src/components/select/Select.jsx',
+        './SignUp': './src/components/sign-up/SignUp.jsx',
         './Spinner': './src/components/spinner/Spinner.jsx',
         './Table': './src/components/table/Table.jsx',
         './Tabs': './src/components/tabs/Tabs.jsx',

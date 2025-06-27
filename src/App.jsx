@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import Login from './components/login/Login';
+import SignUp from './components/sign-up/SignUp';
 import Modal from './components/modal/Modal';
 import DashboardPage from './pages/DashboardPage';
 import './App.css';
@@ -9,12 +10,32 @@ import './App.css';
 export default function App() {
   const [user, setUser] = useState(null);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-
+  const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
   const menuItems = [ { name: 'Home', href: '#' }, { name: 'About', href: '#' }, { name: 'Services', href: '#' } ];
 
   // Mock authentication service
   const authService = {
+      signup: async (name, lastname, email, password) => {
+          console.log("Creating user login with:", { name, lastname, email, password });
+          return new Promise((resolve, reject) => {
+              setTimeout(() => {
+                  if (email === 'test@example.com' && password === 'password') {
+                      const userData = {
+                          name: 'Test User',
+                          avatarUrl: 'https://placehold.co/40x40/EFEFEF/3A3A3A?text=TU',
+                          accessToken: 'xyz123',
+                          refreshToken: 'abc456'
+                      };
+                      console.log("Create user successful", userData);
+                      resolve(userData);
+                  } else {
+                      console.log("Create failed");
+                      reject(new Error('User already exists. Please try again.'));
+                  }
+              }, 1000);
+          });
+      },
       login: async (username, password) => {
           console.log("Attempting login with:", { username, password });
           return new Promise((resolve, reject) => {
@@ -34,12 +55,17 @@ export default function App() {
                   }
               }, 1000);
           });
-      }
+      },
   };
 
   const handleLoginSuccess = (userData) => {
       setUser(userData);
       setIsLoginModalOpen(false);
+  };
+
+  const handleSignUpSuccess = (userData) => {
+      setUser(userData);
+      setIsSignUpModalOpen(false);
   };
 
   const handleLogout = () => {
@@ -51,16 +77,19 @@ export default function App() {
       <Header
         title="ComponentLib"
         menuItems={menuItems}
-        onMenuItemClick={(item) => console.log(item)}
         user={user}
-        onLogout={handleLogout}
+        onLogoutClick={handleLogout}
         onLoginClick={() => setIsLoginModalOpen(true)}
+        onSignUpClick={() => setIsSignUpModalOpen(true)}
       />
       {!user && <p>Please log in to see more content. Try with test and password</p>}
       {user && <DashboardPage />}
 
       <Modal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} title="Member Login">
           <Login service={authService} onLoginSuccess={handleLoginSuccess} onCancel={() => setIsLoginModalOpen(false)} />
+      </Modal>
+      <Modal isOpen={isSignUpModalOpen} onClose={() => setIsSignUpModalOpen(false)} title="Create Account">
+          <SignUp service={authService} onSignUpSuccess={handleSignUpSuccess} onCancel={() => setIsSignUpModalOpen(false)} />
       </Modal>
 
       <Footer text="© 2024 Component Library, Inc. All Rights Reserved." />

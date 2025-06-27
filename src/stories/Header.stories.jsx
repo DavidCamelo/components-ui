@@ -10,28 +10,29 @@ export default {
   tags: ['autodocs'],
 };
 
-
 export const LoggedOut = {
   args: {
     title: 'ComponentLib',
-    menuItems: [], // No menu items when logged out
+    menuItems: [],
+    onLogoutClick: fn(),
     onLoginClick: fn(),
+    onSignUpClick: fn(),
   },
 };
 
 export const LoggedIn = {
-    args: {
-      title: 'ComponentLib',
-      menuItems: [
-        { name: 'Dashboard', href: '#', id: 'dashboard' },
-        { name: 'Settings', href: '#', id: 'settings' },
-      ],
+  args: {
+    title: 'ComponentLib',
+    menuItems: [
+      { name: 'Dashboard', href: '#' },
+      { name: 'Settings', href: '#' },
+    ],
       user: {
         name: 'Jane Doe',
         avatarUrl: 'https://placehold.co/40x40/EFEFEF/3A3A3A?text=JD'
       },
-      onMenuItemClick: fn(),
-      onLogout: fn(),
-      onLoginClick: fn(),
-    },
-  };
+    onLogoutClick: fn(),
+    onLoginClick: fn(),
+    onSignUpClick: fn(),
+  },
+};

@@ -39,6 +39,7 @@ export const Login = ({ service, onLoginSuccess, onCancel }) => {
           placeholder="you@example.com"
           required
           disabled={isLoading}
+          autocomplete="email"
         />
         <Input
           label="Password"
@@ -49,6 +50,7 @@ export const Login = ({ service, onLoginSuccess, onCancel }) => {
           placeholder="••••••••"
           required
           disabled={isLoading}
+          autocomplete="current-password"
         />
         <div className="storybook-login-actions">
            {onCancel && <Button label="Cancel" onClick={onCancel} disabled={isLoading} />}

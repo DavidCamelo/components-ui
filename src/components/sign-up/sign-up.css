@@ -1,0 +1,16 @@
+@import "tailwindcss";
+.storybook-signup-form-wrapper {
+  width: 100%;
+}
+.storybook-signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.storybook-signup-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}

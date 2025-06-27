@@ -1,9 +1,9 @@
 import { fn } from 'storybook/test';
-import { Login } from '../components/login/Login';
+import { SignUp } from '../components/sign-up/SignUp';
 
 export default {
-  title: 'Pages/Login',
-  component: Login,
+  title: 'Pages/Sign Up',
+  component: SignUp,
   parameters: {
     layout: 'centered',
   },
@@ -11,7 +11,7 @@ export default {
 };
 
 const mockService = {
-    login: async (email, password) => {
+    signup: async (name, lastname, email, password) => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 if(email === "fail@example.com"){
@@ -27,7 +27,7 @@ const mockService = {
 export const Default = {
   args: {
     service: mockService,
-    onLoginSuccess: fn(),
+    onSignUpSuccess: fn(),
     onCancel: fn(),
   },
 };

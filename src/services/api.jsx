@@ -69,6 +69,14 @@ const createApiService = (resource) => {
 };
 
 export const authService = {
+    signup: async (name, lastName, email, password) => {
+        const response = await fetch(`${API_AUTH_URL}/signup`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, lastName, email, password }),
+        });
+        return handleResponse(response, 'signup');
+    },
     login: async (username, password) => {
         const response = await fetch(`${API_AUTH_URL}/login`, {
             method: 'POST',
