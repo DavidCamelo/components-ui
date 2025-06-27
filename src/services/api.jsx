@@ -2,7 +2,7 @@ const API_BASE_URL = 'https://spring-boot.davidcamelo.com';
 const API_AUTH_URL = `${API_BASE_URL}/auth/user`;
 
 const getAuthHeaders = () => {
-    const token = sessionStorage.getItem('accessToken');
+    const token = localStorage.getItem('accessToken');
     return token ? { 'Authorization': `Bearer ${token}` } : {};
 };
 
