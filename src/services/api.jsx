@@ -1,5 +1,6 @@
 const API_BASE_URL = 'https://spring-boot.davidcamelo.com';
-const API_AUTH_URL = `${API_BASE_URL}/auth/user`;
+//const API_BASE_URL = 'http://api-gateway:8080';
+const API_AUTH_URL = `${API_BASE_URL}/auth/api/auth`;
 
 const getAuthHeaders = () => {
     const token = localStorage.getItem('accessToken');
@@ -27,7 +28,7 @@ const handleSelectOption = (item) => {
 }
 
 const createApiService = (resource) => {
-    const API_URL = `${API_BASE_URL}/${resource}`;
+    const API_URL = `${API_BASE_URL}/${resource}/api/${resource}`;
     return {
         getAll: async ({ pageNumber = null, pageSize = null, sortBy = null, sortDirection = null }) => {
             let url = API_URL;

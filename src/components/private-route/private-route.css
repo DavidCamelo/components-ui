@@ -1,0 +1,12 @@
+@import "tailwindcss";
+.private-route-fallback {
+  width: 100%;
+  padding: 1.5rem;
+  text-align: center;
+  background-color: #f9fafb;
+  border: 1px dashed #d1d5db;
+  border-radius: 0.5rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-style: italic;
+}

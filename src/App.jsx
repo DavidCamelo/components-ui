@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import Login from './components/login/Login';
-import SignUp from './components/sign-up/SignUp';
 import Modal from './components/modal/Modal';
+import PrivateRoute from './components/private-route/PrivateRoute';
+import SignUp from './components/sign-up/SignUp';
 import DashboardPage from './pages/DashboardPage';
 import './App.css';
 
@@ -82,8 +83,7 @@ export default function App() {
         onLoginClick={() => setIsLoginModalOpen(true)}
         onSignUpClick={() => setIsSignUpModalOpen(true)}
       />
-      {!user && <p>Please log in to see more content. Try with test and password</p>}
-      {user && <DashboardPage />}
+      <PrivateRoute hasPermission={user} children={<DashboardPage />} fallbackMessage="Please log in to view this content. Try with 'test@example.com' and 'password'."/>
 
       <Modal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} title="Member Login">
           <Login service={authService} onLoginSuccess={handleLoginSuccess} onCancel={() => setIsLoginModalOpen(false)} />
