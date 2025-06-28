@@ -34,6 +34,7 @@ export default defineConfig({
         './Modal': './src/components/modal/Modal.jsx',
         './MultiSelect': './src/components/multi-select/MultiSelect.jsx',
         './Pagination': './src/components/pagination/Pagination.jsx',
+        './PrivateRoute': './src/components/private-route/PrivateRoute.jsx',
         './ProgressBar': './src/components/progress-bar/ProgressBar.jsx',
         './RadioButton': './src/components/radio-button/RadioButton.jsx',
         './ResourcePage': './src/components/resource-page/ResourcePage.jsx',
