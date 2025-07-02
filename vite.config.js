@@ -40,6 +40,7 @@ export default defineConfig({
         './ProgressBar': './src/components/progress-bar/ProgressBar.jsx',
         './RadioButton': './src/components/radio-button/RadioButton.jsx',
         './ResourcePage': './src/components/resource-page/ResourcePage.jsx',
+        './Schedule': './src/components/schedule/Schedule.jsx',
         './Select': './src/components/select/Select.jsx',
         './SignUp': './src/components/sign-up/SignUp.jsx',
         './Spinner': './src/components/spinner/Spinner.jsx',
