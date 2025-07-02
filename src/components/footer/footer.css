@@ -1,10 +1,11 @@
 @import "tailwindcss";
 .storybook-footer {
   padding: 1.5rem;
-  background-color: white;
-  box-shadow: 0 -1px 3px 0 rgb(0 0 0 / 0.1), 0 -1px 2px -1px rgb(0 0 0 / 0.1);
+  background-color: var(--background-secondary);
   text-align: center;
-  color: #6b7280;
+  color: var(--text-secondary);
   font-size: 0.875rem;
+  box-shadow: 0 -1px 3px 0 rgb(0 0 0 / 0.1), 0 -1px 2px -1px rgb(0 0 0 / 0.1);
+  border-top: 1px solid var(--border-color);
   margin-top: auto;
 }

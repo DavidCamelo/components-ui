@@ -12,19 +12,19 @@
   font-size: 0.875rem;
 }
 .storybook-breadcrumbs a {
-  color: #4b5563;
+  color: var(--text-secondary);
   text-decoration: none;
 }
 .storybook-breadcrumbs a:hover {
   text-decoration: underline;
 }
 .storybook-breadcrumbs span {
-  color: #1f2937;
+  color: var(--text-primary);
   font-weight: 500;
 }
 .storybook-breadcrumbs .separator {
   margin: 0 0.5rem;
-  color: #9ca3af;
+  color: var(--text-secondary);
   width: 1rem;
   height: 1rem;
 }

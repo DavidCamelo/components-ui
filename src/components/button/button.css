@@ -3,19 +3,25 @@
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
   border: 0;
-  border-radius: 0.375rem; /* 6px */
+  border-radius: 0.375rem;
   cursor: pointer;
   display: inline-block;
   line-height: 1;
 }
 .storybook-button--primary {
   color: white;
-  background-color: #1ea7fd;
+  background-color: var(--primary-color);
+}
+.storybook-button--primary:hover {
+  background-color: var(--primary-color-hover);
 }
 .storybook-button--secondary {
-  color: #333;
+  color: var(--text-primary);
   background-color: transparent;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+  box-shadow: var(--border-color) 0px 0px 0px 1px inset;
+}
+.storybook-button--secondary:hover {
+    background-color: var(--secondary-color-hover);
 }
 .storybook-button--small {
   font-size: 12px;

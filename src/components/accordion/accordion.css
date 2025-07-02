@@ -1,11 +1,11 @@
 @import "tailwindcss";
 .storybook-accordion {
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-color);
   border-radius: 0.5rem;
   overflow: hidden;
 }
 .storybook-accordion-item {
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border-color);
 }
 .storybook-accordion-item:last-child {
   border-bottom: none;
@@ -16,22 +16,24 @@
   align-items: center;
   width: 100%;
   padding: 1rem;
-  background-color: #f9fafb;
+  background-color: var(--background-primary);
   border: none;
   cursor: pointer;
   font-size: 1rem;
   text-align: left;
+  color: var(--text-primary);
 }
 .storybook-accordion-header:hover {
-  background-color: #f3f4f6;
+  background-color: var(--secondary-color-hover);
 }
 .storybook-accordion-icon {
   transition: transform 0.3s ease;
+  color: var(--text-secondary);
 }
 .storybook-accordion-icon.open {
   transform: rotate(180deg);
 }
 .storybook-accordion-content {
   padding: 1rem;
-  background-color: white;
+  background-color: var(--background-secondary);
 }

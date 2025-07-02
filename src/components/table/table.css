@@ -11,13 +11,13 @@
 .storybook-table th,
 .storybook-table td {
   padding: 12px 15px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border-color);
 }
 .storybook-table th {
-  background-color: #f9fafb;
+  background-color: var(--background-primary);
   font-size: 12px;
   font-weight: 600;
-  color: #4b5563;
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -25,7 +25,7 @@
   cursor: pointer;
 }
 .storybook-table th.sortable:hover {
-  background-color: #f3f4f6;
+  background-color: var(--secondary-color-hover);
 }
 .table-header-content {
   display: flex;
@@ -40,7 +40,7 @@
   font-size: 14px;
 }
 .storybook-table tbody tr:hover {
-  background-color: #f9fafb;
+  background-color: var(--background-primary);
 }
 .storybook-table-actions {
   display: flex;

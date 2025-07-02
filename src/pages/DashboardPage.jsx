@@ -101,7 +101,7 @@ export default function DashboardPage() {
         <a href="#">Link 1</a><br/>
         <a href="#">Link 2</a>
       </Drawer>
-      <main style={{ padding: '2rem', background: '#f9fafb' }}>
+
           <div style={{marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
             <Breadcrumbs items={breadcrumbItems} />
             <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
@@ -200,7 +200,6 @@ export default function DashboardPage() {
               </Card>
 
           </div>
-      </main>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Generic Modal">
           <p style={{ color: '#4b5563' }}>This is a generic modal component. You can put any content you want here.</p>

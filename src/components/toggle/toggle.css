@@ -7,7 +7,7 @@
   margin-right: 0.75rem;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #374151;
+  color: var(--text-primary);
 }
 .storybook-toggle-button {
   position: relative;
@@ -22,13 +22,13 @@
 }
 .storybook-toggle-button:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(30, 167, 253, 0.5);
+  box-shadow: 0 0 0 2px var(--primary-color);
 }
 .storybook-toggle-button[aria-checked="true"] {
-  background-color: #1ea7fd;
+  background-color: var(--primary-color);
 }
 .storybook-toggle-button[aria-checked="false"] {
-  background-color: #d1d5db;
+  background-color: var(--secondary-color);
 }
 .storybook-toggle-handle {
   display: inline-block;

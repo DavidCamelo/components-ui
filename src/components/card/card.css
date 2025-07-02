@@ -1,16 +1,18 @@
 @import "tailwindcss";
 .storybook-card {
-  background: white;
+  background: var(--card-background);
+  color: var(--text-primary);
   padding: 1.5rem;
   border-radius: 0.5rem;
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
 }
 .storybook-card-header {
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
 }
 .storybook-card-content {
   display: flex;

@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { XIcon, MenuIcon } from '../../icons';
 import { Avatar } from '../avatar/Avatar';
 import { Button } from '../button/Button';
+import { Toggle } from '../toggle/Toggle';
+import { useTheme } from '../../context/ThemeContext';
 import './header.css';
 
 export const Header = ({ title, menuItems, user, onLogoutClick, onLoginClick, onSignUpClick }) => {
+  const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -22,6 +25,7 @@ export const Header = ({ title, menuItems, user, onLogoutClick, onLoginClick, on
           </nav>
         )}
         <div className="header-right-side">
+            <Toggle enabled={theme === 'dark'} setEnabled={toggleTheme} />
             {user ? (
                 <div className="header-user-info">
                     <Avatar src={user.avatarUrl} alt={user.name} size="small"/>

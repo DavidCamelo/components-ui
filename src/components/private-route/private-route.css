@@ -3,7 +3,7 @@
   width: 100%;
   padding: 1.5rem;
   text-align: center;
-  background-color: #f9fafb;
+  background-color: var(--background-primary);
   border: 1px dashed #d1d5db;
   border-radius: 0.5rem;
   color: #6b7280;

@@ -3,7 +3,7 @@
   width: 100%; 
 }
 .storybook-tabs-nav { 
-  border-bottom: 1px solid #e5e7eb; 
+  border-bottom: 1px solid var(--border-color); 
   display: flex; 
   gap: 2rem; 
 }
@@ -13,7 +13,7 @@
   border-bottom: 2px solid transparent; 
   font-size: 0.875rem; 
   font-weight: 500; 
-  color: #6b7280; 
+  color: var(--text-secondary); 
   cursor: pointer; 
   background: none; 
   border-top: none; 
@@ -21,12 +21,12 @@
   border-right: none; 
 }
 .storybook-tabs-button:hover { 
-  color: #374151; 
-  border-color: #d1d5db; 
+  color: var(--text-primary); 
+  border-color: var(--border-color); 
 }
 .storybook-tabs-button--active { 
-  color: #1ea7fd; 
-  border-color: #1ea7fd; 
+  color: var(--primary-color); 
+  border-color: var(--primary-color); 
 }
 .storybook-tabs-content { 
   padding-top: 1.25rem; 

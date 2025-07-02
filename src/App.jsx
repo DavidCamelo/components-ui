@@ -83,15 +83,15 @@ export default function App() {
         onLoginClick={() => setIsLoginModalOpen(true)}
         onSignUpClick={() => setIsSignUpModalOpen(true)}
       />
-      <PrivateRoute hasPermission={user} children={<DashboardPage />} fallbackMessage="Please log in to view this content. Try with 'test@example.com' and 'password'."/>
-
+      <main style={{padding: '2rem'}}>
+        <PrivateRoute hasPermission={user} children={<DashboardPage />} fallbackMessage="Please log in to view this content. Try with 'test@example.com' and 'password'."/>
+      </main>
       <Modal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} title="Member Login">
           <Login service={authService} onLoginSuccess={handleLoginSuccess} onCancel={() => setIsLoginModalOpen(false)} />
       </Modal>
       <Modal isOpen={isSignUpModalOpen} onClose={() => setIsSignUpModalOpen(false)} title="Create Account">
           <SignUp service={authService} onSignUpSuccess={handleSignUpSuccess} onCancel={() => setIsSignUpModalOpen(false)} />
       </Modal>
-
       <Footer text="© 2024 Component Library, Inc. All Rights Reserved." />
     </div>
   );
