@@ -15,8 +15,9 @@ export default {
 };
 
 export const Default = {
-  args: {
-    label: 'Button',
+  args:{
+    label:'Button',
+    primary:true
   },
 };
 

@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './button.css';
 
-export const Button = ({ primary, backgroundColor, size = 'medium', label, type, ...props }) => {
+export const Button = ({ primary, backgroundColor, size = 'medium', label, ...props }) => {
   const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
   return (
     <button
-      type={type}
+      type="button"
       className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
       style={backgroundColor && { backgroundColor }}
       {...props}
@@ -22,15 +22,12 @@ Button.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-  type: PropTypes.oneOf(['button', 'submit', 'reset']),
 };
 
 Button.defaultProps = {
-  backgroundColor: null,
-  primary: false,
+  primary: true,
   size: 'medium',
-  onClick: undefined,
-  type: 'button',
+  label: 'Button',
 };
 
 export default Button;
