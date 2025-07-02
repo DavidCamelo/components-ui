@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Button from '../button/Button';
-import Input from '../input/Input';
-import Select from '../select/Select';
-import Checkbox from '../checkbox/Checkbox';
-import Toggle from '../toggle/Toggle';
-import MultiSelect from '../multi-select/MultiSelect';
-import RadioButton from '../radio-button/RadioButton';
-import DatePicker from '../date-picker/DatePicker';
-import TimePicker from '../time-picker/TimePicker';
-import DateTimePicker from '../date-time-picker/DateTimePicker';
+import { Button } from '../button/Button';
+import { Checkbox } from '../checkbox/Checkbox';
+import { DatePicker } from '../date-picker/DatePicker';
+import { DateTimePicker } from '../date-time-picker/DateTimePicker';
+import { Input } from '../input/Input';
+import { MultiSelect } from '../multi-select/MultiSelect';
+import { RadioButton } from '../radio-button/RadioButton';
+import { Select } from '../select/Select';
+import { Spinner } from '../spinner/Spinner';
+import { TimePicker } from '../time-picker/TimePicker';
+import { Toggle } from '../toggle/Toggle';
 import './form.css';
 
 const componentMap = {
@@ -24,10 +25,10 @@ const componentMap = {
   radio: RadioButton,
   date: DatePicker,
   time: TimePicker,
-  datetime: DateTimePicker,
+  'datetime-local': DateTimePicker,
 };
 
-export const Form = ({ fields, initialData, onSubmit, onCancel }) => {
+export const Form = ({ fields, initialData, onSubmit, onCancel, isLoading }) => {
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
@@ -64,7 +65,7 @@ export const Form = ({ fields, initialData, onSubmit, onCancel }) => {
   };
 
   const renderField = (field) => {
-    const { name, type, ...rest } = field;
+    const { name, type, required, ...rest } = field;
     const Component = componentMap[type];
 
     if (!Component) {
@@ -76,6 +77,8 @@ export const Form = ({ fields, initialData, onSubmit, onCancel }) => {
 
     const props = {
       name,
+      required: required || false,
+      disabled: isLoading,
       ...rest,
     };
 
@@ -108,6 +111,7 @@ export const Form = ({ fields, initialData, onSubmit, onCancel }) => {
                 value={option.value}
                 checked={formData[name] === option.value}
                 onChange={(e) => handleChange(name, e.target.value)}
+                disabled={isLoading}
                 />
             ))}
             </div>
@@ -126,8 +130,9 @@ export const Form = ({ fields, initialData, onSubmit, onCancel }) => {
     <form onSubmit={handleSubmit} className="storybook-form">
       {fields.map(renderField)}
       <div className="storybook-form-actions">
-        {onCancel && <Button label="Cancel" onClick={onCancel} />}
-        <Button primary label="Submit" type="submit" onClick={handleSubmit}/>
+        {onCancel && <Button label="Cancel" onClick={onCancel} disabled={isLoading} />}
+        <Button primary label={isLoading ? 'Submitting...' : 'Submit'} type="submit" disabled={isLoading} />
+        {isLoading && <Spinner size="small" />}
       </div>
     </form>
   );
@@ -139,15 +144,18 @@ Form.propTypes = {
     type: PropTypes.string.isRequired,
     label: PropTypes.string,
     options: PropTypes.array,
+    required: PropTypes.bool,
   })).isRequired,
   initialData: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
+  isLoading: PropTypes.bool,
 };
 
 Form.defaultProps = {
   initialData: {},
   onCancel: null,
+  isLoading: false,
 };
 
 export default Form;

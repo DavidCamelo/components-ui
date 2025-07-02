@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Alert } from '../alert/Alert';
 import { Button } from '../button/Button';
-import { Table } from '../table/Table';
-import { Modal } from '../modal/Modal';
 import { ConfirmationModal } from '../confirmation-modal/ConfirmationModal';
 import { Form } from '../form/Form';
-import { Alert } from '../alert/Alert';
+import { Modal } from '../modal/Modal';
 import { Pagination } from '../pagination/Pagination';
 import { Spinner } from '../spinner/Spinner';
+import { Table } from '../table/Table';
 import './resource-page.css';
 
 export const ResourcePage = ({ title, resourceName, service, columns, formFields }) => {
@@ -23,6 +23,7 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
       sortDirection: 'ASC'
   });
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isFormModalOpen, setIsFormModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -103,6 +104,7 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
   };
 
   const handleFormSubmit = async (formData) => {
+    setIsSubmitting(true);
     try {
       setFormError(null);
       if (selectedItem?.id) {
@@ -117,6 +119,8 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
     } catch (err) {
       console.error("Failed to submit form:", err);
       setFormError(err.message || `Failed to ${selectedItem?.id ? 'update' : 'create'} ${resourceName.toLowerCase()}.`);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -193,6 +197,7 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
             initialData={selectedItem}
             onSubmit={handleFormSubmit}
             onCancel={closeModals}
+            isLoading={isSubmitting}
           />
         </Modal>
       )}

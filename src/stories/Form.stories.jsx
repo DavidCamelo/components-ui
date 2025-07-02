@@ -12,6 +12,7 @@ export default {
   args: {
     onSubmit: fn(),
     onCancel: fn(),
+    isLoading: false,
    },
 };
 
@@ -20,13 +21,15 @@ const sampleFields = [
     label: 'Name',
     name: 'name',
     type: 'text',
-    placeholder: 'Enter your full name'
+    placeholder: 'Enter your full name',
+    required: true,
   },
   {
     label: 'Age',
     name: 'age',
     type: 'number',
-    placeholder: 'Enter your age'
+    placeholder: 'Enter your age',
+    required: true
   },
   {
     label: 'Birthdate',
@@ -96,5 +99,16 @@ export const WithInitialData = {
       notifications: true,
       terms: false,
     },
+  },
+};
+
+export const Loading = {
+  args: {
+    fields: sampleFields,
+    initialData: {
+      name: 'Submitting Data...',
+      age: 99,
+    },
+    isLoading: true,
   },
 };

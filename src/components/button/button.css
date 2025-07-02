@@ -6,21 +6,26 @@
   cursor: pointer;
   display: inline-block;
   line-height: 1;
+  transition: background-color 0.2s;
 }
 .storybook-button--primary {
   color: white;
   background-color: var(--primary-color);
 }
-.storybook-button--primary:hover {
+.storybook-button--primary:hover:not(:disabled) {
   background-color: var(--primary-color-hover);
 }
 .storybook-button--secondary {
   color: var(--text-primary);
-  background-color: transparent;
-  box-shadow: var(--border-color) 0px 0px 0px 1px inset;
+  background-color: var(--secondary-color);
+  box-shadow: none;
 }
-.storybook-button--secondary:hover {
-    background-color: var(--secondary-color-hover);
+.storybook-button--secondary:hover:not(:disabled) {
+  background-color: var(--secondary-color-hover);
+}
+.storybook-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
 }
 .storybook-button--small {
   font-size: 12px;
