@@ -1,5 +1,6 @@
 import { fn } from 'storybook/test';
 import { Header } from '../components/header/Header';
+import { ThemeProvider } from '../context/ThemeContext';
 
 export default {
   title: 'Components/Header',
@@ -11,6 +12,13 @@ export default {
 };
 
 export const LoggedOut = {
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   args: {
     title: 'ComponentLib',
     menuItems: [],
@@ -21,6 +29,13 @@ export const LoggedOut = {
 };
 
 export const LoggedIn = {
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   args: {
     title: 'ComponentLib',
     menuItems: [
