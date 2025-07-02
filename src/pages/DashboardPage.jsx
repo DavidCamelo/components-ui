@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
-import Accordion from '../components/accordion/Accordion';
-import Alert from '../components/alert/Alert';
-import Avatar from '../components/avatar/Avatar';
-import Badge from '../components/badge/Badge';
-import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
-import Button from '../components/button/Button';
-import Card from '../components/card/Card';
-import Carousel from '../components/carousel/Carousel';
-import Checkbox from '../components/checkbox/Checkbox';
-import ConfirmationModal from '../components/confirmation-modal/ConfirmationModal';
-import DatePicker from '../components/date-picker/DatePicker';
-import DateTimePicker from '../components/date-time-picker/DateTimePicker';
-import Drawer from '../components/drawer/Drawer';
-import Form from '../components/form/Form';
-import Input from '../components/input/Input';
-import Modal from '../components/modal/Modal';
-import MultiSelect from '../components/multi-select/MultiSelect';
-import Pagination from '../components/pagination/Pagination';
-import ProgressBar from '../components/progress-bar/ProgressBar';
-import RadioButton from '../components/radio-button/RadioButton';
-import Select from '../components/select/Select';
-import Spinner from '../components/spinner/Spinner';
-import Table from '../components/table/Table';
-import Tabs from '../components/tabs/Tabs';
-import TimePicker from '../components/time-picker/TimePicker';
-import Toggle from '../components/toggle/Toggle';
-import Tooltip from '../components/tooltip/Tooltip';
+import { Accordion } from '../components/accordion/Accordion';
+import { Alert } from '../components/alert/Alert';
+import { Avatar } from '../components/avatar/Avatar';
+import { Badge } from '../components/badge/Badge';
+import { Breadcrumbs } from '../components/breadcrumbs/Breadcrumbs';
+import { Button } from '../components/button/Button';
+import { Card } from '../components/card/Card';
+import { Carousel } from '../components/carousel/Carousel';
+import { Checkbox } from '../components/checkbox/Checkbox';
+import { ConfirmationModal } from '../components/confirmation-modal/ConfirmationModal';
+import { DatePicker } from '../components/date-picker/DatePicker';
+import { DateTimePicker } from '../components/date-time-picker/DateTimePicker';
+import { Drawer } from '../components/drawer/Drawer';
+import { Form } from '../components/form/Form';
+import { Input } from '../components/input/Input';
+import { Modal } from '../components/modal/Modal';
+import { MultiSelect } from '../components/multi-select/MultiSelect';
+import { Pagination } from '../components/pagination/Pagination';
+import { ProgressBar } from '../components/progress-bar/ProgressBar';
+import { RadioButton } from '../components/radio-button/RadioButton';
+import { Select } from '../components/select/Select';
+import { Spinner } from '../components/spinner/Spinner';
+import { Table } from '../components/table/Table';
+import { Tabs } from '../components/tabs/Tabs';
+import { TimePicker } from '../components/time-picker/TimePicker';
+import { Toggle } from '../components/toggle/Toggle';
+import { Tooltip } from '../components/tooltip/Tooltip';
 
-export default function DashboardPage() {
+export const DashboardPage = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [textValue, setTextValue] = useState('');
@@ -211,3 +211,5 @@ export default function DashboardPage() {
     </>
   );
 }
+
+export default DashboardPage;
