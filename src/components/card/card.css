@@ -1,4 +1,3 @@
-@import "tailwindcss";
 .storybook-card {
   background: var(--card-background);
   color: var(--text-primary);

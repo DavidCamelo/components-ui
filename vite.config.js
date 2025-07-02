@@ -13,6 +13,7 @@ export default defineConfig({
       filename: 'remoteEntry.js',
       exposes: {
         './api': './src/services/api.jsx',
+        './AuthContext': './src/context/AuthContext.jsx',
         './ThemeContext': './src/context/ThemeContext.jsx',
         './Accordion': './src/components/accordion/Accordion.jsx',
         './Alert': './src/components/alert/Alert.jsx',
