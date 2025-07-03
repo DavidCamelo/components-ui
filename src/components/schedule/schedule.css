@@ -88,7 +88,7 @@
     position: relative;
 }
 .schedule-column {
-  flex-grow: 1;
+  flex: 1 0 150px;
   border-left: 1px solid var(--border-color);
   position: relative;
   min-width: 150px;
@@ -103,11 +103,12 @@
   font-weight: bold;
   border-bottom: 2px solid var(--border-color);
   background-color: var(--background-secondary);
-  flex-grow: 1;
+  flex: 1 0 150px;
+  min-width: 150px;
 }
 .current-time-line {
   position: absolute;
-  left: 80px;
+  left: 0;
   right: 0;
   height: 2px;
   background-color: #ef4444;

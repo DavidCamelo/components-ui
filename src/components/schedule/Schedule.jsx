@@ -17,7 +17,7 @@ const yToTime = (y, hourHeight) => {
   const totalHours = y / hourHeight;
   const hours = Math.floor(totalHours);
   const minutes = Math.round(((totalHours - hours) * 60) / 15) * 15;
-  
+
   if (minutes >= 60) {
       const newHours = hours + 1;
       const formattedHours = String(newHours % 24).padStart(2, '0');
@@ -54,7 +54,7 @@ const EventPreview = ({ event, position }) => {
                     <div className="preview-image-container">
                         <img src={event.previewImage} alt="Preview" />
                     </div>
-                    <strong>End Date:</strong> <DatePicker name="endDate" value={event.endDate} size="small" readOnly />
+                    <strong>Start Time:</strong> <TimePicker name="startTime" value={event.startTime} size="small" readOnly />
                     <strong>End Time:</strong> <TimePicker name="endTime" value={event.endTime} size="small" readOnly />
                 </div>
             </Card>
@@ -71,7 +71,7 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
   const [draggingItem, setDraggingItem] = useState(null);
   const [resizingItem, setResizingItem] = useState(null);
   const [dropIndicator, setDropIndicator] = useState(null);
-  
+
   const scheduleGridRef = useRef(null);
   const hourHeight = 80;
 
@@ -111,7 +111,7 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
       const rect = scheduleGridRef.current.getBoundingClientRect();
       const currentY = e.clientY - rect.top + scheduleGridRef.current.scrollTop;
       const newTime = yToTime(currentY, hourHeight);
-      
+
       const updatedEvent = { ...resizingItem.event };
 
       if (resizingItem.edge === 'top') {
@@ -146,7 +146,7 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
       window.removeEventListener('mouseup', handleGlobalMouseUp);
     };
   }, [handleGlobalMouseMove, handleGlobalMouseUp]);
-  
+
   const handleContextMenu = (e, item, isNewSelection = false) => {
       e.preventDefault();
       setContextMenu({ x: e.pageX, y: e.pageY, item, isNewSelection });
@@ -186,16 +186,16 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
         const newStartTime = yToTime(dropY, hourHeight);
         const duration = getEventDuration(draggingItem.startTime, draggingItem.endTime);
         const newEndTime = yToTime(dropY + duration * hourHeight, hourHeight);
-        
+
         setDropIndicator({
             top: timeToY(newStartTime, hourHeight),
             height: timeToY(newEndTime, hourHeight) - timeToY(newStartTime, hourHeight),
-            left: `calc(${colIndex} * (100% - 80px) / ${columns.length} + 80px)`,
-            width: `calc((100% - 80px) / ${columns.length})`
+            left: `calc(${colIndex} * 100% / ${columns.length})`,
+            width: `calc(100% / ${columns.length})`
         });
     }
   };
-  
+
   const handleDragLeave = (e) => {
       e.currentTarget.classList.remove('drag-over');
       setDropIndicator(null);
@@ -209,11 +209,11 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
 
     const rect = e.currentTarget.getBoundingClientRect();
     const dropY = e.clientY - rect.top;
-    
+
     const newStartTime = yToTime(dropY, hourHeight);
     const duration = getEventDuration(draggingItem.startTime, draggingItem.endTime);
     const newEndTime = yToTime(dropY + duration * hourHeight, hourHeight);
-    
+
     onEventUpdate({
         ...draggingItem,
         columnId,
@@ -223,7 +223,7 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
 
     setDraggingItem(null);
   };
-  
+
   const renderGridLines = () => {
     const lines = [];
     for (let i = 0; i < 24; i++) {
@@ -259,10 +259,10 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
     const endTime = yToTime(top + height, hourHeight);
 
     return (
-        <div 
-            className="selection-box" 
-            style={{ 
-                top: `${timeToY(startTime, hourHeight)}px`, 
+        <div
+            className="selection-box"
+            style={{
+                top: `${timeToY(startTime, hourHeight)}px`,
                 height: `${timeToY(endTime, hourHeight) - timeToY(startTime, hourHeight)}px`,
                 left: `calc(${colIndex} * 100% / ${columns.length})`,
                 width: `calc(100% / ${columns.length})`
@@ -295,8 +295,8 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
                 <div className="schedule-content-area">
                     <div className="grid-lines-container">{renderGridLines()}</div>
                     {columns.map((col, colIndex) => (
-                        <div 
-                            key={col.id} 
+                        <div
+                            key={col.id}
                             className="schedule-column"
                             onMouseDown={(e) => handleMouseDownOnColumn(e, col.id)}
                             onDragOver={(e) => handleDragOver(e, colIndex)}
@@ -307,7 +307,7 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
                                 const top = timeToY(item.startTime, hourHeight);
                                 const height = timeToY(item.endTime, hourHeight) - top;
                                 return (
-                                    <div 
+                                    <div
                                         key={item.id}
                                         draggable
                                         onDragStart={(e) => handleDragStart(e, item)}
@@ -326,10 +326,10 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
                             })}
                         </div>
                     ))}
+                    {dropIndicator && <div className="drop-indicator" style={dropIndicator}></div>}
+                    <div className="current-time-line" style={{ top: `${currentTimePosition}px` }}></div>
+                    {renderSelectionBox()}
                 </div>
-                {dropIndicator && <div className="drop-indicator" style={dropIndicator}></div>}
-                <div className="current-time-line" style={{ top: `${currentTimePosition}px` }}></div>
-                {renderSelectionBox()}
             </div>
         </div>
         {contextMenu && (
