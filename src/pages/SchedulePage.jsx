@@ -14,10 +14,10 @@ export const SchedulePage = () => {
   ];
 
   const initialEvents = [
-    { id: 1, columnId: 'person1', startTime: '09:00', endTime: '10:30', title: 'Morning Standup', sponsor: 'Corp', sponsorId: 123, continuous: false, imsImagePath: '/path/to/image1.jpg', previewImage: 'https://placehold.co/150x80', tagLine: 'Team Sync', modifiedBy: 'user1', modifiedDate: '2025-07-01T10:00:00', startDate: '2025-07-02', endDate: '2025-07-02' },
-    { id: 2, columnId: 'person2', startTime: '11:00', endTime: '12:00', title: 'Design Review', sponsor: 'Creative', sponsorId: 456, continuous: true, imsImagePath: '/path/to/image2.jpg', previewImage: 'https://placehold.co/150x80', tagLine: 'New Dashboard', modifiedBy: 'user2', modifiedDate: '2025-07-01T11:00:00', startDate: '2025-07-02', endDate: '2025-07-02' },
-    { id: 3, columnId: 'person3', startTime: '14:00', endTime: '15:30', title: 'Client Meeting', sponsor: 'Sales', sponsorId: 789, continuous: false, imsImagePath: '/path/to/image3.jpg', previewImage: 'https://placehold.co/150x80', tagLine: 'Project Kickoff', modifiedBy: 'user1', modifiedDate: '2025-07-01T14:00:00', startDate: '2025-07-02', endDate: '2025-07-02' },
-    { id: 4, columnId: 'person1', startTime: '11:30', endTime: '12:30', title: '1-on-1', sponsor: 'HR', sponsorId: 101, continuous: false, imsImagePath: '/path/to/image4.jpg', previewImage: 'https://placehold.co/150x80', tagLine: 'Performance Review', modifiedBy: 'user3', modifiedDate: '2025-07-01T12:00:00', startDate: '2025-07-02', endDate: '2025-07-02' },
+    { id: 1, columnId: 'person1', startTime: '09:00', endTime: '10:30', title: 'Morning Standup', client: 'Corp', previewImage: 'https://placehold.co/150x80' },
+    { id: 2, columnId: 'person2', startTime: '11:00', endTime: '12:00', title: 'Design Review', client: 'Creative', previewImage: 'https://placehold.co/150x80' },
+    { id: 3, columnId: 'person3', startTime: '14:00', endTime: '15:30', title: 'Client Meeting', client: 'Sales', previewImage: 'https://placehold.co/150x80' },
+    { id: 4, columnId: 'person1', startTime: '11:30', endTime: '12:30', title: '1-on-1', client: 'HR', previewImage: 'https://placehold.co/150x80' },
   ];
 
   const [events, setEvents] = useState(initialEvents);

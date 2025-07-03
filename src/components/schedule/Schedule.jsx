@@ -48,20 +48,12 @@ const EventPreview = ({ event, position }) => {
     if (!event) return null;
     return (
         <div className="event-preview-card" style={{ top: position.y, left: position.x }}>
-            <Card title={`${event.sponsor} - ${event.title}`}>
+            <Card title={`${event.client} - ${event.title}`}>
                 <div className="preview-grid">
-                    <strong>SponsorId:</strong> <span>{event.sponsorId}</span>
-                    <strong>Continuous:</strong> <span>{event.continuous.toString()}</span>
-                    <strong>ImagePath:</strong> <span className="image-path">{event.imsImagePath}</span>
-                    <strong>Preview:</strong> 
+                    <strong>Preview:</strong>
                     <div className="preview-image-container">
                         <img src={event.previewImage} alt="Preview" />
                     </div>
-                    <strong>TagLine:</strong> <span>{event.tagLine}</span>
-                    <strong>Modified by:</strong> <span>{event.modifiedBy}</span>
-                    <strong>Modified date:</strong> <span>{event.modifiedDate}</span>
-                    <strong>Start Date:</strong> <DatePicker name="startDate" value={event.startDate} size="small" readOnly />
-                    <strong>Start Time:</strong> <TimePicker name="startTime" value={event.startTime} size="small" readOnly />
                     <strong>End Date:</strong> <DatePicker name="endDate" value={event.endDate} size="small" readOnly />
                     <strong>End Time:</strong> <TimePicker name="endTime" value={event.endTime} size="small" readOnly />
                 </div>
