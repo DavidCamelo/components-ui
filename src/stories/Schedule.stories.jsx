@@ -32,7 +32,7 @@ const Template = (args) => {
     };
 
     const handleDateChange = (change) => {
-        const newDate = new Date(currentDate);
+        let newDate = new Date(currentDate);
         if (typeof change === 'number') {
             newDate.setDate(newDate.getDate() + change);
         } else {
