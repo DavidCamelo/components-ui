@@ -71,6 +71,7 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
   const [draggingItem, setDraggingItem] = useState(null);
   const [resizingItem, setResizingItem] = useState(null);
   const [dropIndicator, setDropIndicator] = useState(null);
+  const [shadowEvent, setShadowEvent] = useState(null);
 
   const scheduleGridRef = useRef(null);
   const hourHeight = 80;
@@ -89,9 +90,10 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
   }, []);
 
   const handleMouseDownOnColumn = (e, colId) => {
-    if (e.target.closest('.schedule-event')) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const startY = e.clientY - rect.top + scheduleGridRef.current.scrollTop;
+    if (e.target.closest('.schedule-event') || e.target.closest('.shadow-event')) return;
+    setShadowEvent(null);
+    const rect = scheduleGridRef.current.getBoundingClientRect();
+    const startY = e.clientY - rect.top + scheduleGridRef.current.scrollTop - 40;
     setSelection({ columnId: colId, startY, currentY: startY });
   };
 
@@ -104,12 +106,12 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
   const handleGlobalMouseMove = useCallback((e) => {
     if (selection) {
       const rect = scheduleGridRef.current.getBoundingClientRect();
-      const currentY = e.clientY - rect.top + scheduleGridRef.current.scrollTop;
+      const currentY = e.clientY - rect.top + scheduleGridRef.current.scrollTop - 40;
       setSelection(prev => ({ ...prev, currentY }));
     }
     if (resizingItem) {
       const rect = scheduleGridRef.current.getBoundingClientRect();
-      const currentY = e.clientY - rect.top + scheduleGridRef.current.scrollTop;
+      const currentY = e.clientY - rect.top + scheduleGridRef.current.scrollTop - 40;
       const newTime = yToTime(currentY, hourHeight);
 
       const updatedEvent = { ...resizingItem.event };
@@ -130,13 +132,21 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
 
   const handleGlobalMouseUp = useCallback(() => {
     if (selection && Math.abs(selection.currentY - selection.startY) > 10) {
-      // Persist selection
+      const top = Math.min(selection.startY, selection.currentY);
+      const height = Math.abs(selection.currentY - selection.startY);
+      const startTime = yToTime(top, hourHeight);
+      const endTime = yToTime(top + height, hourHeight);
+      setShadowEvent({
+          columnId: selection.columnId,
+          startTime,
+          endTime
+      });
     }
     setSelection(null);
     if (resizingItem) {
       setResizingItem(null);
     }
-  }, [selection, resizingItem]);
+  }, [selection, resizingItem, hourHeight]);
 
   useEffect(() => {
     window.addEventListener('mousemove', handleGlobalMouseMove);
@@ -181,8 +191,8 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
     e.currentTarget.classList.add('drag-over');
 
     if (draggingItem) {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const dropY = e.clientY - rect.top;
+        const rect = scheduleGridRef.current.getBoundingClientRect();
+        const dropY = e.clientY - rect.top + scheduleGridRef.current.scrollTop - 40;
         const newStartTime = yToTime(dropY, hourHeight);
         const duration = getEventDuration(draggingItem.startTime, draggingItem.endTime);
         const newEndTime = yToTime(dropY + duration * hourHeight, hourHeight);
@@ -207,8 +217,8 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
     setDropIndicator(null);
     if (!draggingItem) return;
 
-    const rect = e.currentTarget.getBoundingClientRect();
-    const dropY = e.clientY - rect.top;
+    const rect = scheduleGridRef.current.getBoundingClientRect();
+    const dropY = e.clientY - rect.top + scheduleGridRef.current.scrollTop - 40;
 
     const newStartTime = yToTime(dropY, hourHeight);
     const duration = getEventDuration(draggingItem.startTime, draggingItem.endTime);
@@ -267,7 +277,27 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
                 left: `calc(${colIndex} * 100% / ${columns.length})`,
                 width: `calc(100% / ${columns.length})`
             }}
-            onContextMenu={(e) => handleContextMenu(e, { columnId: selection.columnId, startTime, endTime }, true)}
+        />
+    );
+  };
+
+  const renderShadowEvent = () => {
+    if (!shadowEvent) return null;
+    const top = timeToY(shadowEvent.startTime, hourHeight);
+    const height = timeToY(shadowEvent.endTime, hourHeight) - top;
+    const colIndex = columns.findIndex(c => c.id === shadowEvent.columnId);
+    if (colIndex < 0) return null;
+
+    return (
+        <div
+            className="shadow-event"
+            style={{
+                top: `${top}px`,
+                height: `${height}px`,
+                left: `calc(${colIndex} * 100% / ${columns.length})`,
+                width: `calc(100% / ${columns.length})`,
+            }}
+            onContextMenu={(e) => handleContextMenu(e, shadowEvent, true)}
         />
     );
   };
@@ -326,6 +356,7 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
                             })}
                         </div>
                     ))}
+                    {renderShadowEvent()}
                     {dropIndicator && <div className="drop-indicator" style={dropIndicator}></div>}
                     <div className="current-time-line" style={{ top: `${currentTimePosition}px` }}></div>
                     {renderSelectionBox()}
@@ -335,7 +366,7 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
         {contextMenu && (
             <ul className="context-menu" style={{ top: contextMenu.y, left: contextMenu.x }}>
                 {contextMenu.isNewSelection ? (
-                    <li onClick={() => onEventCreate(contextMenu.item)}>Add New</li>
+                    <li onClick={() => { onEventCreate(contextMenu.item); setShadowEvent(null); }}>Add New</li>
                 ) : (
                     <>
                         <li onClick={() => onEventUpdate(contextMenu.item)}>Edit</li>

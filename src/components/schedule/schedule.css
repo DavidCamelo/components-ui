@@ -112,7 +112,6 @@
   right: 0;
   height: 2px;
   background-color: #ef4444;
-  z-index: 20;
 }
 .current-time-line::before {
   content: '';
@@ -177,11 +176,14 @@
 .schedule-event:hover .resize-handle::after {
     opacity: 1;
 }
-.selection-box, .drop-indicator {
+.selection-box, .drop-indicator, .shadow-event {
     position: absolute;
     background-color: rgba(30, 167, 253, 0.2);
     border: 1px dashed var(--primary-color);
     z-index: 15;
+}
+.shadow-event {
+    cursor: pointer;
 }
 .selection-time {
     position: absolute;
