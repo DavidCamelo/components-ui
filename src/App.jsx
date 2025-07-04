@@ -17,7 +17,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState(0);
 
   const menuItems = [ { name: 'Home', href: '#' }, { name: 'About', href: '#' }, { name: 'Services', href: '#' } ];
-  const tabs = [{ name: 'Schedule', content: <SchedulePage /> }, { name: 'Dashboard', content: <DashboardPage /> }];
+  const tabs = [{ name: 'Dashboard', content: <DashboardPage /> }, { name: 'Schedule', content: <SchedulePage /> }];
   const userData = {
     name: 'Test User',
     avatarUrl: 'https://placehold.co/40x40/EFEFEF/3A3A3A?text=TU',
@@ -101,7 +101,7 @@ export default function App() {
       <Modal isOpen={isSignUpModalOpen} onClose={() => setIsSignUpModalOpen(false)} title="Create Account">
           <SignUp service={authService} onSignUpSuccess={handleSignUpSuccess} onCancel={() => setIsSignUpModalOpen(false)} />
       </Modal>
-      <Footer text="© 2024 Component Library, Inc. All Rights Reserved." />
+      <Footer text={`© ${new Date().getFullYear()} Component Library, Inc. All Rights Reserved.`} />
     </div>
   );
 }
