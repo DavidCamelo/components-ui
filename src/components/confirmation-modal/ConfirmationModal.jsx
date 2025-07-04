@@ -14,10 +14,10 @@ export const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, children 
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={title}>
-      <div className="storybook-confirmation-content">
+      <div className="confirmation-content">
         {children}
       </div>
-      <div className="storybook-confirmation-actions">
+      <div className="confirmation-actions">
         <Button label="Cancel" size="small" onClick={onClose} />
         <Button primary label="Confirm" size="small" onClick={handleConfirm} />
       </div>

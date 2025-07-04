@@ -11,22 +11,22 @@ export const Accordion = ({ items }) => {
   };
 
   return (
-    <div className="storybook-accordion">
+    <div className="accordion">
       {items.map((item, index) => (
-        <div key={index} className="storybook-accordion-item">
+        <div key={index} className="accordion-item">
           <button
-            className="storybook-accordion-header"
+            className="accordion-header"
             onClick={() => handleClick(index)}
           >
             <span>{item.title}</span>
             <ChevronDownIcon
-              className={`storybook-accordion-icon ${
+              className={`accordion-icon ${
                 openIndex === index ? 'open' : ''
               }`}
             />
           </button>
           {openIndex === index && (
-            <div className="storybook-accordion-content">{item.content}</div>
+            <div className="accordion-content">{item.content}</div>
           )}
         </div>
       ))}

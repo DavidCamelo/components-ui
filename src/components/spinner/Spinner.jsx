@@ -4,7 +4,7 @@ import './spinner.css';
 
 export const Spinner = ({ size }) => {
   return (
-    <div className={`storybook-spinner storybook-spinner--${size}`} />
+    <div className={`spinner spinner--${size}`} />
   );
 };
 

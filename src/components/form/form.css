@@ -1,16 +1,16 @@
-.storybook-form {
+.form {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 }
-.storybook-form-actions {
+.form-actions {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 0.75rem;
   margin-top: 1rem;
 }
-.storybook-radio-group {
+.radio-group {
     display: flex;
     gap: 1rem;
     margin-top: 0.5rem;

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import './radio-button.css';
 
 export const RadioButton = ({ label, name, value, checked, onChange }) => (
-    <label htmlFor={`${name}-${value}`} className="storybook-radio-wrapper">
-        <input id={`${name}-${value}`} name={name} type="radio" value={value} checked={checked} onChange={onChange} className="storybook-radio-input" />
-        <span className="storybook-radio-label">{label}</span>
+    <label htmlFor={`${name}-${value}`} className="radio-wrapper">
+        <input id={`${name}-${value}`} name={name} type="radio" value={value} checked={checked} onChange={onChange} className="radio-input" />
+        <span className="radio-label">{label}</span>
     </label>
 );
 

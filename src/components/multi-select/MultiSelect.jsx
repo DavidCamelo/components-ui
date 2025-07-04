@@ -34,18 +34,18 @@ export const MultiSelect = ({ label, options, selectedValues, onChange, placehol
     };
 
     return (
-        <div className="storybook-multiselect-wrapper" ref={wrapperRef}>
-            {label && <label className="storybook-multiselect-label">{label}</label>}
-            <button type="button" onClick={() => setIsOpen(!isOpen)} className="storybook-multiselect-button">
-                <span className="storybook-multiselect-button-text">{getSelectedLabels()}</span>
+        <div className="multiselect-wrapper" ref={wrapperRef}>
+            {label && <label className="multiselect-label">{label}</label>}
+            <button type="button" onClick={() => setIsOpen(!isOpen)} className="multiselect-button">
+                <span className="multiselect-button-text">{getSelectedLabels()}</span>
                 <ChevronDownIcon />
             </button>
             {isOpen && (
-                <div className="storybook-multiselect-panel">
-                    <ul className="storybook-multiselect-list">
+                <div className="multiselect-panel">
+                    <ul className="multiselect-list">
                         {options.map(option => (
-                            <li key={option.value} onClick={() => handleOptionToggle(option.value)} className="storybook-multiselect-option">
-                                <input type="checkbox" checked={selectedValues.includes(option.value)} readOnly className="storybook-multiselect-option-checkbox" />
+                            <li key={option.value} onClick={() => handleOptionToggle(option.value)} className="multiselect-option">
+                                <input type="checkbox" checked={selectedValues.includes(option.value)} readOnly className="multiselect-option-checkbox" />
                                 {option.label}
                             </li>
                         ))}

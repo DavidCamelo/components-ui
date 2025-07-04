@@ -1,7 +1,7 @@
-.storybook-timepicker-wrapper {
+.timepicker-wrapper {
   width: 100%;
 }
-.storybook-timepicker-label {
+.timepicker-label {
   display: block;
   font-family: sans-serif;
   font-size: 14px;
@@ -9,7 +9,7 @@
   color: var(--text-primary);
   margin-bottom: 4px;
 }
-.storybook-timepicker-input {
+.timepicker-input {
   box-sizing: border-box;
   width: 100%;
   border: 1px solid var(--border-color);
@@ -20,7 +20,7 @@
   background-color: var(--background-secondary);
   color: var(--text-primary);
 }
-.storybook-timepicker-input:focus {
+.timepicker-input:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 2px var(--primary-color);

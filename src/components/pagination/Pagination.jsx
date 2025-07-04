@@ -21,7 +21,7 @@ export const Pagination = ({ currentPage, totalItems, itemsPerPage, onPageChange
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 
   return (
-    <nav className="storybook-pagination-container">
+    <nav className="pagination-container">
       <div className="pagination-group">
         <div className="items-per-page-selector">
           <span className="pagination-label">Items per page:</span>

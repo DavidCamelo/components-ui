@@ -1,4 +1,4 @@
-.storybook-header {
+.header {
   background-color: var(--background-secondary);
   box-shadow: var(--shadow-md);
   border-bottom: 1px solid var(--border-color);
@@ -6,7 +6,7 @@
   top: 0px;
   z-index: 1;
 }
-.storybook-header-container {
+.header-container {
   max-width: 80rem;
   margin-left: auto;
   margin-right: auto;
@@ -16,27 +16,27 @@
   align-items: center;
   height: 4rem;
 }
-.storybook-header-title {
+.header-title {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-primary);
 }
-.storybook-header-nav-desktop {
+.header-nav-desktop {
   display: none;
 }
 @media (min-width: 768px) {
-  .storybook-header-nav-desktop {
+  .header-nav-desktop {
     display: flex;
     gap: 2rem;
   }
 }
-.storybook-header-nav-link {
+.header-nav-link {
   color: var(--text-secondary);
   font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
 }
-.storybook-header-nav-link:hover {
+.header-nav-link:hover {
   color: var(--text-primary);
 }
 .header-right-side {
@@ -54,15 +54,15 @@
         gap: 0.75rem;
     }
 }
-.storybook-header-mobile-menu-button-wrapper {
+.header-mobile-menu-button-wrapper {
   display: flex;
 }
 @media (min-width: 768px) {
-  .storybook-header-mobile-menu-button-wrapper {
+  .header-mobile-menu-button-wrapper {
     display: none;
   }
 }
-.storybook-header-mobile-menu-button {
+.header-mobile-menu-button {
   background: none;
   border: none;
   cursor: pointer;
@@ -70,20 +70,20 @@
   border-radius: 0.375rem;
   color: var(--text-secondary);
 }
-.storybook-header-mobile-menu-button:hover {
+.header-mobile-menu-button:hover {
   color: var(--text-primary);
   background-color: var(--secondary-color-hover);
 }
-.storybook-header-nav-mobile {
+.header-nav-mobile {
   padding: 0.5rem 0.75rem 0.75rem;
   background-color: var(--background-secondary);
 }
 @media (min-width: 768px) {
-  .storybook-header-nav-mobile {
+  .header-nav-mobile {
     display: none;
   }
 }
-.storybook-header-nav-link-mobile {
+.header-nav-link-mobile {
   color: var(--text-secondary);
   display: block;
   padding: 0.5rem 0.75rem;
@@ -92,7 +92,7 @@
   font-weight: 500;
   text-decoration: none;
 }
-.storybook-header-nav-link-mobile:hover {
+.header-nav-link-mobile:hover {
   color: var(--text-primary);
   background-color: var(--secondary-color-hover);
 }

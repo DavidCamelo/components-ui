@@ -1,4 +1,4 @@
-.storybook-pagination-container {
+.pagination-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,7 +45,7 @@
   opacity: 0.5;
 }
 @media (max-width: 768px) {
-  .storybook-pagination-container {
+  .pagination-container {
     justify-content: center;
   }
 }

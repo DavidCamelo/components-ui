@@ -4,12 +4,12 @@ import './input.css';
 
 export const Input = ({ label, name, size = 'medium', ...props }) => {
   return (
-    <div className="storybook-input-wrapper">
-      {label && <label htmlFor={name} className="storybook-input-label">{label}</label>}
+    <div className="input-wrapper">
+      {label && <label htmlFor={name} className="input-label">{label}</label>}
       <input
         id={name}
         name={name}
-        className={['storybook-input', `storybook-input--${size}`].join(' ')}
+        className={['input', `input--${size}`].join(' ')}
         {...props}
       />
     </div>

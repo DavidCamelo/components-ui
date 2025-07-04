@@ -101,8 +101,8 @@ export const Form = ({ fields, initialData, onSubmit, onCancel, isLoading }) => 
     if (type === 'radio') {
       return (
         <div key={name}>
-            <span className="storybook-input-label">{field.label}</span>
-            <div className="storybook-radio-group">
+            <span className="input-label">{field.label}</span>
+            <div className="radio-group">
             {field.options.map(option => (
                 <RadioButton
                 key={option.value}
@@ -127,9 +127,9 @@ export const Form = ({ fields, initialData, onSubmit, onCancel, isLoading }) => 
   };
 
   return (
-    <form onSubmit={handleSubmit} className="storybook-form">
+    <form onSubmit={handleSubmit} className="form">
       {fields.map(renderField)}
-      <div className="storybook-form-actions">
+      <div className="form-actions">
         {onCancel && <Button label="Cancel" onClick={onCancel} disabled={isLoading} />}
         <Button primary label={isLoading ? 'Submitting...' : 'Submit'} type="submit" disabled={isLoading} />
         {isLoading && <Spinner size="small" />}

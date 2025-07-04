@@ -7,7 +7,7 @@ export const Avatar = ({ src, alt, size }) => {
     <img
       src={src}
       alt={alt}
-      className={`storybook-avatar storybook-avatar--${size}`}
+      className={`avatar avatar--${size}`}
     />
   );
 };

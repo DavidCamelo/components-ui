@@ -1,8 +1,8 @@
-.storybook-multiselect-wrapper {
+.multiselect-wrapper {
   position: relative;
   width: 100%;
 }
-.storybook-multiselect-label {
+.multiselect-label {
   display: block;
   font-family: sans-serif;
   font-size: 14px;
@@ -10,7 +10,7 @@
   color: var(--text-primary);
   margin-bottom: 4px;
 }
-.storybook-multiselect-button {
+.multiselect-button {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -25,17 +25,17 @@
   cursor: pointer;
   color: var(--text-primary);
 }
-.storybook-multiselect-button:focus {
+.multiselect-button:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 2px var(--primary-color);
 }
-.storybook-multiselect-button-text {
+.multiselect-button-text {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.storybook-multiselect-panel {
+.multiselect-panel {
   position: absolute;
   z-index: 10;
   width: 100%;
@@ -47,22 +47,22 @@
   max-height: 15rem;
   overflow-y: auto;
 }
-.storybook-multiselect-list {
+.multiselect-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.storybook-multiselect-option {
+.multiselect-option {
   display: flex;
   align-items: center;
   padding: 8px 12px;
   font-size: 14px;
   cursor: pointer;
 }
-.storybook-multiselect-option:hover {
+.multiselect-option:hover {
   background-color: var(--secondary-color-hover);
 }
-.storybook-multiselect-option-checkbox {
+.multiselect-option-checkbox {
   margin-right: 0.75rem;
   height: 1rem;
   width: 1rem;

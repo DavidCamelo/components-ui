@@ -1,27 +1,27 @@
-.storybook-breadcrumbs ol {
+.breadcrumbs ol {
   display: flex;
   align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.storybook-breadcrumbs li {
+.breadcrumbs li {
   display: flex;
   align-items: center;
   font-size: 0.875rem;
 }
-.storybook-breadcrumbs a {
+.breadcrumbs a {
   color: var(--text-secondary);
   text-decoration: none;
 }
-.storybook-breadcrumbs a:hover {
+.breadcrumbs a:hover {
   text-decoration: underline;
 }
-.storybook-breadcrumbs span {
+.breadcrumbs span {
   color: var(--text-primary);
   font-weight: 500;
 }
-.storybook-breadcrumbs .separator {
+.breadcrumbs .separator {
   margin: 0 0.5rem;
   color: var(--text-secondary);
   width: 1rem;

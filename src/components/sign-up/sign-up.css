@@ -1,12 +1,12 @@
-.storybook-signup-form-wrapper {
+.signup-form-wrapper {
   width: 100%;
 }
-.storybook-signup-form {
+.signup-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
-.storybook-signup-actions {
+.signup-actions {
   display: flex;
   justify-content: flex-end;
   align-items: center;

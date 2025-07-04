@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import './select.css';
 
 export const Select = ({ label, name, options, size = 'medium', ...props }) => (
-    <div className="storybook-select-wrapper">
-        {label && <label htmlFor={name} className="storybook-select-label">{label}</label>}
-        <select id={name} name={name} className={['storybook-select', `storybook-select--${size}`].join(' ')} {...props}>
+    <div className="select-wrapper">
+        {label && <label htmlFor={name} className="select-label">{label}</label>}
+        <select id={name} name={name} className={['select', `select--${size}`].join(' ')} {...props}>
             {props.placeholder && <option value="">{props.placeholder}</option>}
             {options.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
         </select>

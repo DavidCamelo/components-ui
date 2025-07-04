@@ -4,9 +4,9 @@ import './tooltip.css';
 
 export const Tooltip = ({ content, children }) => {
   return (
-    <div className="storybook-tooltip-wrapper">
+    <div className="tooltip-wrapper">
       {children}
-      <div className="storybook-tooltip-content">{content}</div>
+      <div className="tooltip-content">{content}</div>
     </div>
   );
 };

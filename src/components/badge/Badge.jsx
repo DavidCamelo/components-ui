@@ -4,7 +4,7 @@ import './badge.css';
 
 export const Badge = ({ label, color }) => {
   return (
-    <span className="storybook-badge" style={{ backgroundColor: color }}>
+    <span className="badge" style={{ backgroundColor: color }}>
       {label}
     </span>
   );

@@ -4,13 +4,13 @@ import './date-time-picker.css';
 
 export const DateTimePicker = ({ label, name, size = 'medium', ...props }) => {
   return (
-    <div className="storybook-datetimepicker-wrapper">
-      {label && <label htmlFor={name} className="storybook-datetimepicker-label">{label}</label>}
+    <div className="datetimepicker-wrapper">
+      {label && <label htmlFor={name} className="datetimepicker-label">{label}</label>}
       <input
         id={name}
         name={name}
         type="datetime-local"
-        className={['storybook-datetimepicker-input', `storybook-datetimepicker-input--${size}`].join(' ')}
+        className={['datetimepicker-input', `datetimepicker-input--${size}`].join(' ')}
         {...props}
       />
     </div>

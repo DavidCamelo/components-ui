@@ -42,25 +42,25 @@ export const Carousel = ({ items, autoPlayInterval = 3000 }) => {
   };
 
   return (
-    <div className="storybook-carousel">
-      <div className="storybook-carousel-inner" style={{ transform: `translateX(${-currentIndex * 100}%)` }}>
+    <div className="carousel">
+      <div className="carousel-inner" style={{ transform: `translateX(${-currentIndex * 100}%)` }}>
         {items.map((item, index) => (
-          <div className="storybook-carousel-item" key={index}>
+          <div className="carousel-item" key={index}>
             {item}
           </div>
         ))}
       </div>
-      <button className="storybook-carousel-control prev" onClick={goToPrevious}>
+      <button className="carousel-control prev" onClick={goToPrevious}>
         <ChevronLeftIcon />
       </button>
-      <button className="storybook-carousel-control next" onClick={goToNext}>
+      <button className="carousel-control next" onClick={goToNext}>
         <ChevronRightIcon />
       </button>
-      <div className="storybook-carousel-dots">
+      <div className="carousel-dots">
         {items.map((_, index) => (
           <button
             key={index}
-            className={`storybook-carousel-dot ${currentIndex === index ? 'active' : ''}`}
+            className={`carousel-dot ${currentIndex === index ? 'active' : ''}`}
             onClick={() => goToSlide(index)}
           />
         ))}

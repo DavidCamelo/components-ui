@@ -4,13 +4,13 @@ import './time-picker.css';
 
 export const TimePicker = ({ label, name, size = 'medium', ...props }) => {
   return (
-    <div className="storybook-timepicker-wrapper">
-      {label && <label htmlFor={name} className="storybook-timepicker-label">{label}</label>}
+    <div className="timepicker-wrapper">
+      {label && <label htmlFor={name} className="timepicker-label">{label}</label>}
       <input
         id={name}
         name={name}
         type="time"
-        className={['storybook-timepicker-input', `storybook-timepicker-input--${size}`].join(' ')}
+        className={['timepicker-input', `timepicker-input--${size}`].join(' ')}
         {...props}
       />
     </div>

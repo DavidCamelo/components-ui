@@ -5,7 +5,7 @@ import { ChevronRightIcon } from '../../icons';
 
 export const Breadcrumbs = ({ items }) => {
   return (
-    <nav className="storybook-breadcrumbs" aria-label="Breadcrumb">
+    <nav className="breadcrumbs" aria-label="Breadcrumb">
       <ol>
         {items.map((item, index) => (
           <li key={index}>

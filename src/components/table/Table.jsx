@@ -19,8 +19,8 @@ export const Table = ({ columns, data, onEdit, onDelete, onSort, sortBy, sortDir
   };
 
   return (
-    <div className="storybook-table-wrapper">
-      <table className="storybook-table">
+    <div className="table-wrapper">
+      <table className="table">
         <thead>
           <tr>
             {columns.map((col) => (
@@ -45,7 +45,7 @@ export const Table = ({ columns, data, onEdit, onDelete, onSort, sortBy, sortDir
                 <td key={col.key}>{renderCell(item, col)}</td>
               ))}
               <td>
-                <div className="storybook-table-actions">
+                <div className="table-actions">
                   <Button size="small" onClick={() => onEdit(item)} label="Edit" />
                   <Button size="small" primary backgroundColor="hsl(0, 79%, 63%)" onClick={() => onDelete(item)} label="Delete" />
                 </div>

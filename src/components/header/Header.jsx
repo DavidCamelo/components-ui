@@ -12,13 +12,13 @@ export const Header = ({ title, menuItems, user, onLogoutClick, onLoginClick, on
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="storybook-header">
-      <div className="storybook-header-container">
-        <h1 className="storybook-header-title">{title}</h1>
+    <header className="header">
+      <div className="header-container">
+        <h1 className="header-title">{title}</h1>
         {user && (
-          <nav className="storybook-header-nav-desktop">
+          <nav className="header-nav-desktop">
             {menuItems.map(item => (
-              <a key={item.name} href={item.href} className="storybook-header-nav-link">
+              <a key={item.name} href={item.href} className="header-nav-link">
                 {item.name}
               </a>
             ))}
@@ -37,19 +37,19 @@ export const Header = ({ title, menuItems, user, onLogoutClick, onLoginClick, on
                     <Button size="small" primary label="Sign up" onClick={onSignUpClick} />
                  </div>
             ) }
-            <div className="storybook-header-mobile-menu-button-wrapper">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="storybook-header-mobile-menu-button">
+            <div className="header-mobile-menu-button-wrapper">
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="header-mobile-menu-button">
                 {isMenuOpen ? <XIcon /> : <MenuIcon />}
               </button>
             </div>
         </div>
       </div>
       {isMenuOpen && (
-        <nav className="storybook-header-nav-mobile">
+        <nav className="header-nav-mobile">
           {user ? (
             <>
               {menuItems.map(item => (
-                <a key={item.name} href={item.href} className="storybook-header-nav-link-mobile">
+                <a key={item.name} href={item.href} className="header-nav-link-mobile">
                   {item.name}
                 </a>
               ))}

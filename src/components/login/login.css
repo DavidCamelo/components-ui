@@ -1,12 +1,12 @@
-.storybook-login-form-wrapper {
+.login-form-wrapper {
   width: 100%;
 }
-.storybook-login-form {
+.login-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
-.storybook-login-actions {
+.login-actions {
   display: flex;
   justify-content: flex-end;
   align-items: center;

@@ -1,7 +1,7 @@
 .modal-open {
   overflow: hidden;
 }
-.storybook-modal-backdrop {
+.modal-backdrop {
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
 }
-.storybook-modal-container {
+.modal-container {
   position: relative;
   background-color: var(--background-secondary);
   border-radius: 0.5rem;
@@ -23,26 +23,26 @@
   max-width: 32rem;
   width: 100%;
 }
-.storybook-modal-header {
+.modal-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
-.storybook-modal-title {
+.modal-title {
   font-size: 1.125rem;
   line-height: 1.5rem;
   font-weight: 500;
   color: var(--text-primary);
 }
-.storybook-modal-close-button {
+.modal-close-button {
   background: none;
   border: none;
   cursor: pointer;
   color: var(--text-secondary);
 }
-.storybook-modal-close-button:hover {
+.modal-close-button:hover {
   color: var(--text-primary);
 }
-.storybook-modal-content {
+.modal-content {
   margin-top: 0.5rem;
 }

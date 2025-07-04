@@ -1,12 +1,12 @@
-.storybook-tabs-wrapper {
+.tabs-wrapper {
   width: 100%; 
 }
-.storybook-tabs-nav { 
+.tabs-nav {
   border-bottom: 1px solid var(--border-color); 
   display: flex; 
   gap: 2rem; 
 }
-.storybook-tabs-button { 
+.tabs-button {
   white-space: nowrap; 
   padding: 1rem 0.25rem; 
   border-bottom: 2px solid transparent; 
@@ -19,14 +19,14 @@
   border-left: none; 
   border-right: none; 
 }
-.storybook-tabs-button:hover { 
+.tabs-button:hover {
   color: var(--text-primary); 
   border-color: var(--border-color); 
 }
-.storybook-tabs-button--active { 
+.tabs-button--active {
   color: var(--primary-color); 
   border-color: var(--primary-color); 
 }
-.storybook-tabs-content { 
+.tabs-content {
   padding-top: 1.25rem; 
 }

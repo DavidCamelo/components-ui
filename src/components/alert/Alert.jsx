@@ -12,9 +12,9 @@ const alertIcons = {
 
 export const Alert = ({ type, message }) => {
   return (
-    <div className={`storybook-alert storybook-alert--${type}`}>
-      <div className="storybook-alert-icon">{alertIcons[type]}</div>
-      <span className="storybook-alert-message">{message}</span>
+    <div className={`alert alert--${type}`}>
+      <div className="alert-icon">{alertIcons[type]}</div>
+      <span className="alert-message">{message}</span>
     </div>
   );
 };

@@ -6,9 +6,9 @@ export const ProgressBar = ({ progress }) => {
   const safeProgress = Math.max(0, Math.min(100, progress));
 
   return (
-    <div className="storybook-progressbar-container">
+    <div className="progressbar-container">
       <div
-        className="storybook-progressbar-bar"
+        className="progressbar-bar"
         style={{ width: `${safeProgress}%` }}
       />
     </div>

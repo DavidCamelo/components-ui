@@ -27,8 +27,8 @@ export const Login = ({ service, onLoginSuccess, onCancel }) => {
   };
 
   return (
-    <div className="storybook-login-form-wrapper">
-      <form onSubmit={handleSubmit} className="storybook-login-form">
+    <div className="login-form-wrapper">
+      <form onSubmit={handleSubmit} className="login-form">
         {error && <Alert type="error" message={error} />}
         <Input
           label="Username or Email"
@@ -52,7 +52,7 @@ export const Login = ({ service, onLoginSuccess, onCancel }) => {
           disabled={isLoading}
           autocomplete="current-password"
         />
-        <div className="storybook-login-actions">
+        <div className="login-actions">
            {onCancel && <Button label="Cancel" onClick={onCancel} disabled={isLoading} />}
            <Button primary label={isLoading ? 'Logging in...' : 'Log In'} type="submit" disabled={isLoading} />
            {isLoading && <Spinner size="small" />}

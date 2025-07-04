@@ -1,20 +1,20 @@
-.storybook-checkbox-wrapper {
+.checkbox-wrapper {
   display: flex;
   align-items: center;
   cursor: pointer;
 }
-.storybook-checkbox-input {
+.checkbox-input {
   height: 1rem;
   width: 1rem;
   border-radius: 0.25rem;
   border: 1px solid var(--border-color);
   color: var(--primary-color);
 }
-.storybook-checkbox-input:focus {
+.checkbox-input:focus {
   outline: none;
   box-shadow: 0 0 0 2px var(--primary-color);
 }
-.storybook-checkbox-label {
+.checkbox-label {
   margin-left: 0.5rem;
   display: block;
   font-size: 0.875rem;

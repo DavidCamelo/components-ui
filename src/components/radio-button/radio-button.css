@@ -1,19 +1,19 @@
-.storybook-radio-wrapper {
+.radio-wrapper {
   display: flex;
   align-items: center;
   cursor: pointer;
 }
-.storybook-radio-input {
+.radio-input {
   height: 1rem;
   width: 1rem;
   border: 1px solid var(--border-color);
   color: var(--primary-color);
 }
-.storybook-radio-input:focus {
+.radio-input:focus {
   outline: none;
   box-shadow: 0 0 0 2px var(--primary-color);
 }
-.storybook-radio-label {
+.radio-label {
   margin-left: 0.5rem;
   display: block;
   font-size: 0.875rem;

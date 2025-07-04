@@ -4,13 +4,13 @@ import './card.css';
 
 export const Card = ({ title, children, className }) => {
   return (
-    <div className={`storybook-card ${className || ''}`}>
+    <div className={`card ${className || ''}`}>
       {title && (
-        <div className="storybook-card-header">
+        <div className="card-header">
           <h2>{title}</h2>
         </div>
       )}
-      <div className="storybook-card-content">
+      <div className="card-content">
         {children}
       </div>
     </div>

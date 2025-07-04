@@ -4,16 +4,16 @@ import './checkbox.css';
 
 export const Checkbox = ({ label, name, checked, onChange }) => {
   return (
-    <label htmlFor={name} className="storybook-checkbox-wrapper">
+    <label htmlFor={name} className="checkbox-wrapper">
       <input
         id={name}
         name={name}
         type="checkbox"
         checked={checked}
         onChange={onChange}
-        className="storybook-checkbox-input"
+        className="checkbox-input"
       />
-      <span className="storybook-checkbox-label">{label}</span>
+      <span className="checkbox-label">{label}</span>
     </label>
   );
 };

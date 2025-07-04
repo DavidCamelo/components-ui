@@ -4,19 +4,19 @@ import './tabs.css';
 
 export const Tabs = ({ tabs, activeTab, onTabChange }) => {
   return (
-    <div className="storybook-tabs-wrapper">
-      <nav className="storybook-tabs-nav">
+    <div className="tabs-wrapper">
+      <nav className="tabs-nav">
         {tabs.map((tab, index) => (
           <button
             key={tab.name}
             onClick={() => onTabChange(index)}
-            className={`storybook-tabs-button ${activeTab === index ? 'storybook-tabs-button--active' : ''}`}
+            className={`tabs-button ${activeTab === index ? 'tabs-button--active' : ''}`}
           >
             {tab.name}
           </button>
         ))}
       </nav>
-      <div className="storybook-tabs-content">
+      <div className="tabs-content">
         {tabs[activeTab] && tabs[activeTab].content}
       </div>
     </div>

@@ -4,13 +4,13 @@ import './date-picker.css';
 
 export const DatePicker = ({ label, name, size = 'medium', ...props }) => {
   return (
-    <div className="storybook-datepicker-wrapper">
-      {label && <label htmlFor={name} className="storybook-datepicker-label">{label}</label>}
+    <div className="datepicker-wrapper">
+      {label && <label htmlFor={name} className="datepicker-label">{label}</label>}
       <input
         id={name}
         name={name}
         type="date"
-        className={['storybook-datepicker-input', `storybook-datepicker-input--${size}`].join(' ')}
+        className={['datepicker-input', `datepicker-input--${size}`].join(' ')}
         {...props}
       />
     </div>

@@ -1,16 +1,16 @@
-.storybook-carousel {
+.carousel {
   position: relative;
   width: 100%;
   height: 300px;
   overflow: hidden;
   border-radius: 0.5rem;
 }
-.storybook-carousel-inner {
+.carousel-inner {
   display: flex;
   height: 100%;
   transition: transform 0.5s ease-in-out;
 }
-.storybook-carousel-item {
+.carousel-item {
   min-width: 100%;
   height: 100%;
   display: flex;
@@ -19,7 +19,7 @@
   font-size: 2rem;
   color: white;
 }
-.storybook-carousel-control {
+.carousel-control {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -37,16 +37,16 @@
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
-.storybook-carousel:hover .storybook-carousel-control {
+.carousel:hover .carousel-control {
   opacity: 1;
 }
-.storybook-carousel-control.prev {
+.carousel-control.prev {
   left: 10px;
 }
-.storybook-carousel-control.next {
+.carousel-control.next {
   right: 10px;
 }
-.storybook-carousel-dots {
+.carousel-dots {
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -54,7 +54,7 @@
   display: flex;
   gap: 8px;
 }
-.storybook-carousel-dot {
+.carousel-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -64,6 +64,6 @@
   cursor: pointer;
   padding: 0;
 }
-.storybook-carousel-dot.active {
+.carousel-dot.active {
   opacity: 1;
 }

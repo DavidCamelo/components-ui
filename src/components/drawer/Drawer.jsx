@@ -20,12 +20,12 @@ export const Drawer = ({ isOpen, onClose, children }) => {
 
   return (
     <>
-      {isOpen && <div className="storybook-drawer-backdrop" onClick={onClose} />}
-      <div className={`storybook-drawer ${isOpen ? 'open' : ''}`}>
-        <button className="storybook-drawer-close" onClick={onClose}>
+      {isOpen && <div className="drawer-backdrop" onClick={onClose} />}
+      <div className={`drawer ${isOpen ? 'open' : ''}`}>
+        <button className="drawer-close" onClick={onClose}>
           <XIcon />
         </button>
-        <div className="storybook-drawer-content">{children}</div>
+        <div className="drawer-content">{children}</div>
       </div>
     </>
   );

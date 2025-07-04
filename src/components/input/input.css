@@ -1,7 +1,7 @@
-.storybook-input-wrapper {
+.input-wrapper {
   width: 100%;
 }
-.storybook-input-label {
+.input-label {
   display: block;
   font-family: sans-serif;
   font-size: 14px;
@@ -9,7 +9,7 @@
   color: var(--text-primary);
   margin-bottom: 4px;
 }
-.storybook-input {
+.input {
   box-sizing: border-box;
   width: 100%;
   border: 1px solid var(--border-color);
@@ -18,20 +18,20 @@
   background-color: var(--background-secondary);
   color: var(--text-primary);
 }
-.storybook-input:focus {
+.input:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 2px var(--primary-color);
 }
-.storybook-input--small {
+.input--small {
   font-size: 12px;
   padding: 8px 12px;
 }
-.storybook-input--medium {
+.input--medium {
   font-size: 14px;
   padding: 10px 12px;
 }
-.storybook-input--large {
+.input--large {
   font-size: 16px;
   padding: 12px 12px;
 }

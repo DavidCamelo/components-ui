@@ -4,7 +4,7 @@ import './footer.css';
 
 export const Footer = ({ text }) => {
   return (
-    <footer className="storybook-footer">
+    <footer className="footer">
       <p>{text}</p>
     </footer>
   );

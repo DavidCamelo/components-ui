@@ -36,8 +36,8 @@ export const SignUp = ({ service, onSignUpSuccess, onCancel }) => {
   };
 
   return (
-    <div className="storybook-signup-form-wrapper">
-      <form onSubmit={handleSubmit} className="storybook-signup-form">
+    <div className="signup-form-wrapper">
+      <form onSubmit={handleSubmit} className="signup-form">
         {error && <Alert type="error" message={error} />}
         <Input
           label="First Name"
@@ -83,7 +83,7 @@ export const SignUp = ({ service, onSignUpSuccess, onCancel }) => {
           disabled={isLoading}
           autocomplete="new-password"
         />
-        <div className="storybook-signup-actions">
+        <div className="signup-actions">
            {onCancel && <Button label="Cancel" onClick={onCancel} disabled={isLoading} />}
            <Button primary label={isLoading ? 'Creating Account...' : 'Sign Up'} type="submit" disabled={isLoading} />
            {isLoading && <Spinner size="small" />}

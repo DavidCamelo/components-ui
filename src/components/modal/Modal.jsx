@@ -25,24 +25,24 @@ export const Modal = ({ isOpen, onClose, title, children }) => {
 
   return (
     <div
-      className="storybook-modal-backdrop"
+      className="modal-backdrop"
       onClick={onClose}
     >
       <div
-        className="storybook-modal-container"
+        className="modal-container"
         onClick={e => e.stopPropagation()}
       >
-        <div className="storybook-modal-header">
-          <h3 className="storybook-modal-title">{title}</h3>
+        <div className="modal-header">
+          <h3 className="modal-title">{title}</h3>
           <button
             type="button"
-            className="storybook-modal-close-button"
+            className="modal-close-button"
             onClick={onClose}
           >
             <XIcon className="h-6 w-6" />
           </button>
         </div>
-        <div className="storybook-modal-content">
+        <div className="modal-content">
           {children}
         </div>
       </div>

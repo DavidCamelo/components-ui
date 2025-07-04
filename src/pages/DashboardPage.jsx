@@ -178,7 +178,7 @@ export const DashboardPage = () => {
                 <Accordion items={accordionItems} />
               </Card>
 
-              <Card title="Tooltip & Pagination" className="storybook-card-full-width">
+              <Card title="Tooltip & Pagination" className="card-full-width">
                   <div style={{padding: '2rem 0', textAlign: 'center'}}>
                       <Tooltip content="This is a useful tooltip!">
                           <Button label="Hover Me" />
@@ -187,15 +187,15 @@ export const DashboardPage = () => {
                   <Pagination currentPage={currentPage} totalPages={10} itemsPerPage={10} totalItems={100} onPageChange={(page) => setCurrentPage(page)} />
               </Card>
 
-              <Card title="Carousel" className="storybook-card-full-width">
+              <Card title="Carousel" className="card-full-width">
                   <Carousel items={carouselItems} autoPlayInterval={4000} />
               </Card>
 
-              <Card title="Reusable Table" className="storybook-card-full-width">
+              <Card title="Reusable Table" className="card-full-width">
                   <Table columns={tableColumns} data={tableData} onEdit={handleEdit} onDelete={handleDelete} />
               </Card>
 
-              <Card title="Tabs" className="storybook-card-full-width">
+              <Card title="Tabs" className="card-full-width">
                   <Tabs tabs={tabsData} activeTab={activeTab} onTabChange={setActiveTab} />
               </Card>
 

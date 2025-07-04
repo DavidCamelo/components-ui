@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import './toggle.css';
 
 export const Toggle = ({ label, enabled, setEnabled }) => (
-    <div className="storybook-toggle-wrapper">
-        {label && <span className="storybook-toggle-label">{label}</span>}
+    <div className="toggle-wrapper">
+        {label && <span className="toggle-label">{label}</span>}
         <button
           type="button"
           onClick={() => setEnabled(!enabled)}
-          className="storybook-toggle-button"
+          className="toggle-button"
           role="switch"
           aria-checked={enabled}
         >
-            <span className="storybook-toggle-handle" />
+            <span className="toggle-handle" />
         </button>
     </div>
 );
