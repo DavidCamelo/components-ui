@@ -106,7 +106,13 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
   const handleGlobalMouseMove = useCallback((e) => {
     if (selection) {
       const rect = scheduleGridRef.current.getBoundingClientRect();
-      const currentY = e.clientY - rect.top + scheduleGridRef.current.scrollTop - 40;
+      let currentY = e.clientY - rect.top + scheduleGridRef.current.scrollTop - 40;
+      if (currentY < 0) {
+        currentY = 0;
+      }
+      if (currentY > hourHeight * 24) {
+        currentY = hourHeight * 24;
+      }
       setSelection(prev => ({ ...prev, currentY }));
     }
     if (resizingItem) {
@@ -117,13 +123,13 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
       const updatedEvent = { ...resizingItem.event };
 
       if (resizingItem.edge === 'top') {
-          if (timeToY(newTime, 1) < timeToY(updatedEvent.endTime, 1)) {
+          if (timeToY(newTime, 1) >= 0 && timeToY(newTime, 1) < timeToY(updatedEvent.endTime, 1)) {
               updatedEvent.startTime = newTime;
               onEventUpdate(updatedEvent);
           }
-      } else { // bottom
-          if (timeToY(newTime, 1) > timeToY(updatedEvent.startTime, 1)) {
-              updatedEvent.endTime = newTime;
+      } else if (resizingItem.edge === 'bottom') {
+          if (timeToY(newTime, 1) <= 24 && timeToY(newTime, 1) > timeToY(updatedEvent.startTime, 1)) {
+              updatedEvent.endTime =  newTime;
               onEventUpdate(updatedEvent);
           }
       }
@@ -192,14 +198,16 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
 
     if (draggingItem) {
         const rect = scheduleGridRef.current.getBoundingClientRect();
-        const dropY = e.clientY - rect.top + scheduleGridRef.current.scrollTop - 40;
-        const newStartTime = yToTime(dropY, hourHeight);
+        let dropY = e.clientY - rect.top + scheduleGridRef.current.scrollTop - 40;
         const duration = getEventDuration(draggingItem.startTime, draggingItem.endTime);
+        if (dropY + duration * hourHeight >= hourHeight * 24) {
+            dropY = hourHeight * 24 - duration * hourHeight;
+        }
+        const newStartTime = yToTime(dropY, hourHeight);
         const newEndTime = yToTime(dropY + duration * hourHeight, hourHeight);
-
         setDropIndicator({
-            top: timeToY(newStartTime, hourHeight),
-            height: timeToY(newEndTime, hourHeight) - timeToY(newStartTime, hourHeight),
+            top: timeToY(newStartTime, hourHeight) + 10,
+            height: timeToY(newEndTime, hourHeight) - timeToY(newStartTime, hourHeight) - 10,
             left: `calc(${colIndex} * 100% / ${columns.length})`,
             width: `calc(100% / ${columns.length})`
         });
@@ -219,7 +227,6 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
 
     const rect = scheduleGridRef.current.getBoundingClientRect();
     const dropY = e.clientY - rect.top + scheduleGridRef.current.scrollTop - 40;
-
     const newStartTime = yToTime(dropY, hourHeight);
     const duration = getEventDuration(draggingItem.startTime, draggingItem.endTime);
     const newEndTime = yToTime(dropY + duration * hourHeight, hourHeight);
