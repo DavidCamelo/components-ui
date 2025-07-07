@@ -55,6 +55,15 @@ export const Form = ({ fields, initialData, onSubmit, onCancel }) => {
     setFormData(initialFormState);
   }, [fields, initialData]);
 
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
   const handleChange = (name, value) => {
     setFormData(prevData => ({
       ...prevData,

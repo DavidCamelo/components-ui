@@ -33,8 +33,8 @@ export const Header = ({ title, menuItems, user, onLogoutClick, onLoginClick, on
                 </div>
             ) : (
                  <div className="header-login-info">
-                    <Button size="small" label="Log in" onClick={onLoginClick} />
-                    <Button size="small" primary label="Sign up" onClick={onSignUpClick} />
+                   {onLoginClick && <Button size="small" label="Log in" onClick={onLoginClick} />}
+                   {onSignUpClick && <Button size="small" primary label="Sign up" onClick={onSignUpClick} />}
                  </div>
             ) }
             <div className="header-mobile-menu-button-wrapper">
@@ -57,8 +57,8 @@ export const Header = ({ title, menuItems, user, onLogoutClick, onLoginClick, on
             </>
           ) : (
             <div className="mobile-auth-buttons">
-                <Button size="small" label="Log in" onClick={() => { onLoginClick(); setIsMenuOpen(false); }} style={{width: '100%'}}/>
-                <Button size="small" primary label="Sign up" onClick={() => { onSignUpClick(); setIsMenuOpen(false); }} style={{width: '100%'}}/>
+              {onLoginClick && <Button size="small" label="Log in" onClick={() => { onLoginClick(); setIsMenuOpen(false); }} style={{width: '100%'}}/>}
+              {onSignUpClick && <Button size="small" primary label="Sign up" onClick={() => { onSignUpClick(); setIsMenuOpen(false); }} style={{width: '100%'}}/>}
             </div>
           )}
         </nav>

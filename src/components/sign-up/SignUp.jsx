@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Form } from '../form/Form';
 
 const signUpFields = [
-    { label: "First Name", name: "name", type: "text", placeholder: "Jane", required: true },
-    { label: "Last Name", name: "lastName", type: "text", placeholder: "Doe" },
-    { label: "Email", name: "email", type: "email", placeholder: "you@example.com", required: true },
-    { label: "Password", name: "password", type: "password", placeholder: "••••••••", required: true },
+    { label: "First Name", name: "name", type: "text", placeholder: "Jane", required: true, autocomplete: "given-name" },
+    { label: "Last Name", name: "lastName", type: "text", placeholder: "Doe", autocomplete: "family-name" },
+    { label: "Email", name: "email", type: "email", placeholder: "you@example.com", required: true, autocomplete: "email" },
+    { label: "Password", name: "password", type: "password", placeholder: "••••••••", required: true, autocomplete: "new-password" },
 ];
 
 export const SignUp = ({ service, onSignUpSuccess, onCancel }) => {

@@ -42,10 +42,10 @@ export const LoggedIn = {
       { name: 'Dashboard', href: '#' },
       { name: 'Settings', href: '#' },
     ],
-      user: {
-        name: 'Jane Doe',
-        avatarUrl: 'https://placehold.co/40x40/EFEFEF/3A3A3A?text=JD'
-      },
+    user: {
+      name: 'Jane Doe',
+      avatarUrl: 'https://placehold.co/40x40/EFEFEF/3A3A3A?text=JD'
+    },
     onLogoutClick: fn(),
     onLoginClick: fn(),
     onSignUpClick: fn(),

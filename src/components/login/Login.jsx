@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Form } from '../form/Form';
 
 const loginFields = [
-    { label: "Email", name: "email", type: "email", placeholder: "you@example.com", required: true },
-    { label: "Password", name: "password", type: "password", placeholder: "••••••••", required: true },
+    { label: "Email or Username", name: "email", type: "text", placeholder: "you@example.com", required: true, autocomplete: "email" },
+    { label: "Password", name: "password", type: "password", placeholder: "••••••••", required: true, autocomplete: "current-password" },
 ];
 
 export const Login = ({ service, onLoginSuccess, onCancel }) => {
