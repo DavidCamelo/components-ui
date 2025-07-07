@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './toggle.css';
 
-export const Toggle = ({ label, enabled, setEnabled }) => (
+export const Toggle = ({ label, enabled, setEnabled, onIcon, offIcon }) => (
     <div className="toggle-wrapper">
         {label && <span className="toggle-label">{label}</span>}
         <button
@@ -12,7 +12,10 @@ export const Toggle = ({ label, enabled, setEnabled }) => (
           role="switch"
           aria-checked={enabled}
         >
-            <span className="toggle-handle" />
+            <span className="sr-only">Use setting</span>
+            <span className="toggle-handle">
+                {enabled ? onIcon : offIcon}
+            </span>
         </button>
     </div>
 );
@@ -20,11 +23,15 @@ export const Toggle = ({ label, enabled, setEnabled }) => (
 Toggle.propTypes = {
   label: PropTypes.string,
   enabled: PropTypes.bool.isRequired,
-  setEnabled: PropTypes.func.isRequired
+  setEnabled: PropTypes.func.isRequired,
+  onIcon: PropTypes.node,
+  offIcon: PropTypes.node,
 };
 
 Toggle.defaultProps = {
-  label: ''
+  label: '',
+  onIcon: null,
+  offIcon: null,
 };
 
 export default Toggle;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { XIcon, MenuIcon } from '../../icons';
+import { XIcon, MenuIcon, SunIcon, MoonIcon } from '../../icons';
 import { Avatar } from '../avatar/Avatar';
 import { Button } from '../button/Button';
 import { Toggle } from '../toggle/Toggle';
@@ -25,7 +25,12 @@ export const Header = ({ title, menuItems, user, onLogoutClick, onLoginClick, on
           </nav>
         )}
         <div className="header-right-side">
-            <Toggle enabled={theme === 'dark'} setEnabled={toggleTheme} />
+            <Toggle
+                enabled={theme === 'dark'} 
+                setEnabled={toggleTheme} 
+                onIcon={<MoonIcon />}
+                offIcon={<SunIcon />}
+            />
             {user ? (
                 <div className="header-user-info">
                     <Avatar src={user.avatarUrl} alt={user.name} size="small"/>
