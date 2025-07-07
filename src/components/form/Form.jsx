@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Alert } from '../alert/Alert';
 import { Button } from '../button/Button';
 import { Checkbox } from '../checkbox/Checkbox';
 import { DatePicker } from '../date-picker/DatePicker';
@@ -28,8 +29,10 @@ const componentMap = {
   'datetime-local': DateTimePicker,
 };
 
-export const Form = ({ fields, initialData, onSubmit, onCancel, isLoading }) => {
+export const Form = ({ fields, initialData, onSubmit, onCancel }) => {
   const [formData, setFormData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const initialFormState = {};
@@ -59,9 +62,17 @@ export const Form = ({ fields, initialData, onSubmit, onCancel, isLoading }) => 
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    setIsLoading(true);
+    setError(null);
+    try {
+      await onSubmit(formData);
+    } catch (err) {
+      setError(err.message || 'An unexpected error occurred.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const renderField = (field) => {
@@ -77,6 +88,7 @@ export const Form = ({ fields, initialData, onSubmit, onCancel, isLoading }) => 
 
     const props = {
       name,
+      type,
       required: required || false,
       disabled: isLoading,
       ...rest,
@@ -128,10 +140,16 @@ export const Form = ({ fields, initialData, onSubmit, onCancel, isLoading }) => 
 
   return (
     <form onSubmit={handleSubmit} className="form">
+      {error && <Alert type="error" message={error} />}
       {fields.map(renderField)}
       <div className="form-actions">
         {onCancel && <Button label="Cancel" onClick={onCancel} disabled={isLoading} />}
-        <Button primary label={isLoading ? 'Submitting...' : 'Submit'} type="submit" disabled={isLoading} />
+        <Button 
+          primary 
+          label={isLoading ? 'Submitting...' : 'Submit'} 
+          type="submit"
+          disabled={isLoading}
+        />
         {isLoading && <Spinner size="small" />}
       </div>
     </form>
@@ -149,13 +167,11 @@ Form.propTypes = {
   initialData: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
-  isLoading: PropTypes.bool,
 };
 
 Form.defaultProps = {
   initialData: {},
   onCancel: null,
-  isLoading: false,
 };
 
 export default Form;

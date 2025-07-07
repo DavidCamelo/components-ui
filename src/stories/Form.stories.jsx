@@ -12,7 +12,6 @@ export default {
   args: {
     onSubmit: fn(),
     onCancel: fn(),
-    isLoading: false,
    },
 };
 
@@ -44,7 +43,7 @@ const sampleFields = [
   {
     label: 'Update Time',
     name: 'updateTime',
-    type: 'datetime'
+    type: 'datetime-local'
   },
   {
     label: 'User Type',
@@ -102,13 +101,17 @@ export const WithInitialData = {
   },
 };
 
-export const Loading = {
+export const SubmissionError = {
   args: {
     fields: sampleFields,
     initialData: {
-      name: 'Submitting Data...',
-      age: 99,
+      name: 'John Doe',
+      age: 35,
     },
-    isLoading: true,
+    onSubmit: () => {
+      return new Promise((_, reject) => {
+          setTimeout(() => reject(new Error('Submission failed! Please try again.')), 1000);
+      });
+    },
   },
 };

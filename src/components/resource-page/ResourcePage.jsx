@@ -23,12 +23,10 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
       sortDirection: 'ASC'
   });
   const [isLoading, setIsLoading] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isFormModalOpen, setIsFormModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [pageError, setPageError] = useState(null);
-  const [formError, setFormError] = useState(null);
   const [pageSuccess, setPageSuccess] = useState(null);
 
   // Effect to auto-clear page-level messages
@@ -41,14 +39,6 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
       return () => clearTimeout(timer);
     }
   }, [pageError, pageSuccess]);
-
-  // Effect to auto-clear form-level errors
-  useEffect(() => {
-    if (formError) {
-      const timer = setTimeout(() => setFormError(null), 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [formError]);
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -82,13 +72,11 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
 
   const handleCreate = () => {
     setSelectedItem(null);
-    setFormError(null);
     setIsFormModalOpen(true);
   };
 
   const handleEdit = (item) => {
     setSelectedItem(item);
-    setFormError(null);
     setIsFormModalOpen(true);
   };
 
@@ -104,24 +92,15 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
   };
 
   const handleFormSubmit = async (formData) => {
-    setIsSubmitting(true);
-    try {
-      setFormError(null);
-      if (selectedItem?.id) {
-        await service.update(selectedItem.id, formData);
-        setPageSuccess(`${resourceName} updated successfully!`);
-      } else {
-        await service.create(formData);
-        setPageSuccess(`${resourceName} created successfully!`);
-      }
-      fetchData();
-      closeModals();
-    } catch (err) {
-      console.error("Failed to submit form:", err);
-      setFormError(err.message || `Failed to ${selectedItem?.id ? 'update' : 'create'} ${resourceName.toLowerCase()}.`);
-    } finally {
-      setIsSubmitting(false);
+    if (selectedItem?.id) {
+      await service.update(selectedItem.id, formData);
+      setPageSuccess(`${resourceName} updated successfully!`);
+    } else {
+      await service.create(formData);
+      setPageSuccess(`${resourceName} created successfully!`);
     }
+    fetchData();
+    closeModals();
   };
 
   const handleConfirmDelete = async () => {
@@ -187,17 +166,11 @@ export const ResourcePage = ({ title, resourceName, service, columns, formFields
           onClose={closeModals}
           title={selectedItem?.id ? `Edit ${resourceName}` : `Create New ${resourceName}`}
         >
-          {formError && (
-            <div className="form-error-wrapper">
-              <Alert type="error" message={formError} />
-            </div>
-           )}
           <Form
             fields={formFields}
             initialData={selectedItem}
             onSubmit={handleFormSubmit}
             onCancel={closeModals}
-            isLoading={isSubmitting}
           />
         </Modal>
       )}

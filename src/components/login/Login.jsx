@@ -1,65 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Input } from '../input/Input';
-import { Button } from '../button/Button';
-import { Alert } from '../alert/Alert';
-import { Spinner } from '../spinner/Spinner';
-import './login.css';
+import { Form } from '../form/Form';
+
+const loginFields = [
+    { label: "Email", name: "email", type: "email", placeholder: "you@example.com", required: true },
+    { label: "Password", name: "password", type: "password", placeholder: "••••••••", required: true },
+];
 
 export const Login = ({ service, onLoginSuccess, onCancel }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError(null);
-    try {
-      const userData = await service.login(username, password);
-      onLoginSuccess(userData);
-    } catch (err) {
-      setError(err.message || 'An unexpected error occurred.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    const handleLoginSubmit = async (formData) => {
+        const userData = await service.login(formData.email, formData.password);
+        onLoginSuccess(userData);
+    };
 
-  return (
-    <div className="login-form-wrapper">
-      <form onSubmit={handleSubmit} className="login-form">
-        {error && <Alert type="error" message={error} />}
-        <Input
-          label="Username or Email"
-          name="username"
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="you@example.com"
-          required
-          disabled={isLoading}
-          autocomplete="email"
+    return (
+        <Form
+            fields={loginFields}
+            onSubmit={handleLoginSubmit}
+            onCancel={onCancel}
         />
-        <Input
-          label="Password"
-          name="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="••••••••"
-          required
-          disabled={isLoading}
-          autocomplete="current-password"
-        />
-        <div className="login-actions">
-           {onCancel && <Button label="Cancel" onClick={onCancel} disabled={isLoading} />}
-           <Button primary label={isLoading ? 'Logging in...' : 'Log In'} type="submit" disabled={isLoading} />
-           {isLoading && <Spinner size="small" />}
-        </div>
-      </form>
-    </div>
-  );
+    );
 };
 
 Login.propTypes = {
@@ -68,12 +29,10 @@ Login.propTypes = {
   }).isRequired,
   onLoginSuccess: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
-  error: PropTypes.string,
 };
 
 Login.defaultProps = {
   onCancel: null,
-  error: null,
 };
 
 export default Login;

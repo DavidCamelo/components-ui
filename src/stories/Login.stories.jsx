@@ -5,7 +5,7 @@ export default {
   title: 'Pages/Login',
   component: Login,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
   },
   tags: ['autodocs'],
 };
@@ -32,9 +32,3 @@ export const Default = {
   },
 };
 
-export const WithError = {
-  args: {
-    ...Default.args,
-    error: 'An initial error message can be passed.',
-  },
-};

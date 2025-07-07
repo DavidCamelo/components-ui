@@ -5,7 +5,7 @@ export default {
   title: 'Pages/Sign Up',
   component: SignUp,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
   },
   tags: ['autodocs'],
 };
@@ -15,7 +15,7 @@ const mockService = {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 if(email === "fail@example.com"){
-                    reject(new Error("Invalid username or password."));
+                    reject(new Error("Email already exist."));
                 } else {
                     resolve({ name: 'Test User', accessToken: 'xyz', refreshToken: 'abc' });
                 }
@@ -29,12 +29,5 @@ export const Default = {
     service: mockService,
     onSignUpSuccess: fn(),
     onCancel: fn(),
-  },
-};
-
-export const WithError = {
-  args: {
-    ...Default.args,
-    error: 'An initial error message can be passed.',
   },
 };
