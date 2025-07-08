@@ -62,6 +62,9 @@
   font-size: 12px;
   color: var(--text-secondary);
 }
+.hour-slot.highlighted {
+  background-color: var(--secondary-color-hover);
+}
 .grid-lines-container {
     position: absolute;
     top: 0;
@@ -105,6 +108,11 @@
   background-color: var(--background-secondary);
   flex: 1 0 150px;
   min-width: 150px;
+  transition: background-color 0.2s;
+}
+.column-header.highlighted {
+  background-color: var(--secondary-color-hover);
+  color: var(--text-primary);
 }
 .current-time-line {
   position: absolute;

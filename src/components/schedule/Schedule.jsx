@@ -72,6 +72,7 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
   const [resizingItem, setResizingItem] = useState(null);
   const [dropIndicator, setDropIndicator] = useState(null);
   const [shadowEvent, setShadowEvent] = useState(null);
+  const [hoveredCell, setHoveredCell] = useState(null);
 
   const scheduleGridRef = useRef(null);
   const hourHeight = 80;
@@ -205,6 +206,7 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
         }
         const newStartTime = yToTime(dropY, hourHeight);
         const newEndTime = yToTime(dropY + duration * hourHeight, hourHeight);
+
         setDropIndicator({
             top: timeToY(newStartTime, hourHeight) + 10,
             height: timeToY(newEndTime, hourHeight) - timeToY(newStartTime, hourHeight) - 10,
@@ -241,6 +243,23 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
     setDraggingItem(null);
   };
 
+  const handleGridHover = (e) => {
+    const contentArea = e.currentTarget;
+    const rect = contentArea.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const colWidth = contentArea.clientWidth / columns.length;
+    const colIndex = Math.floor(x / colWidth);
+    const columnId = columns[colIndex]?.id;
+
+    const hour = Math.floor(yToTime(y, hourHeight).split(':')[0]);
+
+    if (columnId) {
+        setHoveredCell({ hour, columnId });
+    }
+  };
+
   const renderGridLines = () => {
     const lines = [];
     for (let i = 0; i < 24; i++) {
@@ -257,7 +276,7 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
       for (let i = 0; i < 24; i++) {
           const time = i === 0 ? '12am' : i < 12 ? `${i}am` : i === 12 ? '12pm' : `${i - 12}pm`;
           labels.push(
-            <div key={i} className="hour-slot" style={{top: `${i * hourHeight}px`, height: `${hourHeight}px`}}>
+            <div key={i} className={`hour-slot ${hoveredCell?.hour === i ? 'highlighted' : ''}`} style={{top: `${i * hourHeight}px`, height: `${hourHeight}px`}}>
                 <span className="hour-label">{time}</span>
             </div>
           )
@@ -324,12 +343,12 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
             <div className="schedule-grid-header">
                 <div className="schedule-corner"></div>
                 {columns.map(col => (
-                    <div key={col.id} className="column-header">{col.title}</div>
+                    <div key={col.id} className={`column-header ${hoveredCell?.columnId === col.id ? 'highlighted' : ''}`}>{col.title}</div>
                 ))}
             </div>
             <div className="schedule-grid-body" style={{ height: `${hourHeight * 24}px` }}>
                 <div className="time-column">{renderTimeLabels()}</div>
-                <div className="schedule-content-area">
+                <div className="schedule-content-area" onMouseMove={handleGridHover} onMouseLeave={() => setHoveredCell(null)}>
                     <div className="grid-lines-container">{renderGridLines()}</div>
                     {columns.map((col, colIndex) => (
                         <div
