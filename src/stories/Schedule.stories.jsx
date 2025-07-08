@@ -51,4 +51,11 @@ Default.args = {
   onEventCreate: fn(),
   onEventDelete: fn(),
   currentDate: new Date().toISOString().split('T')[0],
+  allowCrossColumnDrag: true,
+};
+
+export const NoCrossColumnDrag = Template.bind({});
+NoCrossColumnDrag.args = {
+  ...Default.args,
+  allowCrossColumnDrag: false,
 };

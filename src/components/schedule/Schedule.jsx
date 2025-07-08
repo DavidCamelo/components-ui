@@ -5,6 +5,7 @@ import { TimePicker } from '../time-picker/TimePicker';
 import { Button } from '../button/Button';
 import { Card } from '../card/Card';
 import { Input } from '../input/Input';
+import { Toggle } from '../toggle/Toggle';
 import './schedule.css';
 
 // --- Helper Functions ---
@@ -62,7 +63,7 @@ const EventPreview = ({ event, position }) => {
     );
 };
 
-export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEventDelete, currentDate, onDateChange }) => {
+export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEventDelete, currentDate, onDateChange, allowCrossColumnDrag }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [selection, setSelection] = useState(null);
   const [contextMenu, setContextMenu] = useState(null);
@@ -72,6 +73,7 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
   const [resizingItem, setResizingItem] = useState(null);
   const [dropIndicator, setDropIndicator] = useState(null);
   const [shadowEvent, setShadowEvent] = useState(null);
+  const [isCrossColumnDragAllowed, setIsCrossColumnDragAllowed] = useState(allowCrossColumnDrag);
   const [hoveredCell, setHoveredCell] = useState(null);
 
   const scheduleGridRef = useRef(null);
@@ -195,6 +197,11 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
 
   const handleDragOver = (e, colIndex) => {
     e.preventDefault();
+    const canDrop = isCrossColumnDragAllowed || columns[colIndex].id === draggingItem.columnId;
+    if (!canDrop) {
+        setDropIndicator(null);
+        return;
+    }
     e.currentTarget.classList.add('drag-over');
 
     if (draggingItem) {
@@ -235,7 +242,7 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
 
     onEventUpdate({
         ...draggingItem,
-        columnId,
+        columnId: isCrossColumnDragAllowed ? columnId : draggingItem.columnId,
         startTime: newStartTime,
         endTime: newEndTime,
     });
@@ -334,9 +341,13 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
     <div className="schedule-container">
         <div className="schedule-toolbar">
             <div className="toolbar-section">
-                <Button label="< Prev day" size="small" onClick={() => onDateChange(-1)} />
+                <Button label="<" size="small" onClick={() => onDateChange(-1)} />
                 <DatePicker name="schedule-date" value={currentDate} onChange={(e) => onDateChange(e.target.value)} />
-                <Button label="Next day >" size="small" onClick={() => onDateChange(1)} />
+                <Button label=">" size="small" onClick={() => onDateChange(1)} />
+            </div>
+            <div className="toolbar-section">
+                <Toggle label="Allow Cross-Column Drag" enabled={isCrossColumnDragAllowed} setEnabled={setIsCrossColumnDragAllowed}
+                />
             </div>
         </div>
         <div className="schedule-grid-wrapper" ref={scheduleGridRef}>
@@ -423,12 +434,14 @@ Schedule.propTypes = {
   onEventDelete: PropTypes.func,
   currentDate: PropTypes.string.isRequired,
   onDateChange: PropTypes.func.isRequired,
+  allowCrossColumnDrag: PropTypes.bool,
 };
 
 Schedule.defaultProps = {
     onEventUpdate: () => {},
     onEventCreate: () => {},
     onEventDelete: () => {},
+    allowCrossColumnDrag: true,
 }
 
 export default Schedule;
