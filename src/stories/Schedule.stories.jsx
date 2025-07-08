@@ -49,6 +49,7 @@ Default.args = {
   columns: sampleColumns,
   events: sampleEvents,
   onEventCreate: fn(),
+  onEventEdit: fn(),
   onEventDelete: fn(),
   currentDate: new Date().toISOString().split('T')[0],
   allowCrossColumnDrag: true,

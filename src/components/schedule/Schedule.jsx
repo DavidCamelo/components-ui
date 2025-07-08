@@ -63,7 +63,7 @@ const EventPreview = ({ event, position }) => {
     );
 };
 
-export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEventDelete, currentDate, onDateChange, allowCrossColumnDrag }) => {
+export const Schedule = ({ columns, events, onEventUpdate, onEventEdit, onEventCreate, onEventDelete, currentDate, onDateChange, allowCrossColumnDrag }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [selection, setSelection] = useState(null);
   const [contextMenu, setContextMenu] = useState(null);
@@ -406,7 +406,7 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventCreate, onEven
                     <li onClick={() => { onEventCreate(contextMenu.item); setShadowEvent(null); }}>Add New</li>
                 ) : (
                     <>
-                        <li onClick={() => onEventUpdate(contextMenu.item)}>Edit</li>
+                        <li onClick={() => onEventEdit(contextMenu.item)}>Edit</li>
                         <li onClick={() => onEventDelete(contextMenu.item)}>Delete</li>
                     </>
                 )}
@@ -430,6 +430,7 @@ Schedule.propTypes = {
     title: PropTypes.string.isRequired,
   })).isRequired,
   onEventUpdate: PropTypes.func,
+  onEventEdit: PropTypes.func,
   onEventCreate: PropTypes.func,
   onEventDelete: PropTypes.func,
   currentDate: PropTypes.string.isRequired,
@@ -439,6 +440,7 @@ Schedule.propTypes = {
 
 Schedule.defaultProps = {
     onEventUpdate: () => {},
+    onEventEdit: () => {},
     onEventCreate: () => {},
     onEventDelete: () => {},
     allowCrossColumnDrag: true,

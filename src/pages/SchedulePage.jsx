@@ -68,8 +68,12 @@ export const SchedulePage = () => {
   };
 
   const handleEventUpdate = (updatedEvent) => {
-    console.log(`Update event in ${updatedEvent.columnId} from ${updatedEvent.startTime} to ${updatedEvent.endTime}`);
+    console.log(`Update event ${updatedEvent.title} in ${updatedEvent.columnId} from ${updatedEvent.startTime} to ${updatedEvent.endTime}`);
     setEvents(prev => prev.map(e => e.id === updatedEvent.id ? updatedEvent : e));
+  };
+
+  const handleEventEdit = (editedEvent) => {
+    window.alert(`Redirect to edit event ${editedEvent.title} in ${editedEvent.columnId} from ${editedEvent.startTime} to ${editedEvent.endTime}`);
   };
 
   const handleEventDelete = (event) => {
@@ -85,6 +89,7 @@ export const SchedulePage = () => {
       events={events}
       onEventCreate={handleEventCreate}
       onEventUpdate={handleEventUpdate}
+      onEventEdit={handleEventEdit}
       onEventDelete={handleEventDelete}
       currentDate={currentDate}
       onDateChange={handleDateChange}
