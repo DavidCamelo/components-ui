@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './avatar.css';
 
-export const Avatar = ({ src, alt, size }) => {
+export const Avatar = ({ src, alt, size = 'medium' }) => {
   return (
     <img
       src={src}

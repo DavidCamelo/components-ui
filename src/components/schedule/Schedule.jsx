@@ -346,8 +346,7 @@ export const Schedule = ({ columns, events, onEventUpdate, onEventEdit, onEventC
                 <Button label=">" size="small" onClick={() => onDateChange(1)} />
             </div>
             <div className="toolbar-section">
-                <Toggle label="Allow Cross-Column Drag" enabled={isCrossColumnDragAllowed} setEnabled={setIsCrossColumnDragAllowed}
-                />
+                <Toggle label="Allow Cross-Column Drag" enabled={isCrossColumnDragAllowed} setEnabled={setIsCrossColumnDragAllowed} />
             </div>
         </div>
         <div className="schedule-grid-wrapper" ref={scheduleGridRef}>

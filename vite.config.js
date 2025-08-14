@@ -49,6 +49,7 @@ export default defineConfig({
         './TimePicker': './src/components/time-picker/TimePicker.jsx',
         './Toggle': './src/components/toggle/Toggle.jsx',
         './Tooltip': './src/components/tooltip/Tooltip.jsx',
+        './Uploader': './src/components/uploader/Uploader.jsx',
       },
       shared: ['react']
     }),

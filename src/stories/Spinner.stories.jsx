@@ -24,3 +24,10 @@ export const Large = {
         size: 'large'
     },
 };
+
+export const WithPercentage = {
+    args: {
+        size: 'large',
+        progress: 75,
+    }
+}

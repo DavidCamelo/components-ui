@@ -26,6 +26,7 @@ import { Tabs } from '../components/tabs/Tabs';
 import { TimePicker } from '../components/time-picker/TimePicker';
 import { Toggle } from '../components/toggle/Toggle';
 import { Tooltip } from '../components/tooltip/Tooltip';
+import { Uploader } from '../components/uploader/Uploader';
 
 export const DashboardPage = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -94,6 +95,12 @@ export const DashboardPage = () => {
     { label: 'Laptops' },
   ];
 
+  const handleFileUpload = (file) => {
+    console.log("File uploaded in App:", file);
+    // Here you would typically send the file to your server
+    return Promise.resolve({ success: true, file });
+  };
+
   return (
     <>
       <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
@@ -150,6 +157,10 @@ export const DashboardPage = () => {
                   <DateTimePicker label="Event Date and Time" name="event-datetime" value={datetimeValue} onChange={e => setDatetimeValue(e.target.value)} />
               </Card>
 
+              <Card title="File Uploader" className="full-width-card">
+                  <Uploader onUpload={handleFileUpload} acceptedFileTypes={['image/png', 'image/jpeg']} />
+              </Card>
+
               <Card title="Dynamic Form">
                   <Form fields={formFields} initialData={initialFormData} onSubmit={handleFormSubmit} onCancel={() => alert('Form cancelled!')} />
               </Card>
@@ -169,9 +180,9 @@ export const DashboardPage = () => {
               <Card title="Spinners & Progress">
                   <div style={{display: 'flex', gap: '2rem', alignItems: 'center', justifyContent: 'center', padding: '1rem 0'}}>
                       <Spinner />
-                      <Spinner size="large" />
+                      <Spinner size="large" progress={45} />
                   </div>
-                  <ProgressBar progress={65} />
+                  <ProgressBar progress={65} showPercentage />
               </Card>
 
               <Card title="Accordion">

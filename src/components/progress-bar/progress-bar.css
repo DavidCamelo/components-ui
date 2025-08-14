@@ -1,6 +1,6 @@
 .progressbar-container {
   width: 100%;
-  height: 8px;
+  height: 16px;
   background-color: var(--secondary-color);
   border-radius: 9999px;
   overflow: hidden;
@@ -9,4 +9,12 @@
   height: 100%;
   background-color: var(--primary-color);
   transition: width 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.progressbar-percentage-text {
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
 }

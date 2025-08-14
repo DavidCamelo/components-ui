@@ -15,8 +15,9 @@ export const Default = {
   },
 };
 
-export const Full = {
+export const WithPercentage = {
   args: {
-    progress: 100,
+    progress: 75,
+    showPercentage: true,
   },
 };
