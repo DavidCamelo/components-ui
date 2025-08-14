@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Alert } from '../alert/Alert';
+import { Avatar } from '../avatar/Avatar';
 import { Button } from '../button/Button';
 import { Checkbox } from '../checkbox/Checkbox';
 import { DatePicker } from '../date-picker/DatePicker';
@@ -27,6 +28,7 @@ const componentMap = {
   date: DatePicker,
   time: TimePicker,
   'datetime-local': DateTimePicker,
+  avatar: Avatar,
 };
 
 export const Form = ({ fields, initialData, onSubmit, onCancel }) => {
@@ -113,6 +115,8 @@ export const Form = ({ fields, initialData, onSubmit, onCancel }) => {
     } else if (type === 'multiSelect') {
         props.selectedValues = value || [];
         props.onChange = (newValue) => handleChange(name, newValue);
+    } else if (type === 'avatar') {
+        props.src = value;
     }
     else {
       props.value = value || '';
@@ -153,9 +157,9 @@ export const Form = ({ fields, initialData, onSubmit, onCancel }) => {
       {fields.map(renderField)}
       <div className="form-actions">
         {onCancel && <Button label="Cancel" onClick={onCancel} disabled={isLoading} />}
-        <Button 
-          primary 
-          label={isLoading ? 'Submitting...' : 'Submit'} 
+        <Button
+          primary
+          label={isLoading ? 'Submitting...' : 'Submit'}
           type="submit"
           disabled={isLoading}
         />
