@@ -16,7 +16,7 @@ spec:
               service:
                 name: components-ui
                 port:
-                  number: 4173
+                  number: 80
   tls:
     - hosts:
         - components-ui.davidcamelo.com

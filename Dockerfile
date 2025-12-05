@@ -10,13 +10,25 @@ FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
 COPY --chmod=644 <<'EOF' /etc/nginx/conf.d/default.conf
 server {
-    listen 4173;
+    listen 80;
     server_name localhost;
     root /usr/share/nginx/html/app;
     index index.html;
     gzip on;
     gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
     location / {
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+        add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+        if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Allow-Origin' '*';
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+            add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+            add_header 'Access-Control-Max-Age' 1728000;
+            add_header 'Content-Type' 'text/plain; charset=utf-8';
+            add_header 'Content-Length' 0;
+            return 204;
+        }
         try_files $uri $uri/ /index.html;
     }
 }
@@ -34,5 +46,5 @@ server {
 EOF
 COPY --from=builder /app/dist /usr/share/nginx/html/app
 COPY --from=builder /app/storybook-static /usr/share/nginx/html/storybook
-EXPOSE 4173 8080
+EXPOSE 80 8080
 CMD ["nginx", "-g", "daemon off;"]
