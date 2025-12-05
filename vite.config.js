@@ -68,6 +68,12 @@ export default defineConfig({
     minify: false,
     cssCodeSplit: false,
   },
+  'build-storybook': {
+    modulePreload: false,
+    target: 'esnext',
+    minify: false,
+    cssCodeSplit: false,
+  },
   server: {
     allowedHosts: ['components-ui']
   },
