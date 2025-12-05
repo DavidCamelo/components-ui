@@ -1,2 +1,2 @@
 #!/bin/bash
-bun run preview-storybook
+npm run preview-storybook

@@ -1,2 +1,2 @@
 #!/bin/bash
-bun run preview
+npm run preview
