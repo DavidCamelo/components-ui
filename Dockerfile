@@ -14,13 +14,8 @@ server {
     server_name localhost;
     root /usr/share/nginx/html/app;
     index index.html;
-
-    # Enable Gzip compression (replaces --gzip flag)
     gzip on;
     gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
-
-    # Handle React Client-Side Routing (SPA)
-    # If a file isn't found, serve index.html
     location / {
         try_files $uri $uri/ /index.html;
     }
@@ -32,7 +27,6 @@ server {
     root /usr/share/nginx/html/storybook;
     index index.html;
     gzip on;
-
     location / {
         try_files $uri $uri/ /index.html;
     }
