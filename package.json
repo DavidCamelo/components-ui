@@ -9,8 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview --host",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "preview-storybook": "npx http-server storybook-static --cors --gzip"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@originjs/vite-plugin-federation": "^1.4.1",
